@@ -3,7 +3,7 @@ import { cn } from "../../lib/utils/cn";
 import { Icon } from "../ui/icons";
 import { Badge, Button, Chip, CopyBtn, Drawer, DrawerHead, Empty, Field, Input, Modal, Row, Segmented, Select, Toggle, downloadCSV } from "../ui";
 import { AUTOPAY_RULES, FAQ, MODULES, PAY_METHODS, TARIFF, UTILITIES, kes, num, utilityOf, type Txn } from "../../lib/data";
-import { useApp } from "../../lib/store";
+import { useApp } from "../../store";
 
 /* ====================================================================== */
 /*                          TRANSACTION RECEIPT                           */

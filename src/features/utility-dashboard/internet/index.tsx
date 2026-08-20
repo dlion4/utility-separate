@@ -21,7 +21,7 @@ import {
   type Tone,
 } from "../../../components/ui";
 import { kes } from "../../../lib/data";
-import { useApp } from "../../../lib/store";
+import { useApp } from "../../../store";
 
 /* ===================================================================== */
 /*                              TYPES                                    */

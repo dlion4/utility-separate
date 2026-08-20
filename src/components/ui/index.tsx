@@ -317,12 +317,14 @@ export function Drawer({
   children,
   side = "right",
   width = "max-w-460px",
+  bg = "bg-white",
 }: {
   open: boolean;
   onClose: () => void;
   children: ReactNode;
   side?: "right" | "left";
   width?: string;
+  bg?: string;
 }) {
   useEffect(() => {
     if (!open) return;
@@ -339,7 +341,7 @@ export function Drawer({
   return (
     <div className="position-fixed inset-0 z-85 d-flex" role="dialog" aria-modal="true">
       <div className="overlay-fade position-absolute inset-0 bg-side-55 backdrop-blur-3px" onClick={onClose} />
-      <div className={cn("position-relative d-flex h-100 w-100 flex-column bg-white shadow-pm-lg", width, side === "right" ? "ms-auto drawer-in" : "me-auto drawer-in-left")}>
+      <div className={cn("position-relative d-flex h-100 w-100 flex-column shadow-pm-lg", bg, width, side === "right" ? "ms-auto drawer-in" : "me-auto drawer-in-left")}>
         {children}
       </div>
     </div>

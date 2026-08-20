@@ -3,7 +3,7 @@ import { cn } from "../../lib/utils/cn";
 import { Icon } from "../ui/icons";
 import { Badge, Button, Chip, CopyBtn, Field, IconBtn, Input, KeyPad, Modal, PinDots, Progress, Row, Select, Segmented, Stepper, Toggle } from "../ui";
 import { PAY_METHODS, TARIFF, UTILITIES, kes, num, utilityOf, type UtilityId } from "../../lib/data";
-import { useApp } from "../../lib/store";
+import { useApp } from "../../store";
 
 const rand = (n: number) => Array.from({ length: n }, () => Math.floor(Math.random() * 10)).join("");
 const genToken = () => [rand(4), rand(4), rand(4), rand(4), rand(4)].join("-");

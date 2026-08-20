@@ -4,7 +4,7 @@ import { cn } from "../../../lib/utils/cn";
 import { useReveal } from "../../../lib/utils/useReveal";
 import { Badge, Button, Card, Chip, Donut, Empty, IconBtn, Input, Menu, Progress, Row, SectionHead, Segmented, Select, Spark } from "../../../components/ui";
 import { kes, num } from "../../../lib/data";
-import { useApp } from "../../../lib/store";
+import { useApp } from "../../../store";
 
 type AccountStatus = "Due soon" | "Paid" | "High use" | "Overdue";
 type ProviderType = "County water" | "Borehole" | "Commercial";

@@ -4,7 +4,7 @@ import { cn } from "../../../lib/utils/cn";
 import { useReveal } from "../../../lib/utils/useReveal";
 import { Badge, Button, Card, Chip, CopyBtn, Donut, Empty, IconBtn, Input, Menu, Progress, Row, SectionHead, Segmented, Select, Spark } from "../../../components/ui";
 import { TARIFF, kes, num } from "../../../lib/data";
-import { useApp } from "../../../lib/store";
+import { useApp } from "../../../store";
 
 type MeterStatus = "Healthy" | "Low units" | "Overdue" | "Offline";
 type MeterType = "Prepaid" | "Postpaid";

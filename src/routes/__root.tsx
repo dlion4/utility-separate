@@ -1,8 +1,8 @@
 import { createRootRoute, Outlet, Navigate, useRouterState } from '@tanstack/react-router'
-import { AppProvider } from '../lib/store'
+import { AppProvider } from '../store'
 import { Shell } from '../components/layout/Shell'
 import { ToastHost } from '../components/ui'
-import { useApp } from '../lib/store'
+import { useApp } from '../store'
 import { BuyWizard, AddAccountWizard, TopUpModal } from '../components/modals'
 import { AutopayDrawer, ExportModal, HelpModal, HistoryDrawer, ModuleModal, RemoveModal, RenameModal, ReportModal, TariffModal, TxnDrawer } from '../components/dialogs'
 

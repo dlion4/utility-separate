@@ -23,7 +23,7 @@ import {
   type Tone,
 } from "../../../components/ui";
 import { PAY_METHODS, kes, utilityOf, type UtilityId } from "../../../lib/data";
-import { useApp } from "../../../lib/store";
+import { useApp } from "../../../store";
 
 /* ===================================================================== */
 /*                              TYPES                                    */

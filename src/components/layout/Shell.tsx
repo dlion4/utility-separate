@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils/cn";
 import { Icon } from "../ui/icons";
 import { Avatar, Badge, Button, IconBtn, Drawer, DrawerHead } from "../ui";
 import { MODULES, NAV_GROUPS, NOTICES, PAY_METHODS, SCHEDULES, UTILITIES, kes, utilityOf } from "../../lib/data";
-import { useApp } from "../../lib/store";
+import { useApp } from "../../store";
 
 /* ================================================================ Sidebar ================================================================ */
 
@@ -537,8 +537,9 @@ export function Shell({ children }: { children: ReactNode }) {
 /* Mobile drawer nav */
 function MobileNavDrawer({ onNav, active }: { onNav: (key: string, target?: string) => void; active: string }) {
   const { navOpen, setNavOpen } = useApp();
+  if (!navOpen) return null;
   return (
-    <Drawer open={navOpen} onClose={() => setNavOpen(false)} side="left" width="max-w-280px">
+    <Drawer open={navOpen} onClose={() => setNavOpen(false)} side="left" width="max-w-280px" bg="side-glow">
       <SideNav active={active} onNav={onNav} />
     </Drawer>
   );

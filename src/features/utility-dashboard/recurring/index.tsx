@@ -30,7 +30,7 @@ import {
   type Tone,
 } from "../../../components/ui";
 import { kes } from "../../../lib/data";
-import { useApp } from "../../../lib/store";
+import { useApp } from "../../../store";
 
 type Category = "rent" | "litter" | "gas" | "other";
 type DestKind = "bank" | "mpesa" | "paymo" | "cash";

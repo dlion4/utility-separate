@@ -3,7 +3,7 @@ import { cn } from "../../../lib/utils/cn";
 import { Icon } from "../../../components/ui/icons";
 import { Badge, Button, Card, Chip, Donut, Empty, IconBtn, Input, Menu, Progress, Row, Segmented, Select, Spark, SectionHead, type Tone } from "../../../components/ui";
 import { MONTHLY, NOTICES, PAY_METHODS, SCHEDULES, SPEND_BY_UTILITY, SPEND_TREND, TARIFF, UNITS_TREND, UTILITIES, kes, num, utilityOf } from "../../../lib/data";
-import { useApp } from "../../../lib/store";
+import { useApp } from "../../../store";
 import { useReveal } from "../../../lib/utils/useReveal";
 
 const SERIES = [
