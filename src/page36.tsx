@@ -255,12 +255,12 @@ function methodName(id: string) {
 
 function toneBg(tone: Tone) {
   const map: Record<Tone, string> = {
-    success: "bg-pmgreen-soft text-[#067647]",
-    warning: "bg-warn-soft text-[#93370d]",
-    danger: "bg-danger-soft text-[#b42318]",
-    info: "bg-pmblue-soft text-[#175cd3]",
-    violet: "bg-pmviolet-soft text-[#5925dc]",
-    teal: "bg-pmteal-soft text-[#07615a]",
+    success: "bg-pmgreen-soft text-pmgreen-ink",
+    warning: "bg-warn-soft text-warn-ink",
+    danger: "bg-danger-soft text-danger-ink",
+    info: "bg-pmblue-soft text-pmblue-ink",
+    violet: "bg-pmviolet-soft text-pmviolet-ink",
+    teal: "bg-pmteal-soft text-pmteal-ink",
     muted: "bg-canvas text-muted",
     dark: "bg-ink text-white",
   };
@@ -326,24 +326,24 @@ export function SettingsPage() {
   const patchRule = (id: string, patch: Partial<AutoRule>) => setRules((prev) => prev.map((r) => (r.id === id ? { ...r, ...patch } : r)));
 
   return (
-    <div className="mx-auto max-w-[1320px]">
+    <div className="mx-auto max-w-1320px">
       {/* ========================= HERO ========================= */}
-      <section className="pm-hero relative overflow-hidden rounded-3xl p-5 sm:p-7 lg:p-9">
-        <div className="pm-hero-dots pointer-events-none absolute inset-0" />
-        <div className="relative grid gap-6 xl:grid-cols-[1.12fr_0.88fr] xl:gap-10">
+      <section className="pm-hero position-relative overflow-hidden rounded-3xl p-5 sm-p-7 lg-p-9">
+        <div className="pm-hero-dots pe-none position-absolute inset-0" />
+        <div className="position-relative d-grid gap-6 xl-grid-cols-1-12fr-0-88fr xl-gap-10">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11.5px] font-semibold text-white/80 backdrop-blur">
+            <span className="d-inline-flex align-items-center gap-2 rounded-full border border-white-15 bg-white-10 px-3 py-15 fs-115 fw-semibold text-white-80 backdrop-blur">
               <span className="live-dot" /> {activeRules.length} automation rules running · {guardrailCount} guardrails enforced
             </span>
-            <h2 className="mt-4 font-display text-[27px] font-extrabold leading-[1.08] tracking-tight text-white sm:text-[36px] lg:text-[42px]">
+            <h2 className="mt-4 font-display fs-27 fw-extrabold leading-1-08 tracking-tight text-white sm-fs-36 lg-fs-42">
               Utility settings
-              <br className="hidden sm:block" /> &amp; automation control.
+              <br className="d-none d-sm-block" /> &amp; automation control.
             </h2>
-            <p className="mt-3 max-w-[56ch] text-[13.5px] leading-relaxed text-white/70 sm:text-[14.5px]">
+            <p className="mt-3 max-w-56ch fs-135 leading-relaxed text-white-70 sm-fs-145">
               Build schedule or threshold rules, set caps and funding waterfalls, require approvals on spikes, and route every alert to the right channel — with a full audit trail behind it.
             </p>
 
-            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
+            <div className="mt-5 d-flex flex-column gap-25 flex-sm-row">
               <Button size="lg" icon="plus" onClick={() => { setEditRule(null); setBuilderOpen(true); }}>
                 New automation rule
               </Button>
@@ -355,49 +355,49 @@ export function SettingsPage() {
               </Button>
             </div>
 
-            <div className="mt-5 grid gap-2 sm:grid-cols-4">
+            <div className="mt-5 d-grid gap-2 sm-grid-cols-4">
               {[
                 { k: "Active rules", v: `${activeRules.length}/${rules.length}`, s: "across 5 utilities", icon: "repeat" as IconName },
                 { k: "Automated (Jun)", v: kes(monthSpend), s: `${capUsed}% of monthly cap`, icon: "wallet" as IconName },
                 { k: "Approvers", v: `${approvers.filter((a) => a.active).length} people`, s: "maker–checker enabled", icon: "users" as IconName },
                 { k: "Integrations", v: `${integrations.filter((i) => i.connected).length} live`, s: "auto-sync receipts", icon: "grid" as IconName },
               ].map((x) => (
-                <div key={x.k} className="card-sheen relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-3.5 backdrop-blur">
+                <div key={x.k} className="card-sheen position-relative overflow-hidden rounded-5 border border-white-10 bg-white-06 p-35 backdrop-blur">
                   <Icon name={x.icon} size={15} className="text-pmgreen" />
-                  <p className="num mt-2 font-display text-[17px] font-extrabold text-white">{x.v}</p>
-                  <p className="mt-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-white/40">{x.k}</p>
-                  <p className="mt-1 text-[10.5px] text-white/55">{x.s}</p>
+                  <p className="num mt-2 font-display fs-17 fw-extrabold text-white">{x.v}</p>
+                  <p className="mt-05 fs-105 fw-semibold text-uppercase tracking-wide text-white-40">{x.k}</p>
+                  <p className="mt-1 fs-105 text-white-55">{x.s}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* right — monthly cap gauge + waterfall */}
-          <div className="card-sheen relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-5 backdrop-blur">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-[12px] font-bold text-white">Monthly automation cap</p>
+          <div className="card-sheen position-relative overflow-hidden rounded-5 border border-white-12 bg-white-06 p-5 backdrop-blur">
+            <div className="d-flex align-items-center justify-content-between gap-3">
+              <p className="fs-12 fw-bold text-white">Monthly automation cap</p>
               <Badge tone={capUsed > 80 ? "danger" : capUsed > 60 ? "warning" : "success"}>{capUsed}% used</Badge>
             </div>
-            <p className="num mt-2 font-display text-[26px] font-extrabold leading-none text-white">{kes(monthSpend)}</p>
-            <p className="mt-1 text-[11px] text-white/50">of {kes(globalCap)} authorised for June</p>
-            <div className="mt-3 h-[8px] w-full overflow-hidden rounded-full bg-white/10">
-              <div className={cn("h-full rounded-full transition-[width] duration-700", capUsed > 80 ? "bg-danger" : capUsed > 60 ? "bg-warn" : "bg-pmgreen")} style={{ width: `${Math.min(capUsed, 100)}%` }} />
+            <p className="num mt-2 font-display fs-26 fw-extrabold lh-1 text-white">{kes(monthSpend)}</p>
+            <p className="mt-1 fs-11 text-white-50">of {kes(globalCap)} authorised for June</p>
+            <div className="mt-3 h-8px w-100 overflow-hidden rounded-full bg-white-10">
+              <div className={cn("h-100 rounded-full transition-width duration-700", capUsed > 80 ? "bg-danger" : capUsed > 60 ? "bg-warn" : "bg-pmgreen")} style={{ width: `${Math.min(capUsed, 100)}%` }} />
             </div>
-            <p className="mt-2 text-[11px] text-white/45">Rules auto-pause at 100%. You'll be alerted at 80%.</p>
+            <p className="mt-2 fs-11 text-white-45">Rules auto-pause at 100%. You'll be alerted at 80%.</p>
 
-            <div className="mt-4 rounded-xl border border-white/10 bg-ink/25 p-3.5">
-              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/45">Default funding waterfall</p>
-              <div className="mt-2.5 space-y-2">
+            <div className="mt-4 rounded-4 border border-white-10 bg-ink-25 p-35">
+              <p className="fs-11 fw-bold text-uppercase tracking-0-12em text-white-45">Default funding waterfall</p>
+              <div className="mt-25 space-y-2">
                 {[
                   { n: "1", t: "PayMo wallet", d: `${kes(balance)} available · zero fee` },
                   { n: "2", t: "M-Pesa STK", d: "0712 *** 890 · free" },
                   { n: "3", t: "Equity Bank", d: "····4521 · KES 25 fee" },
                 ].map((s) => (
-                  <div key={s.n} className="flex items-center gap-2.5 rounded-lg bg-white/[0.05] p-2.5">
-                    <span className="grid h-7 w-7 flex-none place-items-center rounded-lg bg-white/10 font-display text-[11px] font-bold text-white">{s.n}</span>
+                  <div key={s.n} className="d-flex align-items-center gap-25 rounded-3 bg-white-05 p-25">
+                    <span className="d-grid h-7 w-7 flex-none place-items-center rounded-3 bg-white-10 font-display fs-11 fw-bold text-white">{s.n}</span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-[12px] font-bold text-white">{s.t}</span>
-                      <span className="num block text-[10.5px] text-white/50">{s.d}</span>
+                      <span className="d-block fs-12 fw-bold text-white">{s.t}</span>
+                      <span className="num d-block fs-105 text-white-50">{s.d}</span>
                     </span>
                   </div>
                 ))}
@@ -410,7 +410,7 @@ export function SettingsPage() {
 
       {/* ========================= 3.6 — AUTOMATION RULES ========================= */}
       <SectionHead no="3.6" id="sec-rules" title="Automation rules" sub="Schedule-based or threshold-based rules with per-rule caps, funding waterfalls and spike protection.">
-        <div className="flex flex-wrap gap-2">
+        <div className="d-flex flex-wrap gap-2">
           <Chip on={ruleFilter === "all"} onClick={() => setRuleFilter("all")} count={rules.length}>All</Chip>
           <Chip on={ruleFilter === "active"} onClick={() => setRuleFilter("active")} count={activeRules.length}>Active</Chip>
           <Chip on={ruleFilter === "paused"} onClick={() => setRuleFilter("paused")} count={rules.length - activeRules.length}>Paused</Chip>
@@ -429,7 +429,7 @@ export function SettingsPage() {
           />
         </Card>
       ) : (
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="d-grid gap-3 sm-grid-cols-2 xl-grid-cols-3">
           {shownRules.map((r, i) => (
             <RuleCard
               key={r.id}
@@ -446,11 +446,11 @@ export function SettingsPage() {
           <button
             data-reveal
             onClick={() => { setEditRule(null); setBuilderOpen(true); }}
-            className="flex min-h-[300px] flex-col items-center justify-center gap-2.5 rounded-2xl border-2 border-dashed border-line bg-white/70 p-5 text-center transition hover:border-pmgreen/50 hover:bg-pmgreen-soft/20"
+            className="d-flex min-h-300px flex-column align-items-center justify-content-center gap-25 rounded-5 border-2 border-dashed border-line bg-white-70 p-5 text-center transition hover-border-pmgreen-50 hover-bg-pmgreen-soft-20"
           >
-            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-canvas text-muted"><Icon name="plus" size={22} /></span>
-            <p className="text-[13.5px] font-bold text-ink">Create automation rule</p>
-            <p className="max-w-[30ch] text-[11.5px] leading-relaxed text-muted">Pick a utility account, choose schedule or threshold, then set the cap and funding source.</p>
+            <span className="d-grid h-12 w-12 place-items-center rounded-5 bg-canvas text-muted"><Icon name="plus" size={22} /></span>
+            <p className="fs-135 fw-bold text-ink">Create automation rule</p>
+            <p className="max-w-30ch fs-115 leading-relaxed text-muted">Pick a utility account, choose schedule or threshold, then set the cap and funding source.</p>
           </button>
         </div>
       )}
@@ -460,30 +460,30 @@ export function SettingsPage() {
         <Badge tone="success" dot>{guardrailCount} enforced</Badge>
       </SectionHead>
 
-      <div className="grid gap-3 lg:grid-cols-3">
+      <div className="d-grid gap-3 lg-grid-cols-3">
         {/* caps */}
-        <Card className="lg:col-span-2">
-          <div className="flex items-center gap-2">
+        <Card className="lg-col-span-2">
+          <div className="d-flex align-items-center gap-2">
             <Icon name="shield" size={16} className="text-pmgreen" />
-            <p className="font-display text-[15px] font-bold tracking-tight text-ink">Spend limits &amp; approvals</p>
+            <p className="font-display fs-15 fw-bold tracking-tight text-ink">Spend limits &amp; approvals</p>
           </div>
 
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="mt-4 d-grid gap-4 sm-grid-cols-2">
             <Field label="Monthly automation cap (KES)" hint="All rules pause when this is reached.">
               <Input type="number" className="no-spin" value={globalCap} onChange={(e) => setGlobalCap(Number(e.target.value) || 0)} icon="wallet" />
             </Field>
             <Field label="Spike approval threshold (%)" hint="Require manual approval when a bill exceeds the 3-month average by this much.">
-              <div className="flex items-center gap-3">
+              <div className="d-flex align-items-center gap-3">
                 <input type="range" min={5} max={100} step={5} value={spikeThreshold} onChange={(e) => setSpikeThreshold(Number(e.target.value))} className="flex-1" />
-                <span className="num w-14 rounded-lg bg-canvas px-2 py-1.5 text-center text-[12.5px] font-bold text-ink">{spikeThreshold}%</span>
+                <span className="num w-14 rounded-3 bg-canvas px-2 py-15 text-center fs-125 fw-bold text-ink">{spikeThreshold}%</span>
               </div>
             </Field>
           </div>
 
-          <div className="mt-4 rounded-xl bg-[#fafbfd] p-3.5">
+          <div className="mt-4 rounded-4 bg-paper-2 p-35">
             <Row k="Cap consumed" v={`${kes(monthSpend)} of ${kes(globalCap)}`} strong />
             <Progress value={capUsed} tone={capUsed > 80 ? "red" : capUsed > 60 ? "amber" : "green"} className="mt-2" />
-            <div className="mt-2 flex items-center justify-between text-[11px] text-muted">
+            <div className="mt-2 d-flex align-items-center justify-content-between fs-11 text-muted">
               <span>{capUsed}% used</span>
               <span className="num">{kes(Math.max(globalCap - monthSpend, 0))} remaining</span>
             </div>
@@ -498,7 +498,7 @@ export function SettingsPage() {
               desc={`Any payment above ${kes(dualThreshold)} needs a second approver before it executes.`}
             >
               {dualApproval && (
-                <div className="mt-2.5">
+                <div className="mt-25">
                   <Select value={dualThreshold} onChange={(e) => setDualThreshold(Number(e.target.value))}>
                     {[10000, 20000, 50000, 100000].map((v) => (
                       <option key={v} value={v}>Above {kes(v)}</option>
@@ -518,33 +518,33 @@ export function SettingsPage() {
 
         {/* health summary */}
         <div className="space-y-3">
-          <Card hover className="bg-gradient-to-br from-ink to-[#123a2c] text-white">
-            <div className="flex items-center gap-2">
+          <Card hover className="bg-gradient-to-br from-ink to-123a2c text-white">
+            <div className="d-flex align-items-center gap-2">
               <Icon name="gauge" size={17} className="text-pmgreen" />
-              <p className="font-display text-[15px] font-bold tracking-tight">Automation health</p>
+              <p className="font-display fs-15 fw-bold tracking-tight">Automation health</p>
             </div>
-            <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="mt-3 d-grid grid-cols-2 gap-2">
               {[
                 { v: `${activeRules.length}`, k: "rules running" },
                 { v: "0", k: "missed bills" },
                 { v: "1", k: "failed run" },
                 { v: "100%", k: "auto-reversed" },
               ].map((s) => (
-                <div key={s.k} className="rounded-xl bg-white/[0.07] p-3">
-                  <p className="num font-display text-[20px] font-extrabold">{s.v}</p>
-                  <p className="text-[11px] text-white/55">{s.k}</p>
+                <div key={s.k} className="rounded-4 bg-white-07 p-3">
+                  <p className="num font-display fs-20 fw-extrabold">{s.v}</p>
+                  <p className="fs-11 text-white-55">{s.k}</p>
                 </div>
               ))}
             </div>
             <div className="mt-3 space-y-2">
               {rules.filter((r) => r.active).slice(0, 3).map((r) => (
-                <div key={r.id} className="flex items-center gap-2.5 rounded-xl bg-white/[0.05] p-2.5">
-                  <span className="grid h-7 w-7 flex-none place-items-center rounded-lg bg-white/10 text-pmgreen">
+                <div key={r.id} className="d-flex align-items-center gap-25 rounded-4 bg-white-05 p-25">
+                  <span className="d-grid h-7 w-7 flex-none place-items-center rounded-3 bg-white-10 text-pmgreen">
                     <Icon name={utilityOf(r.utility).icon} size={14} />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-[12px] font-bold">{r.nickname}</span>
-                    <span className="block truncate text-[10.5px] text-white/50">{r.nextRun}</span>
+                    <span className="d-block text-truncate fs-12 fw-bold">{r.nickname}</span>
+                    <span className="d-block text-truncate fs-105 text-white-50">{r.nextRun}</span>
                   </span>
                   <span className="live-dot" />
                 </div>
@@ -553,19 +553,19 @@ export function SettingsPage() {
           </Card>
 
           <Card hover>
-            <div className="flex items-center gap-2">
+            <div className="d-flex align-items-center gap-2">
               <Icon name="bell" size={16} className="text-pmgreen" />
-              <p className="font-display text-[15px] font-bold tracking-tight text-ink">Quiet hours</p>
+              <p className="font-display fs-15 fw-bold tracking-tight text-ink">Quiet hours</p>
             </div>
-            <label className="mt-3 flex items-start gap-3 rounded-xl border border-line bg-[#fafbfd] p-3">
+            <label className="mt-3 d-flex align-items-start gap-3 rounded-4 border border-line bg-paper-2 p-3">
               <Toggle on={quietHours} onChange={setQuietHours} label="Quiet hours" />
               <span className="min-w-0 flex-1">
-                <span className="block text-[12.5px] font-bold text-ink">Mute non-urgent alerts 22:00 – 06:00</span>
-                <span className="mt-0.5 block text-[11.5px] leading-relaxed text-muted">Failed payments and approval requests always break through.</span>
+                <span className="d-block fs-125 fw-bold text-ink">Mute non-urgent alerts 22:00 – 06:00</span>
+                <span className="mt-05 d-block fs-115 leading-relaxed text-muted">Failed payments and approval requests always break through.</span>
               </span>
             </label>
             {quietHours && (
-              <div className="mt-2.5 grid grid-cols-2 gap-2">
+              <div className="mt-25 d-grid grid-cols-2 gap-2">
                 <Field label="From">
                   <Select defaultValue="22:00">{["20:00", "21:00", "22:00", "23:00"].map((t) => <option key={t}>{t}</option>)}</Select>
                 </Field>
@@ -587,10 +587,10 @@ export function SettingsPage() {
 
       <Card className="p-0">
         {/* desktop matrix */}
-        <div className="hidden overflow-x-auto lg:block">
-          <table className="w-full min-w-[760px]">
-            <thead className="bg-[#fafbfd]">
-              <tr className="text-left text-[10.5px] font-bold uppercase tracking-[0.1em] text-faint">
+        <div className="d-none overflow-x-auto d-lg-block">
+          <table className="w-100 min-w-760px">
+            <thead className="bg-paper-2">
+              <tr className="text-start fs-105 fw-bold text-uppercase tracking-0-1em text-faint">
                 <th className="px-4 py-3">Event</th>
                 <th className="px-4 py-3 text-center">SMS</th>
                 <th className="px-4 py-3 text-center">Email</th>
@@ -600,19 +600,19 @@ export function SettingsPage() {
             </thead>
             <tbody className="divide-y divide-line">
               {channels.map((c) => (
-                <tr key={c.id} className="transition hover:bg-[#f7f9fc]">
+                <tr key={c.id} className="transition hover-bg-paper-3">
                   <td className="px-4 py-3">
-                    <div className="flex items-start gap-2.5">
-                      <span className="mt-0.5 grid h-8 w-8 flex-none place-items-center rounded-lg bg-canvas text-muted"><Icon name={c.icon} size={15} /></span>
+                    <div className="d-flex align-items-start gap-25">
+                      <span className="mt-05 d-grid h-8 w-8 flex-none place-items-center rounded-3 bg-canvas text-muted"><Icon name={c.icon} size={15} /></span>
                       <div>
-                        <p className="text-[12.5px] font-bold text-ink">{c.label}</p>
-                        <p className="mt-0.5 text-[11px] text-muted">{c.desc}</p>
+                        <p className="fs-125 fw-bold text-ink">{c.label}</p>
+                        <p className="mt-05 fs-11 text-muted">{c.desc}</p>
                       </div>
                     </div>
                   </td>
                   {(["sms", "email", "push", "whatsapp"] as const).map((ch) => (
                     <td key={ch} className="px-4 py-3">
-                      <div className="flex justify-center">
+                      <div className="d-flex justify-content-center">
                         <Toggle on={c[ch]} label={`${c.label} via ${ch}`} onChange={(v) => setChannels((p) => p.map((x) => (x.id === c.id ? { ...x, [ch]: v } : x)))} />
                       </div>
                     </td>
@@ -624,21 +624,21 @@ export function SettingsPage() {
         </div>
 
         {/* mobile stacked */}
-        <div className="divide-y divide-line lg:hidden">
+        <div className="divide-y divide-line d-lg-none">
           {channels.map((c) => (
-            <div key={c.id} className="p-3.5">
-              <div className="flex items-start gap-2.5">
-                <span className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-canvas text-muted"><Icon name={c.icon} size={16} /></span>
+            <div key={c.id} className="p-35">
+              <div className="d-flex align-items-start gap-25">
+                <span className="d-grid h-9 w-9 flex-none place-items-center rounded-3 bg-canvas text-muted"><Icon name={c.icon} size={16} /></span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[13px] font-bold text-ink">{c.label}</p>
-                  <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{c.desc}</p>
+                  <p className="fs-13 fw-bold text-ink">{c.label}</p>
+                  <p className="mt-05 fs-115 leading-relaxed text-muted">{c.desc}</p>
                 </div>
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-2">
+              <div className="mt-3 d-grid grid-cols-2 gap-2">
                 {(["sms", "email", "push", "whatsapp"] as const).map((ch) => (
-                  <label key={ch} className="flex items-center gap-2.5 rounded-xl border border-line bg-[#fafbfd] p-2.5">
+                  <label key={ch} className="d-flex align-items-center gap-25 rounded-4 border border-line bg-paper-2 p-25">
                     <Toggle on={c[ch]} label={`${c.label} via ${ch}`} onChange={(v) => setChannels((p) => p.map((x) => (x.id === c.id ? { ...x, [ch]: v } : x)))} />
-                    <span className="text-[12px] font-semibold capitalize text-ink-2">{ch}</span>
+                    <span className="fs-12 fw-semibold text-capitalize text-ink-2">{ch}</span>
                   </label>
                 ))}
               </div>
@@ -646,8 +646,8 @@ export function SettingsPage() {
           ))}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line bg-[#fafbfd] px-4 py-3.5">
-          <p className="text-[11.5px] text-muted">Alerts are sent to <span className="font-bold text-ink-2">j@paymo.co.ke</span> and <span className="num font-bold text-ink-2">0712 *** 890</span>.</p>
+        <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 border-top border-line bg-paper-2 px-4 py-35">
+          <p className="fs-115 text-muted">Alerts are sent to <span className="fw-bold text-ink-2">j@paymo.co.ke</span> and <span className="num fw-bold text-ink-2">0712 *** 890</span>.</p>
           <Button size="sm" variant="outline" icon="send" onClick={() => toast({ title: "Test alert sent", msg: "Check your SMS, email and push notifications.", tone: "info" })}>Send test alert</Button>
         </div>
       </Card>
@@ -657,24 +657,24 @@ export function SettingsPage() {
         <Button size="sm" variant="outline" icon="plus" onClick={() => toast({ title: "Invite approver", msg: "Send an invite from Team & roles to add a new approver.", tone: "info" })}>Invite approver</Button>
       </SectionHead>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="d-grid gap-3 sm-grid-cols-2 xl-grid-cols-4">
         {approvers.map((a, i) => (
-          <div key={a.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover flex flex-col rounded-2xl border border-line bg-white p-4 shadow-pm">
-            <div className="flex items-start gap-3">
+          <div key={a.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover d-flex flex-column rounded-5 border border-line bg-white p-4 shadow-pm">
+            <div className="d-flex align-items-start gap-3">
               <Avatar name={a.name} size={40} tone={a.active ? "dark" : "light"} />
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[13.5px] font-bold text-ink">{a.name}</p>
-                <p className="truncate text-[11.5px] text-muted">{a.role}</p>
+                <p className="text-truncate fs-135 fw-bold text-ink">{a.name}</p>
+                <p className="text-truncate fs-115 text-muted">{a.role}</p>
               </div>
               <Toggle on={a.active} label={`${a.name} approver`} onChange={(v) => { setApprovers((p) => p.map((x) => (x.id === a.id ? { ...x, active: v } : x))); toast({ title: v ? "Approver enabled" : "Approver disabled", msg: `${a.name} · ${a.role}`, tone: v ? "success" : "warn" }); }} />
             </div>
-            <div className="mt-3 rounded-xl bg-[#fafbfd] p-3">
+            <div className="mt-3 rounded-4 bg-paper-2 p-3">
               <Row k="Approval limit" v={kes(a.limit)} strong />
               <Row k="Scope" v={a.scope} />
-              <Row k="Email" v={<span className="truncate text-[11.5px]">{a.email}</span>} />
+              <Row k="Email" v={<span className="text-truncate fs-115">{a.email}</span>} />
             </div>
             <div className="mt-3">
-              <p className="mb-1 text-[10.5px] font-bold uppercase tracking-wide text-faint">Adjust limit</p>
+              <p className="mb-1 fs-105 fw-bold text-uppercase tracking-wide text-faint">Adjust limit</p>
               <Select value={a.limit} onChange={(e) => setApprovers((p) => p.map((x) => (x.id === a.id ? { ...x, limit: Number(e.target.value) } : x)))}>
                 {[10000, 25000, 50000, 100000, 250000, 500000].map((v) => (
                   <option key={v} value={v}>{kes(v)}</option>
@@ -690,22 +690,22 @@ export function SettingsPage() {
         <Badge tone="info">{integrations.filter((i) => i.connected).length} connected</Badge>
       </SectionHead>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="d-grid gap-3 sm-grid-cols-2 xl-grid-cols-3">
         {integrations.map((it, i) => (
-          <div key={it.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover flex flex-col rounded-2xl border border-line bg-white p-4 shadow-pm">
-            <div className="flex items-start gap-3">
-              <span className={cn("grid h-11 w-11 flex-none place-items-center rounded-[13px]", it.connected ? "bg-pmgreen-soft text-[#067647]" : "bg-canvas text-muted")}>
+          <div key={it.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover d-flex flex-column rounded-5 border border-line bg-white p-4 shadow-pm">
+            <div className="d-flex align-items-start gap-3">
+              <span className={cn("d-grid h-11 w-11 flex-none place-items-center rounded-13px", it.connected ? "bg-pmgreen-soft text-pmgreen-ink" : "bg-canvas text-muted")}>
                 <Icon name={it.icon} size={20} />
               </span>
               <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <p className="truncate text-[13.5px] font-bold text-ink">{it.name}</p>
+                <div className="d-flex flex-wrap align-items-center gap-15">
+                  <p className="text-truncate fs-135 fw-bold text-ink">{it.name}</p>
                   {it.connected && <Badge tone="success" dot>Live</Badge>}
                 </div>
-                <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{it.desc}</p>
+                <p className="mt-05 fs-115 leading-relaxed text-muted">{it.desc}</p>
               </div>
             </div>
-            <div className="mt-3 flex flex-wrap items-center gap-1.5">
+            <div className="mt-3 d-flex flex-wrap align-items-center gap-15">
               <Badge tone="muted">{it.category}</Badge>
               {it.lastSync && <Badge tone="info" icon="clock">Synced {it.lastSync}</Badge>}
             </div>
@@ -732,9 +732,9 @@ export function SettingsPage() {
       </SectionHead>
 
       <Card className="p-0">
-        <div className="space-y-3 border-b border-line p-4">
-          <div className="flex flex-wrap gap-2">
-            <div className="min-w-[220px] flex-1">
+        <div className="space-y-3 border-bottom border-line p-4">
+          <div className="d-flex flex-wrap gap-2">
+            <div className="min-w-220px flex-1">
               <Input icon="search" placeholder="Search actor, action or account…" value={auditQuery} onChange={(e) => setAuditQuery(e.target.value)} />
             </div>
             <Segmented
@@ -759,20 +759,20 @@ export function SettingsPage() {
           />
         ) : (
           <div className="p-4">
-            <ol className="relative space-y-4 border-l border-dashed border-line pl-6">
+            <ol className="position-relative space-y-4 border-start border-dashed border-line ps-6">
               {shownAudit.map((a) => (
-                <li key={a.id} className="relative">
-                  <span className={cn("absolute -left-[31px] grid h-6 w-6 place-items-center rounded-full ring-4 ring-white", toneBg(a.tone))}>
+                <li key={a.id} className="position-relative">
+                  <span className={cn("position-absolute left-n31px d-grid h-6 w-6 place-items-center rounded-full ring-4 ring-white", toneBg(a.tone))}>
                     <Icon name={a.icon} size={12} />
                   </span>
-                  <div className="rounded-xl border border-line bg-[#fafbfd] p-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <p className="text-[12.5px] font-bold text-ink">{a.action}</p>
+                  <div className="rounded-4 border border-line bg-paper-2 p-3">
+                    <div className="d-flex flex-wrap align-items-center gap-2">
+                      <p className="fs-125 fw-bold text-ink">{a.action}</p>
                       <Badge tone={a.tone}>{a.target}</Badge>
-                      <span className="num ml-auto whitespace-nowrap text-[11px] font-semibold text-faint">{a.date} · {a.time}</span>
+                      <span className="num ms-auto text-nowrap fs-11 fw-semibold text-faint">{a.date} · {a.time}</span>
                     </div>
-                    <p className="mt-1 text-[11.5px] leading-relaxed text-muted">{a.detail}</p>
-                    <p className="mt-1.5 flex items-center gap-1.5 text-[11px] font-semibold text-ink-2">
+                    <p className="mt-1 fs-115 leading-relaxed text-muted">{a.detail}</p>
+                    <p className="mt-15 d-flex align-items-center gap-15 fs-11 fw-semibold text-ink-2">
                       <Icon name={a.actor.startsWith("System") ? "repeat" : "user"} size={12} className="text-faint" />
                       {a.actor}
                     </p>
@@ -783,23 +783,23 @@ export function SettingsPage() {
           </div>
         )}
 
-        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line bg-[#fafbfd] px-4 py-3.5">
-          <p className="text-[11.5px] text-muted">Showing {shownAudit.length} of {auditLog.length} entries · retained 7 years</p>
+        <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 border-top border-line bg-paper-2 px-4 py-35">
+          <p className="fs-115 text-muted">Showing {shownAudit.length} of {auditLog.length} entries · retained 7 years</p>
           <Button size="sm" variant="dark" icon="shield" onClick={() => toast({ title: "Compliance pack queued", msg: "Full audit export will be emailed within 5 minutes.", tone: "success" })}>Compliance pack</Button>
         </div>
       </Card>
 
       {/* ========================= DANGER ZONE ========================= */}
-      <section className="mt-6 grid gap-3 lg:grid-cols-3" data-reveal>
-        <Card className="lg:col-span-2 bg-gradient-to-br from-ink via-[#0f2233] to-[#0d5c38] text-white" hover>
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="max-w-[52ch]">
-              <Badge tone="dark" className="border border-white/15 bg-white/10 text-white/80">Safety</Badge>
-              <h3 className="mt-3 font-display text-[19px] font-extrabold tracking-tight">Emergency controls</h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-white/65">
+      <section className="mt-6 d-grid gap-3 lg-grid-cols-3" data-reveal>
+        <Card className="lg-col-span-2 bg-gradient-to-br from-ink via-0f2233 to-0d5c38 text-white" hover>
+          <div className="d-flex flex-wrap align-items-start justify-content-between gap-4">
+            <div className="max-w-52ch">
+              <Badge tone="dark" className="border border-white-15 bg-white-10 text-white-80">Safety</Badge>
+              <h3 className="mt-3 font-display fs-19 fw-extrabold tracking-tight">Emergency controls</h3>
+              <p className="mt-2 fs-13 leading-relaxed text-white-65">
                 Pause every automation instantly if a provider outage or funding issue occurs. Nothing is deleted — rules resume exactly where they left off.
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 d-flex flex-wrap gap-2">
                 <Button
                   variant="white"
                   icon="pause-circle"
@@ -823,17 +823,17 @@ export function SettingsPage() {
                 <Button variant="white" icon="help" onClick={() => open({ kind: "help" })}>Get help</Button>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-1">
+            <div className="d-grid grid-cols-2 gap-2 sm-grid-cols-1">
               {[
                 { k: "Rules running", v: `${activeRules.length}`, i: "repeat" as IconName },
                 { k: "Guardrails", v: `${guardrailCount}`, i: "shield" as IconName },
                 { k: "Cap headroom", v: `${100 - Math.min(capUsed, 100)}%`, i: "gauge" as IconName },
               ].map((x) => (
-                <div key={x.k} className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                <div key={x.k} className="d-flex align-items-center gap-25 rounded-4 border border-white-10 bg-white-06 p-3">
                   <Icon name={x.i} size={16} className="text-pmgreen" />
                   <div>
-                    <p className="num font-display text-[15px] font-extrabold leading-none">{x.v}</p>
-                    <p className="mt-1 text-[10.5px] text-white/50">{x.k}</p>
+                    <p className="num font-display fs-15 fw-extrabold lh-1">{x.v}</p>
+                    <p className="mt-1 fs-105 text-white-50">{x.k}</p>
                   </div>
                 </div>
               ))}
@@ -842,22 +842,22 @@ export function SettingsPage() {
         </Card>
 
         <Card hover>
-          <div className="flex items-center gap-2">
+          <div className="d-flex align-items-center gap-2">
             <Icon name="sparkle" size={16} className="text-pmviolet" />
-            <p className="font-display text-[15px] font-bold tracking-tight text-ink">Configuration tips</p>
+            <p className="font-display fs-15 fw-bold tracking-tight text-ink">Configuration tips</p>
           </div>
-          <div className="mt-3 space-y-2.5">
+          <div className="mt-3 space-y-25">
             {[
               { t: "Fund from the wallet first", d: "Zero fees vs KES 25 per bank debit — saves KES 300/yr per rule." },
               { t: "Set caps 20% above average", d: "Catches billing errors without blocking legitimate seasonal spikes." },
               { t: "Use threshold rules for prepaid", d: "Meters and SIMs run dry unpredictably — schedules miss them." },
               { t: "Keep two active approvers", d: "Avoids a single point of failure when someone is on leave." },
             ].map((x) => (
-              <div key={x.t} className="flex items-start gap-2.5 rounded-xl border border-line bg-[#fafbfd] p-3">
-                <Icon name="check-circle" size={16} className="mt-0.5 flex-none text-pmgreen" />
+              <div key={x.t} className="d-flex align-items-start gap-25 rounded-4 border border-line bg-paper-2 p-3">
+                <Icon name="check-circle" size={16} className="mt-05 flex-none text-pmgreen" />
                 <div className="min-w-0 flex-1">
-                  <p className="text-[12.5px] font-bold text-ink">{x.t}</p>
-                  <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{x.d}</p>
+                  <p className="fs-125 fw-bold text-ink">{x.t}</p>
+                  <p className="mt-05 fs-115 leading-relaxed text-muted">{x.d}</p>
                 </div>
               </div>
             ))}
@@ -894,14 +894,14 @@ export function SettingsPage() {
 
 function GuardToggle({ on, onChange, icon, title, desc, children }: { on: boolean; onChange: (v: boolean) => void; icon: IconName; title: string; desc: string; children?: ReactNode }) {
   return (
-    <div className={cn("rounded-xl border p-3.5 transition", on ? "border-pmgreen/30 bg-pmgreen-soft/25" : "border-line bg-[#fafbfd]")}>
-      <div className="flex items-start gap-3">
-        <span className={cn("grid h-9 w-9 flex-none place-items-center rounded-[10px]", on ? "bg-white text-[#067647] shadow-sm" : "bg-canvas text-muted")}>
+    <div className={cn("rounded-4 border p-35 transition", on ? "border-pmgreen-30 bg-pmgreen-soft-25" : "border-line bg-paper-2")}>
+      <div className="d-flex align-items-start gap-3">
+        <span className={cn("d-grid h-9 w-9 flex-none place-items-center rounded-10px", on ? "bg-white text-pmgreen-ink shadow-sm" : "bg-canvas text-muted")}>
           <Icon name={icon} size={17} />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-[12.5px] font-bold text-ink">{title}</p>
-          <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{desc}</p>
+          <p className="fs-125 fw-bold text-ink">{title}</p>
+          <p className="mt-05 fs-115 leading-relaxed text-muted">{desc}</p>
         </div>
         <Toggle on={on} onChange={onChange} label={title} />
       </div>
@@ -932,20 +932,20 @@ function RuleCard({
   const capPct = Math.round((rule.spentThisMonth / rule.cap) * 100);
 
   return (
-    <div data-reveal style={{ animationDelay: `${delay}ms` }} className="card-hover relative flex flex-col rounded-2xl border border-line bg-white p-4 shadow-pm">
-      <div className="flex items-start gap-3">
-        <span className="grid h-11 w-11 flex-none place-items-center rounded-[13px]" style={{ background: `${u.color}1a`, color: u.color }}>
+    <div data-reveal style={{ animationDelay: `${delay}ms` }} className="card-hover position-relative d-flex flex-column rounded-5 border border-line bg-white p-4 shadow-pm">
+      <div className="d-flex align-items-start gap-3">
+        <span className="d-grid h-11 w-11 flex-none place-items-center rounded-13px" style={{ background: `${u.color}1a`, color: u.color }}>
           <Icon name={u.icon} size={20} />
         </span>
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <p className="truncate text-[13.5px] font-bold text-ink">{rule.nickname}</p>
+          <div className="d-flex flex-wrap align-items-center gap-15">
+            <p className="text-truncate fs-135 fw-bold text-ink">{rule.nickname}</p>
             <Badge tone={rule.active ? "success" : "muted"} dot>{rule.active ? "Active" : "Paused"}</Badge>
           </div>
-          <p className="num mt-0.5 text-[11.5px] text-muted">{rule.provider} · {rule.accountRef}</p>
+          <p className="num mt-05 fs-115 text-muted">{rule.provider} · {rule.accountRef}</p>
         </div>
         <Menu
-          trigger={() => <span className="grid h-8 w-8 place-items-center rounded-lg text-muted transition hover:bg-canvas hover:text-ink"><Icon name="more" size={16} /></span>}
+          trigger={() => <span className="d-grid h-8 w-8 place-items-center rounded-3 text-muted transition hover-bg-canvas hover-text-ink"><Icon name="more" size={16} /></span>}
           items={[
             { label: "Edit rule", icon: "edit", onClick: onEdit },
             { label: "Run now", icon: "bolt", onClick: () => open({ kind: "buy", utility: rule.utility, amount: rule.amount }) },
@@ -956,32 +956,32 @@ function RuleCard({
         />
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center gap-1.5">
+      <div className="mt-3 d-flex flex-wrap align-items-center gap-15">
         <Badge tone={rule.type === "Threshold" ? "violet" : "info"} icon={rule.type === "Threshold" ? "gauge" : "calendar"}>{rule.type}</Badge>
         {rule.approvalOnSpike && <Badge tone="warning" icon="shield">Spike guard</Badge>}
         {rule.notifyOnRun && <Badge tone="muted" icon="bell">Notify</Badge>}
       </div>
 
-      <div className="mt-3 rounded-xl bg-[#fafbfd] p-3">
-        <Row k="Trigger" v={<span className="text-right text-[11.5px]">{rule.timing}</span>} />
+      <div className="mt-3 rounded-4 bg-paper-2 p-3">
+        <Row k="Trigger" v={<span className="text-end fs-115">{rule.timing}</span>} />
         <Row k="Amount rule" v={rule.amountRule} />
         <Row k="Amount" v={kes(rule.amount)} strong />
         <Row k="Monthly cap" v={kes(rule.cap)} />
         <Progress value={capPct} tone={capPct > 85 ? "red" : capPct > 60 ? "amber" : "green"} className="mt-2" />
-        <div className="mt-1.5 flex items-center justify-between text-[11px] text-muted">
+        <div className="mt-15 d-flex align-items-center justify-content-between fs-11 text-muted">
           <span className="num">{kes(rule.spentThisMonth)} used</span>
           <span>{rule.runsThisMonth} run{rule.runsThisMonth === 1 ? "" : "s"} this month</span>
         </div>
       </div>
 
-      <div className="mt-3 rounded-xl border border-line bg-white p-3">
+      <div className="mt-3 rounded-4 border border-line bg-white p-3">
         <Row k="Primary source" v={methodName(rule.primary)} icon="wallet" />
         <Row k="Fallback" v={methodName(rule.fallback)} icon="refresh" />
         <Row k="Last run" v={rule.lastRun} />
         <Row k="Next run" v={rule.nextRun} />
       </div>
 
-      <div className="mt-3 flex items-center gap-2">
+      <div className="mt-3 d-flex align-items-center gap-2">
         <Button className="flex-1" variant="outline" icon="edit" onClick={onEdit}>Edit rule</Button>
         <Toggle on={rule.active} label={`${rule.nickname} rule`} onChange={(v) => onPatch({ active: v, nextRun: v ? (rule.type === "Threshold" ? "On trigger" : "Next cycle") : "Paused" })} />
       </div>
@@ -1075,7 +1075,7 @@ function RuleBuilder({
     <Modal
       open={open}
       onClose={onClose}
-      width="max-w-[640px]"
+      width="max-w-640px"
       icon="repeat"
       title={editing ? "Edit automation rule" : "New automation rule"}
       subtitle="Three steps: pick the account, define amount and timing, then set guardrails."
@@ -1112,8 +1112,8 @@ function RuleBuilder({
           </Field>
 
           <div>
-            <p className="mb-2 text-[12.5px] font-semibold text-ink-2">Rule type</p>
-            <div className="grid gap-2 sm:grid-cols-2">
+            <p className="mb-2 fs-125 fw-semibold text-ink-2">Rule type</p>
+            <div className="d-grid gap-2 sm-grid-cols-2">
               {([
                 { v: "Schedule" as RuleType, icon: "calendar" as IconName, t: "Schedule based", d: "Pay on fixed dates or due dates" },
                 { v: "Threshold" as RuleType, icon: "gauge" as IconName, t: "Threshold based", d: "Top up when balance drops" },
@@ -1121,25 +1121,25 @@ function RuleBuilder({
                 <button
                   key={o.v}
                   onClick={() => { setType(o.v); setTiming(o.v === "Schedule" ? scheduleOptions[0] : thresholdOptions[0]); }}
-                  className={cn("flex items-start gap-3 rounded-xl border p-3.5 text-left transition", type === o.v ? "border-pmgreen bg-pmgreen-soft/40 shadow-sm" : "border-line bg-white hover:border-[#c4c9d4]")}
+                  className={cn("d-flex align-items-start gap-3 rounded-4 border p-35 text-start transition", type === o.v ? "border-pmgreen bg-pmgreen-soft-40 shadow-sm" : "border-line bg-white hover-border-gray-400")}
                 >
-                  <span className={cn("grid h-9 w-9 flex-none place-items-center rounded-[10px]", type === o.v ? "bg-white text-[#067647] shadow-sm" : "bg-canvas text-muted")}>
+                  <span className={cn("d-grid h-9 w-9 flex-none place-items-center rounded-10px", type === o.v ? "bg-white text-pmgreen-ink shadow-sm" : "bg-canvas text-muted")}>
                     <Icon name={o.icon} size={17} />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[13px] font-bold text-ink">{o.t}</span>
-                    <span className="mt-0.5 block text-[11.5px] leading-relaxed text-muted">{o.d}</span>
+                    <span className="d-block fs-13 fw-bold text-ink">{o.t}</span>
+                    <span className="mt-05 d-block fs-115 leading-relaxed text-muted">{o.d}</span>
                   </span>
-                  <span className={cn("mt-1 h-4 w-4 flex-none rounded-full border-2", type === o.v ? "border-pmgreen bg-pmgreen" : "border-[#d0d5dd]")} />
+                  <span className={cn("mt-1 h-4 w-4 flex-none rounded-full border-2", type === o.v ? "border-pmgreen bg-pmgreen" : "border-gray-300")} />
                 </button>
               ))}
             </div>
           </div>
 
           {acc && (
-            <div className="flex items-start gap-2.5 rounded-xl bg-pmblue-soft/70 p-3">
-              <Icon name="info" size={16} className="mt-0.5 flex-none text-[#175cd3]" />
-              <p className="text-[12px] leading-relaxed text-[#175cd3]">
+            <div className="d-flex align-items-start gap-25 rounded-4 bg-pmblue-soft-70 p-3">
+              <Icon name="info" size={16} className="mt-05 flex-none text-pmblue-ink" />
+              <p className="fs-12 leading-relaxed text-pmblue-ink">
                 {utilityOf(acc.utility).name} · {acc.provider}. {type === "Threshold" ? "Threshold rules check the balance every 30 minutes." : "Schedule rules execute at the chosen time in EAT."}
               </p>
             </div>
@@ -1158,7 +1158,7 @@ function RuleBuilder({
             </Select>
           </Field>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="d-grid gap-3 sm-grid-cols-2">
             <Field label="Amount per run (KES)" required>
               <Input type="number" className="no-spin" value={amount} onChange={(e) => setAmount(Number(e.target.value) || 0)} icon="wallet" />
             </Field>
@@ -1167,7 +1167,7 @@ function RuleBuilder({
             </Field>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="d-flex flex-wrap gap-2">
             {[500, 1000, 2500, 5000, 10000].map((v) => (
               <Chip key={v} on={amount === v} onClick={() => setAmount(v)}>{kes(v)}</Chip>
             ))}
@@ -1181,7 +1181,7 @@ function RuleBuilder({
             </Select>
           </Field>
 
-          <div className="rounded-xl bg-[#fafbfd] p-3.5">
+          <div className="rounded-4 bg-paper-2 p-35">
             <Row k="Per run" v={kes(amount)} strong />
             <Row k="Max runs / month" v={`${Math.max(Math.floor(cap / Math.max(amount, 1)), 0)} runs`} />
             <Row k="Monthly exposure" v={kes(cap)} />
@@ -1192,7 +1192,7 @@ function RuleBuilder({
       {/* STEP 3 */}
       {step === 2 && (
         <div className="mt-4 space-y-4">
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="d-grid gap-3 sm-grid-cols-2">
             <Field label="Primary funding source" required>
               <Select value={primary} onChange={(e) => setPrimary(e.target.value)}>
                 {PAY_METHODS.map((m) => (
@@ -1210,27 +1210,27 @@ function RuleBuilder({
           </div>
 
           <div className="space-y-2">
-            <label className="flex items-start gap-3 rounded-xl border border-line bg-[#fafbfd] p-3.5">
+            <label className="d-flex align-items-start gap-3 rounded-4 border border-line bg-paper-2 p-35">
               <Toggle on={approvalOnSpike} onChange={setApprovalOnSpike} label="Spike approval" />
               <span className="min-w-0 flex-1">
-                <span className="block text-[12.5px] font-bold text-ink">Require manual approval on spikes</span>
-                <span className="mt-0.5 block text-[11.5px] leading-relaxed text-muted">Hold the payment if the bill is 20% higher than the 3-month average.</span>
+                <span className="d-block fs-125 fw-bold text-ink">Require manual approval on spikes</span>
+                <span className="mt-05 d-block fs-115 leading-relaxed text-muted">Hold the payment if the bill is 20% higher than the 3-month average.</span>
               </span>
             </label>
-            <label className="flex items-start gap-3 rounded-xl border border-line bg-[#fafbfd] p-3.5">
+            <label className="d-flex align-items-start gap-3 rounded-4 border border-line bg-paper-2 p-35">
               <Toggle on={notifyOnRun} onChange={setNotifyOnRun} label="Notify on execution" />
               <span className="min-w-0 flex-1">
-                <span className="block text-[12.5px] font-bold text-ink">Notify me instantly upon execution</span>
-                <span className="mt-0.5 block text-[11.5px] leading-relaxed text-muted">SMS and push the moment the rule runs, with the receipt attached.</span>
+                <span className="d-block fs-125 fw-bold text-ink">Notify me instantly upon execution</span>
+                <span className="mt-05 d-block fs-115 leading-relaxed text-muted">SMS and push the moment the rule runs, with the receipt attached.</span>
               </span>
             </label>
           </div>
 
-          <div className="rounded-2xl border border-line bg-white p-4">
-            <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-faint">Rule summary</p>
+          <div className="rounded-5 border border-line bg-white p-4">
+            <p className="mb-2 fs-11 fw-bold text-uppercase tracking-0-14em text-faint">Rule summary</p>
             <Row k="Account" v={acc ? `${acc.nickname} · ${acc.ref}` : "—"} />
             <Row k="Type" v={type} />
-            <Row k="Trigger" v={<span className="text-right text-[11.5px]">{timing}</span>} />
+            <Row k="Trigger" v={<span className="text-end fs-115">{timing}</span>} />
             <Row k="Amount" v={`${kes(amount)} · ${amountRule}`} />
             <Row k="Monthly cap" v={kes(cap)} />
             <Row k="Funding" v={`${methodName(primary)} → ${methodName(fallback)}`} />
@@ -1238,9 +1238,9 @@ function RuleBuilder({
             <Row k="Protections" v={`${[approvalOnSpike && "Spike guard", notifyOnRun && "Notify"].filter(Boolean).join(" · ") || "None"}`} />
           </div>
 
-          <div className="flex items-start gap-2.5 rounded-xl bg-pmgreen-soft/60 p-3">
-            <Icon name="shield" size={16} className="mt-0.5 flex-none text-[#067647]" />
-            <p className="text-[12px] leading-relaxed text-[#067647]">
+          <div className="d-flex align-items-start gap-25 rounded-4 bg-pmgreen-soft-60 p-3">
+            <Icon name="shield" size={16} className="mt-05 flex-none text-pmgreen-ink" />
+            <p className="fs-12 leading-relaxed text-pmgreen-ink">
               Every automated run still requires your PIN once per day. Rules pause automatically at the monthly cap and never silently overspend.
             </p>
           </div>

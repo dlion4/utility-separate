@@ -1,5 +1,5 @@
-import type { IconName } from "./icons";
-import type { Tone } from "./ui";
+import type { IconName } from "../components/ui/icons";
+import type { Tone } from "../components/ui";
 
 /* ============================ helpers ============================ */
 
@@ -484,6 +484,7 @@ export const NAV_GROUPS: { title: string; items: NavItem[] }[] = [
       { key: "water", label: "Water", icon: "droplet", to: "/utility/water" },
       { key: "internet", label: "Internet", icon: "wifi", to: "/utility/internet" },
       { key: "mobile-money", label: "Mobile Money", icon: "phone", to: "/utility/mobile-money" },
+      { key: "recurring", label: "Household bills", icon: "building", to: "/utility/recurring" },
     ],
   },
   {

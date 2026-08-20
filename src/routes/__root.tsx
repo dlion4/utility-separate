@@ -1,11 +1,10 @@
-import { createRootRoute } from '@tanstack/react-router'
+import { createRootRoute, Outlet, Navigate, useRouterState } from '@tanstack/react-router'
 import { AppProvider } from '../lib/store'
 import { Shell } from '../components/layout/Shell'
 import { ToastHost } from '../components/ui'
 import { useApp } from '../lib/store'
 import { BuyWizard, AddAccountWizard, TopUpModal } from '../components/modals'
 import { AutopayDrawer, ExportModal, HelpModal, HistoryDrawer, ModuleModal, RemoveModal, RenameModal, ReportModal, TariffModal, TxnDrawer } from '../components/dialogs'
-import { SettingsPage } from '../features/utility-dashboard/settings'
 
 function Dialogs() {
   return (
@@ -29,9 +28,10 @@ function Dialogs() {
 
 function Root() {
   const { toasts, dismiss } = useApp()
+  const pathname = useRouterState({ select: (st) => st.location.pathname })
   return (
     <Shell>
-      <SettingsPage />
+      {pathname === '/' ? <Navigate to="/utility" replace /> : <Outlet />}
       <Dialogs />
       <ToastHost toasts={toasts} dismiss={dismiss} />
     </Shell>

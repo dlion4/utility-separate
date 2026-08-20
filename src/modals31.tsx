@@ -167,9 +167,9 @@ export function BuyWizard() {
     <Modal
       open
       onClose={close}
-      width="max-w-[680px]"
+      width="max-w-680px"
       title={
-        <span className="flex items-center gap-2">
+        <span className="d-flex align-items-center gap-2">
           {utility.name} <span className="text-faint">·</span> <span className="text-muted">{phase === "done" ? "Receipt" : "New payment"}</span>
         </span>
       }
@@ -234,31 +234,31 @@ export function BuyWizard() {
       {/* ---------- success ---------- */}
       {phase === "done" && result ? (
         <div>
-          <div className="relative mx-auto mb-5 grid h-20 w-20 place-items-center">
-            <span className="absolute inset-0 rounded-full bg-pmgreen/15 ring-pop" />
-            <span className="absolute inset-0 rounded-full bg-pmgreen/15 ring-pop" style={{ animationDelay: "0.6s" }} />
-            <span className="relative grid h-16 w-16 place-items-center rounded-full bg-pmgreen text-white shadow-[0_12px_28px_-10px_rgba(18,183,106,0.9)]">
+          <div className="position-relative mx-auto mb-5 d-grid h-20 w-20 place-items-center">
+            <span className="position-absolute inset-0 rounded-full bg-pmgreen-15 ring-pop" />
+            <span className="position-absolute inset-0 rounded-full bg-pmgreen-15 ring-pop" style={{ animationDelay: "0.6s" }} />
+            <span className="position-relative d-grid h-16 w-16 place-items-center rounded-full bg-pmgreen text-white shadow-green-check">
               <svg className="check-draw" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12.5l4.5 4.5L19 7.5" />
               </svg>
             </span>
           </div>
-          <h4 className="text-center font-display text-[20px] font-extrabold tracking-tight text-ink">Payment successful</h4>
-          <p className="mt-1 text-center text-[13px] text-muted">
+          <h4 className="text-center font-display fs-20 fw-extrabold tracking-tight text-ink">Payment successful</h4>
+          <p className="mt-1 text-center fs-13 text-muted">
             {tokenMode ? "Your prepaid token has been generated and SMS'd to 0712 *** 890." : `${provider?.name} account ${ref} has been credited with ${kes(net)}.`}
           </p>
 
           {result.token && (
-            <div className="mt-5 overflow-hidden rounded-2xl border border-pmgreen/30 bg-gradient-to-br from-pmgreen-soft to-white p-4">
-              <div className="flex items-center gap-2">
-                <Icon name="key" size={15} className="text-[#067647]" />
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#067647]">Token number</p>
-                <Badge tone="success" className="ml-auto" dot>
+            <div className="mt-5 overflow-hidden rounded-5 border border-pmgreen-30 bg-gradient-to-br from-pmgreen-soft to-white p-4">
+              <div className="d-flex align-items-center gap-2">
+                <Icon name="key" size={15} className="text-pmgreen-ink" />
+                <p className="fs-11 fw-bold text-uppercase tracking-0-14em text-pmgreen-ink">Token number</p>
+                <Badge tone="success" className="ms-auto" dot>
                   Valid immediately
                 </Badge>
               </div>
-              <p className="num mt-2 font-display text-[19px] font-extrabold tracking-[0.06em] text-ink sm:text-[23px]">{result.token}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <p className="num mt-2 font-display fs-19 fw-extrabold tracking-0-06em text-ink sm-fs-23">{result.token}</p>
+              <div className="mt-3 d-flex flex-wrap gap-2">
                 <CopyBtn text={result.token} label="Copy token" />
                 <Button variant="outline" size="sm" icon="share" onClick={() => toast({ title: "Token shared", msg: "Sent via SMS to 0712 *** 890.", tone: "success" })}>
                   SMS again
@@ -267,8 +267,8 @@ export function BuyWizard() {
             </div>
           )}
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-line bg-[#fafbfd] p-3.5">
+          <div className="mt-4 d-grid gap-3 sm-grid-cols-2">
+            <div className="rounded-4 border border-line bg-paper-2 p-35">
               <Row k="Amount paid" v={kes(net, 2)} strong />
               <div className="my-1 h-px bg-line" />
               <Row k="Charges & fee" v={kes(fee, 2)} />
@@ -276,7 +276,7 @@ export function BuyWizard() {
               <div className="my-1 h-px bg-line" />
               <Row k="Total debited" v={kes(total, 2)} strong />
             </div>
-            <div className="rounded-xl border border-line bg-[#fafbfd] p-3.5">
+            <div className="rounded-4 border border-line bg-paper-2 p-35">
               {result.units && <Row k="Units purchased" v={`${num(result.units)} kWh`} strong />}
               {bundle && <Row k="Package" v={bundle.name} strong />}
               <Row k={utility.accountLabel} v={ref} />
@@ -287,9 +287,9 @@ export function BuyWizard() {
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl border border-line bg-white p-3">
+          <div className="mt-4 d-flex flex-wrap align-items-center gap-2 rounded-4 border border-line bg-white p-3">
             <Icon name="repeat" size={16} className="text-pmgreen" />
-            <p className="flex-1 text-[12.5px] font-medium text-ink-2">Automate this payment so it never lapses again.</p>
+            <p className="flex-1 fs-125 fw-medium text-ink-2">Automate this payment so it never lapses again.</p>
             <Button size="sm" variant="soft" icon="sliders" onClick={() => open({ kind: "autopay", accountId: acc?.id })}>
               Set up autopay
             </Button>
@@ -298,27 +298,27 @@ export function BuyWizard() {
       ) : phase === "processing" ? (
         /* ---------- processing ---------- */
         <div className="py-3">
-          <div className="mx-auto mb-6 grid h-16 w-16 place-items-center rounded-2xl bg-pmgreen-soft">
-            <Icon name="refresh" size={28} className="spin-slow text-[#067647]" />
+          <div className="mx-auto mb-6 d-grid h-16 w-16 place-items-center rounded-5 bg-pmgreen-soft">
+            <Icon name="refresh" size={28} className="spin-slow text-pmgreen-ink" />
           </div>
           <Progress value={(stage / stages.length) * 100} />
-          <div className="mt-5 space-y-2.5">
+          <div className="mt-5 space-y-25">
             {stages.map((s, i) => (
-              <div key={s} className={cn("flex items-center gap-3 rounded-xl border p-3 transition-all", i < stage ? "border-line bg-white" : i === stage ? "border-pmgreen/40 bg-pmgreen-soft/40" : "border-dashed border-line bg-[#fafbfd] opacity-60")}>
+              <div key={s} className={cn("d-flex align-items-center gap-3 rounded-4 border p-3 transition-all", i < stage ? "border-line bg-white" : i === stage ? "border-pmgreen-40 bg-pmgreen-soft-40" : "border-dashed border-line bg-paper-2 opacity-60")}>
                 <span
                   className={cn(
-                    "grid h-7 w-7 flex-none place-items-center rounded-full text-[11px] font-bold",
-                    i < stage ? "bg-pmgreen text-white" : i === stage ? "bg-white text-[#067647] shadow-sm" : "bg-canvas text-faint"
+                    "d-grid h-7 w-7 flex-none place-items-center rounded-full fs-11 fw-bold",
+                    i < stage ? "bg-pmgreen text-white" : i === stage ? "bg-white text-pmgreen-ink shadow-sm" : "bg-canvas text-faint"
                   )}
                 >
                   {i < stage ? <Icon name="check" size={13} strokeWidth={2.8} /> : i + 1}
                 </span>
-                <p className={cn("text-[13px] font-semibold", i <= stage ? "text-ink" : "text-faint")}>{s}</p>
-                {i === stage && <span className="live-dot ml-auto" />}
+                <p className={cn("fs-13 fw-semibold", i <= stage ? "text-ink" : "text-faint")}>{s}</p>
+                {i === stage && <span className="live-dot ms-auto" />}
               </div>
             ))}
           </div>
-          <p className="mt-4 rounded-xl bg-warn-soft/60 p-3 text-[12px] leading-relaxed text-[#93370d]">
+          <p className="mt-4 rounded-4 bg-warn-soft-60 p-3 fs-12 leading-relaxed text-warn-ink">
             <strong>Do not close this window.</strong> If the STK push times out we will reverse automatically and notify you — no funds are lost.
           </p>
         </div>
@@ -330,14 +330,14 @@ export function BuyWizard() {
           </div>
 
           {/* utility switcher */}
-          <div className="mb-4 flex gap-1.5 overflow-x-auto pb-1 thin-scroll">
+          <div className="mb-4 d-flex gap-15 overflow-x-auto pb-1 thin-scroll">
             {UTILITIES.map((u) => (
               <button
                 key={u.id}
                 onClick={() => switchUtility(u.id)}
                 className={cn(
-                  "flex flex-none items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12px] font-semibold transition",
-                  u.id === utilityId ? "border-ink bg-ink text-white" : "border-line bg-white text-muted hover:border-[#c4c9d4]"
+                  "d-flex flex-none align-items-center gap-15 rounded-full border px-3 py-15 fs-12 fw-semibold transition",
+                  u.id === utilityId ? "border-ink bg-ink text-white" : "border-line bg-white text-muted hover-border-gray-400"
                 )}
               >
                 <Icon name={u.icon} size={13} />
@@ -351,8 +351,8 @@ export function BuyWizard() {
             <div className="space-y-4">
               {matched.length > 0 && (
                 <div>
-                  <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.12em] text-faint">Saved accounts</p>
-                  <div className="grid gap-2 sm:grid-cols-2">
+                  <p className="mb-2 fs-12 fw-bold text-uppercase tracking-0-12em text-faint">Saved accounts</p>
+                  <div className="d-grid gap-2 sm-grid-cols-2">
                     {matched.map((a) => (
                       <button
                         key={a.id}
@@ -364,16 +364,16 @@ export function BuyWizard() {
                           setRefErr("");
                         }}
                         className={cn(
-                          "flex items-center gap-3 rounded-xl border p-3 text-left transition",
-                          ref === a.ref ? "border-pmgreen bg-pmgreen-soft/40" : "border-line bg-white hover:border-[#c4c9d4]"
+                          "d-flex align-items-center gap-3 rounded-4 border p-3 text-start transition",
+                          ref === a.ref ? "border-pmgreen bg-pmgreen-soft-40" : "border-line bg-white hover-border-gray-400"
                         )}
                       >
-                        <span className="grid h-9 w-9 flex-none place-items-center rounded-[10px] bg-canvas text-muted">
+                        <span className="d-grid h-9 w-9 flex-none place-items-center rounded-10px bg-canvas text-muted">
                           <Icon name={utility.icon} size={17} />
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className="block truncate text-[12.5px] font-bold text-ink">{a.nickname}</span>
-                          <span className="block truncate text-[11.5px] text-muted">
+                          <span className="d-block text-truncate fs-125 fw-bold text-ink">{a.nickname}</span>
+                          <span className="d-block text-truncate fs-115 text-muted">
                             {a.provider} · {a.ref}
                           </span>
                         </span>
@@ -384,7 +384,7 @@ export function BuyWizard() {
                 </div>
               )}
 
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="d-grid gap-3 sm-grid-cols-2">
                 <Field label="Provider" required>
                   <Select value={providerId} onChange={(e) => setProviderId(e.target.value)}>
                     {utility.providers.map((p) => (
@@ -400,7 +400,7 @@ export function BuyWizard() {
               </div>
 
               <Field label={utility.accountLabel} required error={refErr} hint={utility.mode === "phone" ? "We mask the number on receipts" : verified ? `Verified · ${verified}` : "Enter the number printed on your bill or meter"}>
-                <div className="flex gap-2">
+                <div className="d-flex gap-2">
                   <Input
                     value={ref}
                     onChange={(e) => {
@@ -432,8 +432,8 @@ export function BuyWizard() {
               </Field>
 
               {utilityId === "electricity" && (
-                <div className="rounded-xl border border-line bg-[#fafbfd] p-3.5">
-                  <p className="mb-2.5 text-[12.5px] font-bold text-ink-2">Meter type</p>
+                <div className="rounded-4 border border-line bg-paper-2 p-35">
+                  <p className="mb-25 fs-125 fw-bold text-ink-2">Meter type</p>
                   <Segmented
                     value={postpaid ? "post" : "pre"}
                     onChange={(v) => setPostpaid(v === "post")}
@@ -442,15 +442,15 @@ export function BuyWizard() {
                       { value: "post", label: "Postpaid — settle bill", icon: "receipt" },
                     ]}
                   />
-                  <p className="mt-2 text-[11.5px] leading-relaxed text-muted">
+                  <p className="mt-2 fs-115 leading-relaxed text-muted">
                     {postpaid ? "We pull the outstanding KPLC balance before you pay — settlement same day." : `Tokens at KES ${TARIFF.toFixed(2)}/kWh, delivered in ~6 seconds.`}
                   </p>
                 </div>
               )}
 
-              <div className="flex items-start gap-2.5 rounded-xl bg-pmblue-soft/70 p-3">
-                <Icon name="info" size={16} className="mt-0.5 flex-none text-[#175cd3]" />
-                <p className="text-[12px] leading-relaxed text-[#175cd3]">{utility.blurb}</p>
+              <div className="d-flex align-items-start gap-25 rounded-4 bg-pmblue-soft-70 p-3">
+                <Icon name="info" size={16} className="mt-05 flex-none text-pmblue-ink" />
+                <p className="fs-12 leading-relaxed text-pmblue-ink">{utility.blurb}</p>
               </div>
             </div>
           )}
@@ -458,38 +458,38 @@ export function BuyWizard() {
           {/* STEP 1 — amount */}
           {step === 1 && (
             <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2 rounded-xl border border-line bg-[#fafbfd] p-3">
+              <div className="d-flex flex-wrap align-items-center gap-2 rounded-4 border border-line bg-paper-2 p-3">
                 <Icon name={utility.icon} size={16} className="text-muted" />
-                <p className="text-[12.5px] font-semibold text-ink-2">
+                <p className="fs-125 fw-semibold text-ink-2">
                   {provider?.name} · <span className="num">{ref}</span>
                 </p>
                 {verified && <Badge tone="success">Verified · {verified}</Badge>}
-                <button onClick={() => setStep(0)} className="focus-ring ml-auto text-[12px] font-bold text-[#067647]">
+                <button onClick={() => setStep(0)} className="focus-ring ms-auto fs-12 fw-bold text-pmgreen-ink">
                   Change
                 </button>
               </div>
 
               {utility.bundles?.length ? (
                 <div>
-                  <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.12em] text-faint">Choose a package</p>
-                  <div className="grid gap-2 sm:grid-cols-2">
+                  <p className="mb-2 fs-12 fw-bold text-uppercase tracking-0-12em text-faint">Choose a package</p>
+                  <div className="d-grid gap-2 sm-grid-cols-2">
                     {utility.bundles.map((b) => (
                       <button
                         key={b.id}
                         onClick={() => setBundleId(b.id)}
                         className={cn(
-                          "relative flex items-start gap-3 rounded-xl border p-3 text-left transition",
-                          bundleId === b.id ? "border-pmgreen bg-pmgreen-soft/40 shadow-sm" : "border-line bg-white hover:border-[#c4c9d4]"
+                          "position-relative d-flex align-items-start gap-3 rounded-4 border p-3 text-start transition",
+                          bundleId === b.id ? "border-pmgreen bg-pmgreen-soft-40 shadow-sm" : "border-line bg-white hover-border-gray-400"
                         )}
                       >
-                        <span className="mt-0.5 h-4 w-4 flex-none rounded-full border-2 border-[#d0d5dd] bg-white" style={{ borderColor: bundleId === b.id ? "#12b76a" : undefined }} />
+                        <span className="mt-05 h-4 w-4 flex-none rounded-full border-2 border-gray-300 bg-white" style={{ borderColor: bundleId === b.id ? "#12b76a" : undefined }} />
                         <span className="min-w-0 flex-1">
-                          <span className="flex flex-wrap items-center gap-1.5">
-                            <span className="text-[13px] font-bold text-ink">{b.name}</span>
+                          <span className="d-flex flex-wrap align-items-center gap-15">
+                            <span className="fs-13 fw-bold text-ink">{b.name}</span>
                             {b.badge && <Badge tone="violet">{b.badge}</Badge>}
                           </span>
-                          <span className="mt-0.5 block text-[11.5px] text-muted">{b.note}</span>
-                          <span className="num mt-1 block text-[13.5px] font-extrabold text-ink">{kes(b.price)}</span>
+                          <span className="mt-05 d-block fs-115 text-muted">{b.note}</span>
+                          <span className="num mt-1 d-block fs-135 fw-extrabold text-ink">{kes(b.price)}</span>
                         </span>
                       </button>
                     ))}
@@ -503,17 +503,17 @@ export function BuyWizard() {
               ) : (
                 <div>
                   <Field label="Amount (KES)" required hint={`Min ${kes(utility.min)} · Max ${kes(utility.max)} per transaction`}>
-                    <div className="relative">
-                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[13px] font-bold text-faint">KES</span>
+                    <div className="position-relative">
+                      <span className="position-absolute left-35 top-1-2 translate-y-n1-2 fs-13 fw-bold text-faint">KES</span>
                       <input
                         type="number"
-                        className={cn("no-spin w-full rounded-xl border border-line bg-white py-3 pl-14 pr-4 font-display text-[24px] font-extrabold text-ink outline-none transition focus:border-pmgreen focus:ring-4 focus:ring-pmgreen/12")}
+                        className={cn("no-spin w-100 rounded-4 border border-line bg-white py-3 ps-14 pe-4 font-display fs-24 fw-extrabold text-ink outline-none transition focus-border-pmgreen focus-ring-4 focus-ring-pmgreen-12")}
                         value={amount || ""}
                         onChange={(e) => setAmount(Number(e.target.value))}
                       />
                     </div>
                   </Field>
-                  <div className="mt-3 flex flex-wrap gap-2">
+                  <div className="mt-3 d-flex flex-wrap gap-2">
                     {utility.quick.map((q) => (
                       <Chip key={q} on={amount === q && !bundleId} onClick={() => { setAmount(q); setBundleId(""); }}>
                         {kes(q)}
@@ -521,37 +521,37 @@ export function BuyWizard() {
                     ))}
                   </div>
                   <div className="mt-4">
-                    <div className="mb-2 flex items-center justify-between text-[11.5px] font-semibold text-muted">
+                    <div className="mb-2 d-flex align-items-center justify-content-between fs-115 fw-semibold text-muted">
                       <span>{kes(utility.min)}</span>
                       <span>Slide to choose</span>
                       <span>{kes(utility.max)}</span>
                     </div>
-                    <input type="range" className="w-full" min={utility.min} max={utility.max} step={50} value={Math.min(amount, utility.max)} onChange={(e) => { setAmount(Number(e.target.value)); setBundleId(""); }} />
+                    <input type="range" className="w-100" min={utility.min} max={utility.max} step={50} value={Math.min(amount, utility.max)} onChange={(e) => { setAmount(Number(e.target.value)); setBundleId(""); }} />
                   </div>
                 </div>
               )}
 
               {units !== undefined && (
-                <div className="rounded-2xl border border-warn/30 bg-warn-soft/50 p-4">
-                  <div className="flex items-center gap-2">
-                    <Icon name="gauge" size={16} className="text-[#93370d]" />
-                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#93370d]">Estimated units</p>
+                <div className="rounded-5 border border-warn-30 bg-warn-soft-50 p-4">
+                  <div className="d-flex align-items-center gap-2">
+                    <Icon name="gauge" size={16} className="text-warn-ink" />
+                    <p className="fs-11 fw-bold text-uppercase tracking-0-14em text-warn-ink">Estimated units</p>
                   </div>
-                  <p className="num mt-1 font-display text-[26px] font-extrabold leading-none text-ink">
-                    ~{num(units)} <span className="text-[15px] font-bold text-muted">kWh</span>
+                  <p className="num mt-1 font-display fs-26 fw-extrabold lh-1 text-ink">
+                    ~{num(units)} <span className="fs-15 fw-bold text-muted">kWh</span>
                   </p>
-                  <p className="mt-1.5 text-[11.5px] leading-relaxed text-[#93370d]">
+                  <p className="mt-15 fs-115 leading-relaxed text-warn-ink">
                     At the ERC pass-through tariff of KES {TARIFF.toFixed(2)}/kWh. Fixed charges may adjust final units on the token.
                   </p>
-                  <div className="mt-3 grid grid-cols-3 gap-2">
+                  <div className="mt-3 d-grid grid-cols-3 gap-2">
                     {[
                       { k: "Energy", v: kes(Math.round(net * 0.86)) },
                       { k: "Fixed charge", v: kes(Math.round(net * 0.09)) },
                       { k: "Levies & VAT", v: kes(Math.round(net * 0.05)) },
                     ].map((x) => (
-                      <div key={x.k} className="rounded-lg bg-white/70 p-2 text-center">
-                        <p className="text-[10.5px] font-semibold uppercase tracking-wide text-[#93370d]/80">{x.k}</p>
-                        <p className="num mt-0.5 text-[12px] font-bold text-ink">{x.v}</p>
+                      <div key={x.k} className="rounded-3 bg-white-70 p-2 text-center">
+                        <p className="fs-105 fw-semibold text-uppercase tracking-wide text-warn-ink-80">{x.k}</p>
+                        <p className="num mt-05 fs-12 fw-bold text-ink">{x.v}</p>
                       </div>
                     ))}
                   </div>
@@ -565,7 +565,7 @@ export function BuyWizard() {
           {/* STEP 2 — method */}
           {step === 2 && (
             <div className="space-y-4">
-              <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-faint">How would you like to pay?</p>
+              <p className="fs-12 fw-bold text-uppercase tracking-0-12em text-faint">How would you like to pay?</p>
               <div className="space-y-2">
                 {PAY_METHODS.map((m) => {
                   const on = methodId === m.id;
@@ -574,20 +574,20 @@ export function BuyWizard() {
                     <button
                       key={m.id}
                       onClick={() => setMethodId(m.id)}
-                      className={cn("flex w-full items-center gap-3 rounded-xl border p-3.5 text-left transition", on ? "border-pmgreen bg-pmgreen-soft/30 shadow-sm" : "border-line bg-white hover:border-[#c4c9d4]")}
+                      className={cn("d-flex w-100 align-items-center gap-3 rounded-4 border p-35 text-start transition", on ? "border-pmgreen bg-pmgreen-soft-30 shadow-sm" : "border-line bg-white hover-border-gray-400")}
                     >
-                      <span className={cn("grid h-10 w-10 flex-none place-items-center rounded-[11px]", on ? "bg-white text-[#067647] shadow-sm" : "bg-canvas text-muted")}>
+                      <span className={cn("d-grid h-10 w-10 flex-none place-items-center rounded-11px", on ? "bg-white text-pmgreen-ink shadow-sm" : "bg-canvas text-muted")}>
                         <Icon name={m.icon} size={18} />
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="flex flex-wrap items-center gap-1.5">
-                          <span className="text-[13.5px] font-bold text-ink">{m.name}</span>
+                        <span className="d-flex flex-wrap align-items-center gap-15">
+                          <span className="fs-135 fw-bold text-ink">{m.name}</span>
                           {m.primary && <Badge tone="success">Default</Badge>}
                           {m.balance !== undefined && <Badge tone="info">Balance {kes(m.balance)}</Badge>}
                         </span>
-                        <span className="mt-0.5 block text-[11.5px] text-muted">{m.sub}</span>
+                        <span className="mt-05 d-block fs-115 text-muted">{m.sub}</span>
                         {insufficient && (
-                          <span className="mt-1.5 flex items-center gap-2 text-[11.5px] font-semibold text-[#b42318]">
+                          <span className="mt-15 d-flex align-items-center gap-2 fs-115 fw-semibold text-danger-ink">
                             <Icon name="alert" size={13} /> Insufficient wallet balance ({kes(balance)})
                             <span
                               role="button"
@@ -596,28 +596,28 @@ export function BuyWizard() {
                                 setBalance(balance + 10000);
                                 toast({ title: "Wallet topped up", msg: `${kes(10000)} added from M-Pesa ····890.`, tone: "success" });
                               }}
-                              className="font-bold text-[#067647] underline decoration-dotted"
+                              className="fw-bold text-pmgreen-ink text-decoration-underline decoration-dotted"
                             >
                               Top up {kes(10000)}
                             </span>
                           </span>
                         )}
                       </span>
-                      <span className="flex flex-none flex-col items-end gap-0.5">
-                        <span className="num text-[12px] font-bold text-ink">{m.fee === 0 ? "Free" : `+${kes(m.fee)}`}</span>
-                        <span className={cn("h-4 w-4 rounded-full border-2", on ? "border-pmgreen bg-pmgreen" : "border-[#d0d5dd]")} />
+                      <span className="d-flex flex-none flex-column align-items-end gap-05">
+                        <span className="num fs-12 fw-bold text-ink">{m.fee === 0 ? "Free" : `+${kes(m.fee)}`}</span>
+                        <span className={cn("h-4 w-4 rounded-full border-2", on ? "border-pmgreen bg-pmgreen" : "border-gray-300")} />
                       </span>
                     </button>
                   );
                 })}
               </div>
 
-              <label className="flex items-center gap-3 rounded-xl border border-line bg-[#fafbfd] p-3">
+              <label className="d-flex align-items-center gap-3 rounded-4 border border-line bg-paper-2 p-3">
                 <Toggle on={remember} onChange={setRemember} label="Remember method" />
-                <span className="text-[12.5px] font-medium text-ink-2">Remember {method.name} as my default for {utility.name.toLowerCase()}</span>
+                <span className="fs-125 fw-medium text-ink-2">Remember {method.name} as my default for {utility.name.toLowerCase()}</span>
               </label>
 
-              <div className="rounded-xl border border-line bg-white p-3.5">
+              <div className="rounded-4 border border-line bg-white p-35">
                 <Row k="Amount" v={kes(net)} />
                 <Row k={`${provider?.name} fee`} v={fee === 0 ? "Free" : kes(fee)} />
                 <Row k="Total" v={kes(total)} strong />
@@ -628,12 +628,12 @@ export function BuyWizard() {
           {/* STEP 3 — confirm */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="rounded-2xl border border-line bg-[#fafbfd] p-4">
-                <div className="mb-2 flex items-center gap-2">
+              <div className="rounded-5 border border-line bg-paper-2 p-4">
+                <div className="mb-2 d-flex align-items-center gap-2">
                   <Icon name="receipt" size={16} className="text-muted" />
-                  <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-faint">Payment summary</p>
+                  <p className="fs-11 fw-bold text-uppercase tracking-0-14em text-faint">Payment summary</p>
                 </div>
-                <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2">
+                <div className="d-grid gap-x-6 gap-y-1 sm-grid-cols-2">
                   <Row k="Provider" v={provider?.name ?? ""} />
                   <Row k={utility.accountLabel} v={ref} />
                   <Row k="Nickname" v={nickname || "—"} />
@@ -643,18 +643,18 @@ export function BuyWizard() {
                   <Row k="Method" v={method.name} />
                   <Row k="Fee" v={fee === 0 ? "Free" : kes(fee)} />
                 </div>
-                <div className="mt-2 border-t border-line pt-2">
+                <div className="mt-2 border-top border-line pt-2">
                   <Row k="Total to authorise" v={kes(total)} strong />
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-line bg-white p-4">
-                <p className="mb-3 flex items-center gap-2 text-[12.5px] font-bold text-ink-2">
+              <div className="rounded-5 border border-line bg-white p-4">
+                <p className="mb-3 d-flex align-items-center gap-2 fs-125 fw-bold text-ink-2">
                   <Icon name="lock" size={15} className="text-pmgreen" /> Enter your {methodId === "mpesa" ? "M-Pesa" : "PayMo"} PIN to authorise
                 </p>
-                <div className="mb-4 flex flex-col items-center gap-3">
+                <div className="mb-4 d-flex flex-column align-items-center gap-3">
                   <PinDots len={4} filled={pin.length} error={pinErr} />
-                  <p className="text-[11.5px] text-muted">
+                  <p className="fs-115 text-muted">
                     {methodId === "mpesa" ? "An STK push will be sent to 0712 *** 890 for confirmation." : "Enter your 4-digit PayMo wallet PIN to confirm."}
                   </p>
                 </div>
@@ -662,14 +662,14 @@ export function BuyWizard() {
                   onKey={(k) => setPin((p) => (p.length < 4 ? p + k : p))}
                   onClear={() => setPin("")}
                 />
-                <button onClick={() => toast({ title: "PIN reset link sent", msg: "Check 0712 *** 890 for the reset prompt.", tone: "info" })} className="focus-ring mt-3 w-full text-center text-[12px] font-semibold text-muted transition hover:text-ink">
+                <button onClick={() => toast({ title: "PIN reset link sent", msg: "Check 0712 *** 890 for the reset prompt.", tone: "info" })} className="focus-ring mt-3 w-100 text-center fs-12 fw-semibold text-muted transition hover-text-ink">
                   Forgot PIN?
                 </button>
               </div>
 
-              <div className="flex items-start gap-2.5 rounded-xl bg-pmgreen-soft/60 p-3">
-                <Icon name="shield" size={16} className="mt-0.5 flex-none text-[#067647]" />
-                <p className="text-[12px] leading-relaxed text-[#067647]">
+              <div className="d-flex align-items-start gap-25 rounded-4 bg-pmgreen-soft-60 p-3">
+                <Icon name="shield" size={16} className="mt-05 flex-none text-pmgreen-ink" />
+                <p className="fs-12 leading-relaxed text-pmgreen-ink">
                   PCI-DSS secured · funds are held in a regulated trust account until {provider?.name} confirms settlement. Failed payments auto-reverse.
                 </p>
               </div>
@@ -683,14 +683,14 @@ export function BuyWizard() {
 
 function SummaryBar({ net, fee, total, utility }: { net: number; fee: number; total: number; utility: UtilityId }) {
   return (
-    <div className="rounded-2xl border border-ink/10 bg-ink p-4 text-white">
-      <div className="flex items-center gap-2">
+    <div className="rounded-5 border border-ink-10 bg-ink p-4 text-white">
+      <div className="d-flex align-items-center gap-2">
         <Icon name={utilityOf(utility).icon} size={15} className="text-pmgreen" />
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/50">Order total</p>
+        <p className="fs-11 fw-bold text-uppercase tracking-0-14em text-white-50">Order total</p>
       </div>
-      <div className="mt-2 flex items-end justify-between gap-3">
-        <p className="num font-display text-[26px] font-extrabold leading-none">{kes(total, 2)}</p>
-        <div className="text-right text-[11.5px] text-white/60">
+      <div className="mt-2 d-flex align-items-end justify-content-between gap-3">
+        <p className="num font-display fs-26 fw-extrabold lh-1">{kes(total, 2)}</p>
+        <div className="text-end fs-115 text-white-60">
           <p className="num">{kes(net)} + {fee === 0 ? "no fee" : kes(fee)}</p>
           <p>Settles instantly</p>
         </div>
@@ -751,7 +751,7 @@ export function AddAccountWizard() {
     <Modal
       open={!!active}
       onClose={close}
-      width="max-w-[600px]"
+      width="max-w-600px"
       icon="plus"
       title="Add a meter or account"
       subtitle="Verified accounts can be paid in two taps from now on"
@@ -791,7 +791,7 @@ export function AddAccountWizard() {
     >
       <Stepper steps={["Utility", "Confirm & save"]} current={step} />
 
-      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="mt-4 d-grid grid-cols-2 gap-2 sm-grid-cols-4">
         {UTILITIES.map((u) => (
           <button
             key={u.id}
@@ -799,10 +799,10 @@ export function AddAccountWizard() {
               setUtilityId(u.id);
               setProviderId(u.providers[0].id);
             }}
-            className={cn("flex flex-col items-center gap-1.5 rounded-xl border p-3 transition", u.id === utilityId ? "border-pmgreen bg-pmgreen-soft/40" : "border-line bg-white hover:border-[#c4c9d4]")}
+            className={cn("d-flex flex-column align-items-center gap-15 rounded-4 border p-3 transition", u.id === utilityId ? "border-pmgreen bg-pmgreen-soft-40" : "border-line bg-white hover-border-gray-400")}
           >
-            <Icon name={u.icon} size={19} className={u.id === utilityId ? "text-[#067647]" : "text-muted"} />
-            <span className={cn("text-center text-[11.5px] font-semibold leading-tight", u.id === utilityId ? "text-ink" : "text-muted")}>{u.name}</span>
+            <Icon name={u.icon} size={19} className={u.id === utilityId ? "text-pmgreen-ink" : "text-muted"} />
+            <span className={cn("text-center fs-115 fw-semibold leading-tight", u.id === utilityId ? "text-ink" : "text-muted")}>{u.name}</span>
           </button>
         ))}
       </div>
@@ -824,41 +824,41 @@ export function AddAccountWizard() {
           <Field label="Nickname" hint="E.g. Home · Karen, Shop meter, Ushago water">
             <Input value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Give it a friendly name" icon="edit" />
           </Field>
-          <div className="flex items-start gap-2.5 rounded-xl bg-warn-soft/60 p-3">
-            <Icon name="info" size={16} className="mt-0.5 flex-none text-[#93370d]" />
-            <p className="text-[12px] leading-relaxed text-[#93370d]">Only add accounts you are authorised to pay. PayMo verifies ownership with {provider.name} before the first transaction.</p>
+          <div className="d-flex align-items-start gap-25 rounded-4 bg-warn-soft-60 p-3">
+            <Icon name="info" size={16} className="mt-05 flex-none text-warn-ink" />
+            <p className="fs-12 leading-relaxed text-warn-ink">Only add accounts you are authorised to pay. PayMo verifies ownership with {provider.name} before the first transaction.</p>
           </div>
         </div>
       ) : (
         <div className="mt-4 space-y-3">
-          <div className="flex items-center gap-3 rounded-xl border border-pmgreen/30 bg-pmgreen-soft/40 p-4">
-            <span className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-white text-[#067647] shadow-sm">
+          <div className="d-flex align-items-center gap-3 rounded-4 border border-pmgreen-30 bg-pmgreen-soft-40 p-4">
+            <span className="d-grid h-11 w-11 flex-none place-items-center rounded-4 bg-white text-pmgreen-ink shadow-sm">
               <Icon name="check-circle" size={22} />
             </span>
             <div>
-              <p className="text-[13.5px] font-bold text-ink">Verified · {found}</p>
-              <p className="text-[12px] text-muted">
-                {provider.name} · {utility.accountLabel} <span className="num font-semibold">{ref}</span>
+              <p className="fs-135 fw-bold text-ink">Verified · {found}</p>
+              <p className="fs-12 text-muted">
+                {provider.name} · {utility.accountLabel} <span className="num fw-semibold">{ref}</span>
               </p>
             </div>
           </div>
           <Field label="Nickname">
             <Input value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Home · Karen" icon="edit" />
           </Field>
-          <label className="flex items-center gap-3 rounded-xl border border-line bg-[#fafbfd] p-3.5">
+          <label className="d-flex align-items-center gap-3 rounded-4 border border-line bg-paper-2 p-35">
             <Toggle on={autopay} onChange={setAutopay} label="Enable autopay" />
-            <span className="text-[12.5px] font-medium text-ink-2">
+            <span className="fs-125 fw-medium text-ink-2">
               Enable autopay for this account
-              <span className="mt-0.5 block text-[11.5px] text-muted">You can pick triggers, caps and the funding method next.</span>
+              <span className="mt-05 d-block fs-115 text-muted">You can pick triggers, caps and the funding method next.</span>
             </span>
           </label>
           {autopay && (
-            <div className="rounded-xl border border-line bg-white p-3.5">
-              <p className="mb-2 text-[12px] font-bold text-ink-2">Suggested rule</p>
+            <div className="rounded-4 border border-line bg-white p-35">
+              <p className="mb-2 fs-12 fw-bold text-ink-2">Suggested rule</p>
               <Row k="Trigger" v={utility.mode === "meter" ? "When units < 10 kWh" : "Monthly on the 5th"} />
               <Row k="Amount" v={kes(utility.quick[2])} />
               <Row k="Method" v="M-Pesa · 0712 *** 890" />
-              <p className="mt-2 text-[11.5px] text-muted">You can fine-tune this in Autopay rules after saving.</p>
+              <p className="mt-2 fs-115 text-muted">You can fine-tune this in Autopay rules after saving.</p>
             </div>
           )}
         </div>
@@ -908,12 +908,12 @@ export function TopUpModal() {
     >
       <div className="space-y-4">
         <Field label="Amount (KES)">
-          <div className="relative">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[13px] font-bold text-faint">KES</span>
-            <input type="number" className="no-spin w-full rounded-xl border border-line bg-white py-3 pl-14 pr-4 font-display text-[22px] font-extrabold text-ink outline-none focus:border-pmgreen focus:ring-4 focus:ring-pmgreen/12" value={amt || ""} onChange={(e) => setAmt(Number(e.target.value))} />
+          <div className="position-relative">
+            <span className="position-absolute left-35 top-1-2 translate-y-n1-2 fs-13 fw-bold text-faint">KES</span>
+            <input type="number" className="no-spin w-100 rounded-4 border border-line bg-white py-3 ps-14 pe-4 font-display fs-22 fw-extrabold text-ink outline-none focus-border-pmgreen focus-ring-4 focus-ring-pmgreen-12" value={amt || ""} onChange={(e) => setAmt(Number(e.target.value))} />
           </div>
         </Field>
-        <div className="flex flex-wrap gap-2">
+        <div className="d-flex flex-wrap gap-2">
           {[1000, 5000, 10000, 25000].map((q) => (
             <Chip key={q} on={amt === q} onClick={() => setAmt(q)}>
               {kes(q)}
@@ -922,21 +922,21 @@ export function TopUpModal() {
         </div>
         <div className="space-y-2">
           {sources.map((s) => (
-            <button key={s.id} onClick={() => setSrc(s.id)} className={cn("flex w-full items-center gap-3 rounded-xl border p-3.5 text-left transition", src === s.id ? "border-pmgreen bg-pmgreen-soft/30" : "border-line hover:border-[#c4c9d4]")}>
-              <span className="grid h-9 w-9 flex-none place-items-center rounded-[10px] bg-canvas text-muted">
+            <button key={s.id} onClick={() => setSrc(s.id)} className={cn("d-flex w-100 align-items-center gap-3 rounded-4 border p-35 text-start transition", src === s.id ? "border-pmgreen bg-pmgreen-soft-30" : "border-line hover-border-gray-400")}>
+              <span className="d-grid h-9 w-9 flex-none place-items-center rounded-10px bg-canvas text-muted">
                 <Icon name={s.icon} size={17} />
               </span>
               <span className="flex-1">
-                <span className="block text-[13px] font-bold text-ink">{s.name}</span>
-                <span className="block text-[11.5px] text-muted">{s.sub}</span>
+                <span className="d-block fs-13 fw-bold text-ink">{s.name}</span>
+                <span className="d-block fs-115 text-muted">{s.sub}</span>
               </span>
               {src === s.id && <Icon name="check-circle" size={17} className="text-pmgreen" />}
             </button>
           ))}
         </div>
-        <div className="flex items-start gap-2.5 rounded-xl bg-pmgreen-soft/60 p-3">
-          <Icon name="shield" size={16} className="mt-0.5 flex-none text-[#067647]" />
-          <p className="text-[12px] leading-relaxed text-[#067647]">Wallet balances are held in a tier-3 trust account at Equity Bank and are never lent out.</p>
+        <div className="d-flex align-items-start gap-25 rounded-4 bg-pmgreen-soft-60 p-3">
+          <Icon name="shield" size={16} className="mt-05 flex-none text-pmgreen-ink" />
+          <p className="fs-12 leading-relaxed text-pmgreen-ink">Wallet balances are held in a tier-3 trust account at Equity Bank and are never lent out.</p>
         </div>
       </div>
     </Modal>
