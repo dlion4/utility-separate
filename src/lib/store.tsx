@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 import { ACCOUNTS, TXNS, type Account, type Txn, type UtilityId } from "./data";
-import type { ToastItem } from "./ui";
+import type { ToastItem } from "../components/ui";
 
 export type Dialog =
   | { kind: "none" }

@@ -349,24 +349,24 @@ export function InternetPage() {
   }, [payStatus, query]);
 
   return (
-    <div className="mx-auto max-w-[1320px]">
+    <div className="mx-auto max-w-1320px">
       {/* ========================= HERO ========================= */}
-      <section className="pm-hero relative overflow-hidden rounded-3xl p-5 sm:p-7 lg:p-9">
-        <div className="pm-hero-dots pointer-events-none absolute inset-0" />
-        <div className="relative grid gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:gap-10">
+      <section className="pm-hero position-relative overflow-hidden rounded-3xl p-5 sm-p-7 lg-p-9">
+        <div className="pm-hero-dots pe-none position-absolute inset-0" />
+        <div className="position-relative d-grid gap-6 xl-grid-cols-1-15fr-0-85fr xl-gap-10">
           {/* left */}
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11.5px] font-semibold text-white/80 backdrop-blur">
+            <span className="d-inline-flex align-items-center gap-2 rounded-full border border-white-15 bg-white-10 px-3 py-15 fs-115 fw-semibold text-white-80 backdrop-blur">
               <span className="live-dot" /> Connectivity hub online · Safaricom, Zuku, Starlink gateways operational
             </span>
-            <h2 className="mt-4 font-display text-[27px] font-extrabold leading-[1.08] tracking-tight text-white sm:text-[36px] lg:text-[42px]">
+            <h2 className="mt-4 font-display fs-27 fw-extrabold leading-1-08 tracking-tight text-white sm-fs-36 lg-fs-42">
               Internet &amp; connectivity,
-              <br className="hidden sm:block" /> every link in one hub.
+              <br className="d-none d-sm-block" /> every link in one hub.
             </h2>
-            <p className="mt-3 max-w-[56ch] text-[13.5px] leading-relaxed text-white/70 sm:text-[14.5px]">
+            <p className="mt-3 max-w-56ch fs-135 leading-relaxed text-white-70 sm-fs-145">
               Manage home fibre, office broadband, satellite backups and mobile SIMs from one PayMo Business page. Renew, track data, catch outages and automate every subscription.
             </p>
-            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
+            <div className="mt-5 d-flex flex-column gap-25 flex-sm-row">
               <Button size="lg" icon="wifi" onClick={() => open({ kind: "buy", utility: "internet", accountId: "acc-5", amount: 5999 })}>
                 Renew fibre
               </Button>
@@ -377,80 +377,80 @@ export function InternetPage() {
                 Export history
               </Button>
             </div>
-            <div className="mt-5 grid gap-2 sm:grid-cols-4">
+            <div className="mt-5 d-grid gap-2 sm-grid-cols-4">
               {[
                 { k: "Monthly data", v: totalDataTB, s: "92% from fibre", icon: "gauge" as IconName },
                 { k: "Renewals in 7d", v: kes(connections.filter((c) => c.dueDays <= 7 && c.status !== "Paused").reduce((s, c) => s + c.nextBill, 0)), s: `${renewalsDue} subscriptions`, icon: "calendar" as IconName },
                 { k: "Auto-renewals", v: `${autoCount} rules`, s: "Next: tomorrow 8 AM", icon: "repeat" as IconName },
                 { k: "Wallet", v: kes(balance), s: "Zero-fee renewal", icon: "wallet" as IconName },
               ].map((x) => (
-                <div key={x.k} className="rounded-2xl border border-white/10 bg-white/[0.06] p-3.5 backdrop-blur">
+                <div key={x.k} className="rounded-5 border border-white-10 bg-white-06 p-35 backdrop-blur">
                   <Icon name={x.icon} size={15} className="text-pmgreen" />
-                  <p className="num mt-2 font-display text-[17px] font-extrabold text-white">{x.v}</p>
-                  <p className="mt-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-white/40">{x.k}</p>
-                  <p className="mt-1 text-[10.5px] text-white/55">{x.s}</p>
+                  <p className="num mt-2 font-display fs-17 fw-extrabold text-white">{x.v}</p>
+                  <p className="mt-05 fs-105 fw-semibold text-uppercase tracking-wide text-white-40">{x.k}</p>
+                  <p className="mt-1 fs-105 text-white-55">{x.s}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* right — live feed + quick actions */}
-          <div className="card-sheen relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-5 backdrop-blur">
-            <div className="flex items-center gap-2">
+          <div className="card-sheen position-relative overflow-hidden rounded-5 border border-white-12 bg-white-06 p-5 backdrop-blur">
+            <div className="d-flex align-items-center gap-2">
               <span className="live-dot amber" />
-              <p className="text-[12px] font-bold text-white">Live connectivity feed</p>
+              <p className="fs-12 fw-bold text-white">Live connectivity feed</p>
             </div>
             <div className="mt-3 space-y-2">
               {notices.slice(0, 3).map((n) => (
                 <button
                   key={n.id}
-                  className="flex w-full items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-2.5 text-left transition hover:bg-white/[0.08]"
+                  className="d-flex w-100 align-items-start gap-3 rounded-4 border border-white-10 bg-white-04 p-25 text-start transition hover-bg-white-08"
                   onClick={() => {
                     if (n.cta === "Renew now") open({ kind: "buy", utility: "internet", accountId: "acc-5", amount: 5999 });
                     else if (n.cta === "Buy data") open({ kind: "buy", utility: "airtime" });
                     else toast({ title: n.title, msg: n.body, tone: n.tone === "danger" ? "warn" : "info" });
                   }}
                 >
-                  <span className="mt-0.5 grid h-8 w-8 flex-none place-items-center rounded-lg bg-white/10 text-white/70">
+                  <span className="mt-05 d-grid h-8 w-8 flex-none place-items-center rounded-3 bg-white-10 text-white-70">
                     <Icon name={n.icon} size={15} />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-[12px] font-bold text-white">{n.title}</span>
-                    <span className="block truncate text-[10.5px] text-white/50">{n.body}</span>
+                    <span className="d-block text-truncate fs-12 fw-bold text-white">{n.title}</span>
+                    <span className="d-block text-truncate fs-105 text-white-50">{n.body}</span>
                   </span>
                   <Badge tone={n.tone} className="flex-none">{n.provider}</Badge>
                 </button>
               ))}
             </div>
 
-            <div className="mt-4 rounded-xl border border-white/10 bg-ink/20 p-3">
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-white/40">
+            <div className="mt-4 rounded-4 border border-white-10 bg-ink-20 p-3">
+              <div className="d-flex align-items-center gap-2 fs-11 fw-bold text-uppercase tracking-0-12em text-white-40">
                 <Icon name="sparkle" size={13} className="text-pmgreen" /> Smart suggestions
               </div>
-              <div className="mt-2 space-y-1.5">
+              <div className="mt-2 space-y-15">
                 {suggestions.slice(0, 2).map((s) => (
-                  <div key={s.id} className="flex items-start gap-2.5 rounded-lg bg-white/[0.04] p-2">
-                    <Icon name={s.icon} size={14} className="mt-0.5 text-pmgreen" />
+                  <div key={s.id} className="d-flex align-items-start gap-25 rounded-3 bg-white-04 p-2">
+                    <Icon name={s.icon} size={14} className="mt-05 text-pmgreen" />
                     <span className="min-w-0 flex-1">
-                      <span className="block text-[11.5px] font-bold text-white">{s.title}</span>
-                      <span className="block text-[10.5px] text-white/50">{s.body}</span>
+                      <span className="d-block fs-115 fw-bold text-white">{s.title}</span>
+                      <span className="d-block fs-105 text-white-50">{s.body}</span>
                     </span>
-                    {s.saving && <span className="whitespace-nowrap text-[10.5px] font-bold text-pmgreen">{s.saving}</span>}
+                    {s.saving && <span className="text-nowrap fs-105 fw-bold text-pmgreen">{s.saving}</span>}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            <div className="mt-4 d-grid grid-cols-2 gap-2">
               {[
                 { label: "Renew fibre", icon: "wifi" as IconName, onClick: () => open({ kind: "buy", utility: "internet", accountId: "acc-5", amount: 5999 }) },
                 { label: "Buy SIM data", icon: "phone" as IconName, onClick: () => open({ kind: "buy", utility: "airtime" }) },
                 { label: "Manage autopay", icon: "repeat" as IconName, onClick: () => open({ kind: "autopay" }) },
                 { label: "Report outage", icon: "alert" as IconName, onClick: () => toast({ title: "Outage report", msg: "Zuku Kilimani issue has been escalated.", tone: "warn" }) },
               ].map((x) => (
-                <button key={x.label} onClick={x.onClick} className="group flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] p-2.5 text-left transition hover:border-white/25 hover:bg-white/[0.09]">
-                  <span className="grid h-8 w-8 flex-none place-items-center rounded-lg bg-white/10 text-white/70"><Icon name={x.icon} size={15} /></span>
-                  <span className="text-[12px] font-bold text-white">{x.label}</span>
+                <button key={x.label} onClick={x.onClick} className="group d-flex align-items-center gap-25 rounded-4 border border-white-10 bg-white-04 p-25 text-start transition hover-border-white-25 hover-bg-white-09">
+                  <span className="d-grid h-8 w-8 flex-none place-items-center rounded-3 bg-white-10 text-white-70"><Icon name={x.icon} size={15} /></span>
+                  <span className="fs-12 fw-bold text-white">{x.label}</span>
                 </button>
               ))}
             </div>
@@ -459,7 +459,7 @@ export function InternetPage() {
       </section>
 
       {/* ========================= KPIs ========================= */}
-      <section className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4" data-reveal>
+      <section className="mt-5 d-grid gap-3 sm-grid-cols-2 xl-grid-cols-4" data-reveal>
         <Kpi label="Monthly internet cost" value={kes(totalMonthly)} sub={`${connections.length} active subscriptions`} icon="wallet" tone="info" spark={<Spark points={monthlyCost} stroke="#2e90fa" />} />
         <Kpi label="Data consumed" value={totalDataTB} sub="Across fibre, satellite & mobile" icon="gauge" tone="teal" spark={<Spark points={monthlyGB} stroke="#0e9384" />} />
         <Kpi label="Needs attention" value={`${attentionConns.length} links`} sub="Expiring, low data or outage" icon="alert" tone="danger" progress={Math.round((attentionConns.length / connections.length) * 100)} />
@@ -468,7 +468,7 @@ export function InternetPage() {
 
       {/* ========================= 3.4.1 — CONNECTIONS ========================= */}
       <SectionHead no="3.4" id="sec-connections" title="Broadband, mobile & satellite connections" sub="Fibre, mobile SIMs and satellite links in one operational view with speed, data, status and renewal info.">
-        <div className="flex flex-wrap gap-2">
+        <div className="d-flex flex-wrap gap-2">
           <Chip on={filter === "all"} onClick={() => setFilter("all")} count={connections.length}>All</Chip>
           <Chip on={filter === "fibre"} onClick={() => setFilter("fibre")} count={fibreConns.length}>Fibre & satellite</Chip>
           <Chip on={filter === "mobile"} onClick={() => setFilter("mobile")} count={mobileConns.length}>Mobile SIMs</Chip>
@@ -481,14 +481,14 @@ export function InternetPage() {
           <Empty icon="wifi" title="No connections match that filter" sub="Switch filters or add a new broadband, SIM or satellite account." action={<Button icon="plus" onClick={() => open({ kind: "addAccount", utility: "internet" })}>Add connection</Button>} />
         </Card>
       ) : (
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="d-grid gap-3 sm-grid-cols-2 xl-grid-cols-3">
           {shownConns.map((c, i) => (
             <ConnectionCard key={c.id} conn={c} delay={i * 45} />
           ))}
-          <button data-reveal onClick={() => open({ kind: "addAccount", utility: "internet" })} className="flex min-h-[280px] flex-col items-center justify-center gap-2.5 rounded-2xl border-2 border-dashed border-line bg-white/70 p-5 text-center transition hover:border-pmgreen/50 hover:bg-pmgreen-soft/20">
-            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-canvas text-muted"><Icon name="plus" size={22} /></span>
-            <p className="text-[13.5px] font-bold text-ink">Add a connection</p>
-            <p className="max-w-[30ch] text-[11.5px] leading-relaxed text-muted">Safaricom Fibre, Zuku, Faiba, Starlink or any Kenyan mobile SIM — verified in seconds.</p>
+          <button data-reveal onClick={() => open({ kind: "addAccount", utility: "internet" })} className="d-flex min-h-280px flex-column align-items-center justify-content-center gap-25 rounded-5 border-2 border-dashed border-line bg-white-70 p-5 text-center transition hover-border-pmgreen-50 hover-bg-pmgreen-soft-20">
+            <span className="d-grid h-12 w-12 place-items-center rounded-5 bg-canvas text-muted"><Icon name="plus" size={22} /></span>
+            <p className="fs-135 fw-bold text-ink">Add a connection</p>
+            <p className="max-w-30ch fs-115 leading-relaxed text-muted">Safaricom Fibre, Zuku, Faiba, Starlink or any Kenyan mobile SIM — verified in seconds.</p>
           </button>
         </div>
       )}
@@ -500,41 +500,41 @@ export function InternetPage() {
 
       <Card className="overflow-hidden p-0">
         {/* desktop table */}
-        <div className="hidden overflow-x-auto lg:block">
-          <table className="w-full min-w-[920px]">
-            <thead className="bg-[#fafbfd]">
-              <tr className="text-left text-[10.5px] font-bold uppercase tracking-[0.1em] text-faint">
+        <div className="d-none overflow-x-auto d-lg-block">
+          <table className="w-100 min-w-920px">
+            <thead className="bg-paper-2">
+              <tr className="text-start fs-105 fw-bold text-uppercase tracking-0-1em text-faint">
                 <th className="px-4 py-3">Provider</th>
                 <th className="px-4 py-3">Account</th>
                 <th className="px-4 py-3">Location / Plan</th>
                 <th className="px-4 py-3">Speed</th>
                 <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3 text-right">Next bill</th>
+                <th className="px-4 py-3 text-end">Next bill</th>
                 <th className="px-4 py-3">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {fibreConns.map((c) => (
-                <tr key={c.id} className="transition hover:bg-[#f7f9fc]">
+                <tr key={c.id} className="transition hover-bg-paper-3">
                   <td className="px-4 py-3">
-                    <span className="flex items-center gap-2.5">
-                      <span className="grid h-8 w-8 flex-none place-items-center rounded-lg bg-canvas text-muted"><Icon name={kindIcon(c.kind)} size={15} /></span>
-                      <span className="text-[12.5px] font-bold text-ink">{c.provider}</span>
+                    <span className="d-flex align-items-center gap-25">
+                      <span className="d-grid h-8 w-8 flex-none place-items-center rounded-3 bg-canvas text-muted"><Icon name={kindIcon(c.kind)} size={15} /></span>
+                      <span className="fs-125 fw-bold text-ink">{c.provider}</span>
                     </span>
                   </td>
-                  <td className="num px-4 py-3 text-[12px] font-semibold text-ink-2">{c.account}</td>
+                  <td className="num px-4 py-3 fs-12 fw-semibold text-ink-2">{c.account}</td>
                   <td className="px-4 py-3">
-                    <span className="text-[12px] text-ink-2">{c.location}</span>
-                    <span className="block text-[11px] text-faint">{c.plan}</span>
+                    <span className="fs-12 text-ink-2">{c.location}</span>
+                    <span className="d-block fs-11 text-faint">{c.plan}</span>
                   </td>
-                  <td className="num px-4 py-3 text-[12.5px] font-bold text-ink">{c.speed}</td>
+                  <td className="num px-4 py-3 fs-125 fw-bold text-ink">{c.speed}</td>
                   <td className="px-4 py-3"><Badge tone={statusTone(c.status)} dot>{c.status}</Badge></td>
-                  <td className="num px-4 py-3 text-right">
-                    <span className="text-[12.5px] font-bold text-ink">{kes(c.nextBill)}</span>
-                    <span className="block text-[11px] text-faint">{c.dueDate}</span>
+                  <td className="num px-4 py-3 text-end">
+                    <span className="fs-125 fw-bold text-ink">{kes(c.nextBill)}</span>
+                    <span className="d-block fs-11 text-faint">{c.dueDate}</span>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex gap-1.5">
+                    <div className="d-flex gap-15">
                       <Button size="sm" icon="wifi" onClick={() => open({ kind: "buy", utility: "internet", accountId: c.account === "SF-40812" ? "acc-5" : undefined, amount: c.nextBill })}>Renew</Button>
                       <IconBtn icon="sliders" label="Manage" tone="outline" onClick={() => open({ kind: "autopay" })} />
                     </div>
@@ -545,17 +545,17 @@ export function InternetPage() {
           </table>
         </div>
         {/* mobile cards for fibre */}
-        <div className="divide-y divide-line lg:hidden">
+        <div className="divide-y divide-line d-lg-none">
           {fibreConns.map((c) => (
-            <div key={c.id} className="flex items-center gap-3 p-3.5">
-              <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-canvas text-muted"><Icon name={kindIcon(c.kind)} size={18} /></span>
+            <div key={c.id} className="d-flex align-items-center gap-3 p-35">
+              <span className="d-grid h-10 w-10 flex-none place-items-center rounded-4 bg-canvas text-muted"><Icon name={kindIcon(c.kind)} size={18} /></span>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="truncate text-[13px] font-bold text-ink">{c.provider}</span>
-                  <span className="num text-[13px] font-extrabold text-ink">{kes(c.nextBill)}</span>
+                <div className="d-flex align-items-center justify-content-between gap-2">
+                  <span className="text-truncate fs-13 fw-bold text-ink">{c.provider}</span>
+                  <span className="num fs-13 fw-extrabold text-ink">{kes(c.nextBill)}</span>
                 </div>
-                <div className="mt-0.5 flex items-center justify-between gap-2">
-                  <span className="truncate text-[11.5px] text-muted">{c.plan} · {c.speed}</span>
+                <div className="mt-05 d-flex align-items-center justify-content-between gap-2">
+                  <span className="text-truncate fs-115 text-muted">{c.plan} · {c.speed}</span>
                   <Badge tone={statusTone(c.status)}>{c.status}</Badge>
                 </div>
               </div>
@@ -570,19 +570,19 @@ export function InternetPage() {
         <Button size="sm" variant="outline" icon="phone" onClick={() => open({ kind: "buy", utility: "airtime" })}>Buy airtime / data</Button>
       </SectionHead>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="d-grid gap-3 sm-grid-cols-2 xl-grid-cols-3">
         {mobileConns.map((c) => (
-          <Card key={c.id} hover className="relative" >
-            <div className="flex items-start gap-3">
-              <span className={cn("grid h-11 w-11 flex-none place-items-center rounded-[13px]", c.status === "Paused" ? "bg-canvas text-faint" : "bg-pmgreen-soft text-[#067647]")}><Icon name="phone" size={20} /></span>
+          <Card key={c.id} hover className="position-relative" >
+            <div className="d-flex align-items-start gap-3">
+              <span className={cn("d-grid h-11 w-11 flex-none place-items-center rounded-13px", c.status === "Paused" ? "bg-canvas text-faint" : "bg-pmgreen-soft text-pmgreen-ink")}><Icon name="phone" size={20} /></span>
               <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <p className="truncate text-[13.5px] font-bold text-ink">{c.nickname}</p>
+                <div className="d-flex flex-wrap align-items-center gap-15">
+                  <p className="text-truncate fs-135 fw-bold text-ink">{c.nickname}</p>
                   <Badge tone={statusTone(c.status)} dot>{c.status}</Badge>
                 </div>
-                <p className="num mt-0.5 text-[11.5px] text-muted">{c.account} · {c.providerShort}</p>
+                <p className="num mt-05 fs-115 text-muted">{c.account} · {c.providerShort}</p>
               </div>
-              <Menu trigger={() => <span className="grid h-8 w-8 place-items-center rounded-lg text-muted transition hover:bg-canvas hover:text-ink"><Icon name="more" size={16} /></span>} items={[
+              <Menu trigger={() => <span className="d-grid h-8 w-8 place-items-center rounded-3 text-muted transition hover-bg-canvas hover-text-ink"><Icon name="more" size={16} /></span>} items={[
                 { label: "Buy data / airtime", icon: "phone", onClick: () => open({ kind: "buy", utility: "airtime" }) },
                 { label: "Set auto-renew", icon: "repeat", onClick: () => open({ kind: "autopay" }) },
                 { label: "View usage", icon: "chart", onClick: () => toast({ title: "Usage report", msg: `${c.nickname} usage breakdown loading…`, tone: "info" }) },
@@ -590,23 +590,23 @@ export function InternetPage() {
               ]} />
             </div>
 
-            <div className={cn("mt-3 rounded-xl p-3", c.status === "Low data" ? "bg-danger-soft/50" : c.status === "Paused" ? "bg-canvas/70" : "bg-[#fafbfd]")}>
+            <div className={cn("mt-3 rounded-4 p-3", c.status === "Low data" ? "bg-danger-soft-50" : c.status === "Paused" ? "bg-canvas-70" : "bg-paper-2")}>
               <Row k="Plan" v={c.plan} />
               <Row k="Data remaining" v={c.balance ?? "—"} strong />
               {c.dataPct !== undefined && <Progress value={c.dataPct} tone={c.dataPct > 80 ? "red" : c.dataPct > 50 ? "amber" : "green"} className="mt-2" />}
-              <div className="mt-2 flex items-center justify-between text-[11px] text-muted">
+              <div className="mt-2 d-flex align-items-center justify-content-between fs-11 text-muted">
                 <span>{c.dataUsed} used</span>
                 <span>{c.dataTotal} total</span>
               </div>
             </div>
 
-            <div className="mt-3 rounded-xl border border-line bg-white p-3">
+            <div className="mt-3 rounded-4 border border-line bg-white p-3">
               <Row k="Next renewal" v={c.nextBill > 0 ? kes(c.nextBill) : "—"} />
               <Row k="Due" v={c.dueDate} />
               <Row k="Latency" v={c.latency ?? "—"} />
             </div>
 
-            <div className="mt-3 flex gap-2">
+            <div className="mt-3 d-flex gap-2">
               <Button className="flex-1" icon="phone" disabled={c.status === "Paused"} onClick={() => open({ kind: "buy", utility: "airtime" })}>
                 {c.status === "Paused" ? "Reactivate first" : "Buy data"}
               </Button>
@@ -621,38 +621,38 @@ export function InternetPage() {
         <Segmented value={range} onChange={setRange} size="sm" options={[{ value: "7", label: "7 days" }, { value: "30", label: "30 days" }]} />
       </SectionHead>
 
-      <div className="grid gap-3 lg:grid-cols-3">
+      <div className="d-grid gap-3 lg-grid-cols-3">
         {/* data usage chart */}
-        <Card className="lg:col-span-2" hover>
-          <div className="flex flex-wrap items-start justify-between gap-3">
+        <Card className="lg-col-span-2" hover>
+          <div className="d-flex flex-wrap align-items-start justify-content-between gap-3">
             <div>
-              <p className="font-display text-[15px] font-bold tracking-tight text-ink">Total data usage (GB)</p>
-              <p className="mt-0.5 text-[12px] text-muted">Daily breakdown · peak streaming at 68% of traffic.</p>
+              <p className="font-display fs-15 fw-bold tracking-tight text-ink">Total data usage (GB)</p>
+              <p className="mt-05 fs-12 text-muted">Daily breakdown · peak streaming at 68% of traffic.</p>
             </div>
             <Badge tone="teal" icon="trend-up">1.2 TB this month</Badge>
           </div>
-          <div className="mt-5 flex h-[210px] items-end gap-2 sm:gap-3">
+          <div className="mt-5 d-flex h-210px align-items-end gap-2 sm-gap-3">
             {dailyGBs.map((v, i) => (
-              <div key={i} className="group relative flex h-full flex-1 items-end">
-                <div className={cn("bar-grow w-full rounded-t-md", v >= 12 ? "bg-pmviolet" : v >= 9 ? "bg-pmblue" : "bg-pmgreen")} style={{ height: `${(v / Math.max(...dailyGBs)) * 100}%`, animationDelay: `${i * 30}ms` }} />
-                <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-lg bg-ink px-2 py-1 text-[10.5px] font-bold text-white group-hover:block">
+              <div key={i} className="group position-relative d-flex h-100 flex-1 align-items-end">
+                <div className={cn("bar-grow w-100 rounded-t-md", v >= 12 ? "bg-pmviolet" : v >= 9 ? "bg-pmblue" : "bg-pmgreen")} style={{ height: `${(v / Math.max(...dailyGBs)) * 100}%`, animationDelay: `${i * 30}ms` }} />
+                <span className="pe-none position-absolute bottom-full left-1-2 mb-2 d-none translate-x-n1-2 text-nowrap rounded-3 bg-ink px-2 py-1 fs-105 fw-bold text-white group-hover-d-block">
                   Day {i + 1} · {v} GB
                 </span>
               </div>
             ))}
           </div>
-          <div className="mt-3 flex justify-between text-[10.5px] font-semibold text-muted">
+          <div className="mt-3 d-flex justify-content-between fs-105 fw-semibold text-muted">
             <span>14 Jun</span><span>18 Jun</span><span>22 Jun</span><span>27 Jun</span>
           </div>
-          <div className="mt-4 grid gap-2 border-t border-line pt-4 sm:grid-cols-3">
+          <div className="mt-4 d-grid gap-2 border-top border-line pt-4 sm-grid-cols-3">
             {[
               { k: "Total this period", v: totalDataTB },
               { k: "Peak category", v: "Streaming (68%)" },
               { k: "Monthly cost", v: kes(totalMonthly) },
             ].map((x) => (
-              <div key={x.k} className="rounded-xl bg-[#fafbfd] p-3">
-                <p className="text-[10.5px] font-bold uppercase tracking-wide text-faint">{x.k}</p>
-                <p className="num mt-0.5 font-display text-[15px] font-extrabold text-ink">{x.v}</p>
+              <div key={x.k} className="rounded-4 bg-paper-2 p-3">
+                <p className="fs-105 fw-bold text-uppercase tracking-wide text-faint">{x.k}</p>
+                <p className="num mt-05 font-display fs-15 fw-extrabold text-ink">{x.v}</p>
               </div>
             ))}
           </div>
@@ -661,15 +661,15 @@ export function InternetPage() {
         {/* donut + renewals + outages */}
         <div className="space-y-3">
           <Card hover>
-            <p className="font-display text-[15px] font-bold tracking-tight text-ink">Usage by category</p>
-            <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row lg:flex-col xl:flex-row">
-              <Donut data={usageMix} center={<><p className="num font-display text-[16px] font-extrabold text-ink">1.2 TB</p><p className="text-[10.5px] font-semibold text-muted">total</p></>} />
-              <div className="w-full flex-1 space-y-2">
+            <p className="font-display fs-15 fw-bold tracking-tight text-ink">Usage by category</p>
+            <div className="mt-4 d-flex flex-column align-items-center gap-4 flex-sm-row flex-lg-column flex-xl-row">
+              <Donut data={usageMix} center={<><p className="num font-display fs-16 fw-extrabold text-ink">1.2 TB</p><p className="fs-105 fw-semibold text-muted">total</p></>} />
+              <div className="w-100 flex-1 space-y-2">
                 {usageMix.map((x) => (
-                  <div key={x.label} className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 flex-none rounded-full" style={{ background: x.color }} />
-                    <span className="flex-1 truncate text-[12px] font-semibold text-ink-2">{x.label}</span>
-                    <span className="num text-[12px] font-bold text-ink">{x.value}%</span>
+                  <div key={x.label} className="d-flex align-items-center gap-2">
+                    <span className="h-25 w-25 flex-none rounded-full" style={{ background: x.color }} />
+                    <span className="flex-1 text-truncate fs-12 fw-semibold text-ink-2">{x.label}</span>
+                    <span className="num fs-12 fw-bold text-ink">{x.value}%</span>
                   </div>
                 ))}
               </div>
@@ -677,16 +677,16 @@ export function InternetPage() {
           </Card>
 
           <Card hover>
-            <div className="flex items-center gap-2">
+            <div className="d-flex align-items-center gap-2">
               <Icon name="repeat" size={16} className="text-pmgreen" />
-              <p className="font-display text-[15px] font-bold tracking-tight text-ink">Auto-renewals</p>
+              <p className="font-display fs-15 fw-bold tracking-tight text-ink">Auto-renewals</p>
             </div>
             <div className="mt-3 space-y-2">
               {renewals.map((r) => (
-                <div key={r.id} className="flex items-center gap-3 rounded-xl border border-line bg-[#fafbfd] p-3">
+                <div key={r.id} className="d-flex align-items-center gap-3 rounded-4 border border-line bg-paper-2 p-3">
                   <div className="min-w-0 flex-1">
-                    <p className="text-[12.5px] font-bold text-ink">{r.provider}</p>
-                    <p className="num mt-0.5 text-[11px] text-muted">{r.plan} · {kes(r.amount)} on {r.date}</p>
+                    <p className="fs-125 fw-bold text-ink">{r.provider}</p>
+                    <p className="num mt-05 fs-11 text-muted">{r.plan} · {kes(r.amount)} on {r.date}</p>
                   </div>
                   <Badge tone={r.active ? "success" : "muted"} dot>{r.active ? "Active" : "Paused"}</Badge>
                 </div>
@@ -696,19 +696,19 @@ export function InternetPage() {
           </Card>
 
           <Card hover>
-            <div className="flex items-center gap-2">
+            <div className="d-flex align-items-center gap-2">
               <Icon name="map-pin" size={16} className="text-pmgreen" />
-              <p className="font-display text-[15px] font-bold tracking-tight text-ink">Network status & outages</p>
+              <p className="font-display fs-15 fw-bold tracking-tight text-ink">Network status & outages</p>
             </div>
             <div className="mt-3 space-y-2">
               {outages.map((o) => (
-                <div key={o.id} className="rounded-xl border border-line bg-[#fafbfd] p-3">
-                  <div className="flex items-start gap-2">
-                    <span className={cn("mt-0.5 h-2 w-2 flex-none rounded-full", o.impact === "High" ? "bg-danger" : o.impact === "Medium" ? "bg-warn" : "bg-pmgreen")} />
+                <div key={o.id} className="rounded-4 border border-line bg-paper-2 p-3">
+                  <div className="d-flex align-items-start gap-2">
+                    <span className={cn("mt-05 h-2 w-2 flex-none rounded-full", o.impact === "High" ? "bg-danger" : o.impact === "Medium" ? "bg-warn" : "bg-pmgreen")} />
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12.5px] font-bold text-ink">{o.provider}</p>
-                      <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{o.title}</p>
-                      <p className="mt-1 text-[11px] font-semibold text-ink-2">{o.window}</p>
+                      <p className="fs-125 fw-bold text-ink">{o.provider}</p>
+                      <p className="mt-05 fs-115 leading-relaxed text-muted">{o.title}</p>
+                      <p className="mt-1 fs-11 fw-semibold text-ink-2">{o.window}</p>
                     </div>
                   </div>
                 </div>
@@ -724,9 +724,9 @@ export function InternetPage() {
       </SectionHead>
 
       <Card className="p-0">
-        <div className="space-y-3 border-b border-line p-4">
-          <div className="flex flex-wrap gap-2">
-            <div className="min-w-[220px] flex-1">
+        <div className="space-y-3 border-bottom border-line p-4">
+          <div className="d-flex flex-wrap gap-2">
+            <div className="min-w-220px flex-1">
               <Input icon="search" placeholder="Search provider, account, plan or reference…" value={query} onChange={(e) => setQuery(e.target.value)} />
             </div>
             <Select value={payStatus} onChange={(e) => setPayStatus(e.target.value as typeof payStatus)} className="w-auto">
@@ -736,13 +736,13 @@ export function InternetPage() {
               <option value="Failed">Failed</option>
             </Select>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="d-flex flex-wrap align-items-center gap-2">
             {(["all", "Success", "Pending", "Failed"] as const).map((s) => (
               <Chip key={s} on={payStatus === s} onClick={() => setPayStatus(s)} count={s === "all" ? netPayments.length : netPayments.filter((p) => p.status === s).length}>
                 {s === "all" ? "All" : s}
               </Chip>
             ))}
-            <span className="ml-auto text-[11.5px] font-semibold text-muted">{shownPayments.length} of {netPayments.length}</span>
+            <span className="ms-auto fs-115 fw-semibold text-muted">{shownPayments.length} of {netPayments.length}</span>
           </div>
         </div>
 
@@ -751,15 +751,15 @@ export function InternetPage() {
         ) : (
           <>
             {/* desktop table */}
-            <div className="hidden overflow-x-auto lg:block">
-              <table className="w-full min-w-[900px]">
-                <thead className="bg-[#fafbfd]">
-                  <tr className="text-left text-[10.5px] font-bold uppercase tracking-[0.1em] text-faint">
+            <div className="d-none overflow-x-auto d-lg-block">
+              <table className="w-100 min-w-900px">
+                <thead className="bg-paper-2">
+                  <tr className="text-start fs-105 fw-bold text-uppercase tracking-0-1em text-faint">
                     <th className="px-4 py-3">Date</th>
                     <th className="px-4 py-3">Provider</th>
                     <th className="px-4 py-3">Account</th>
                     <th className="px-4 py-3">Plan</th>
-                    <th className="px-4 py-3 text-right">Amount</th>
+                    <th className="px-4 py-3 text-end">Amount</th>
                     <th className="px-4 py-3">Method</th>
                     <th className="px-4 py-3">Reference</th>
                     <th className="px-4 py-3">Status</th>
@@ -767,19 +767,19 @@ export function InternetPage() {
                 </thead>
                 <tbody className="divide-y divide-line">
                   {shownPayments.map((p) => (
-                    <tr key={p.id} className="cursor-pointer transition hover:bg-[#f7f9fc]" onClick={() => toast({ title: `Receipt for ${p.ref}`, msg: `${p.provider} · ${kes(p.amount)} · ${p.method}`, tone: "info" })}>
-                      <td className="whitespace-nowrap px-4 py-3 text-[12px] font-semibold text-ink-2">{p.date}<span className="ml-1.5 text-[11px] font-normal text-faint">{p.time}</span></td>
+                    <tr key={p.id} className="cursor-pointer transition hover-bg-paper-3" onClick={() => toast({ title: `Receipt for ${p.ref}`, msg: `${p.provider} · ${kes(p.amount)} · ${p.method}`, tone: "info" })}>
+                      <td className="text-nowrap px-4 py-3 fs-12 fw-semibold text-ink-2">{p.date}<span className="ms-15 fs-11 fw-normal text-faint">{p.time}</span></td>
                       <td className="px-4 py-3">
-                        <span className="flex items-center gap-2">
-                          <span className="grid h-8 w-8 flex-none place-items-center rounded-lg bg-canvas text-muted"><Icon name="wifi" size={14} /></span>
-                          <span className="text-[12.5px] font-semibold text-ink">{p.provider}</span>
+                        <span className="d-flex align-items-center gap-2">
+                          <span className="d-grid h-8 w-8 flex-none place-items-center rounded-3 bg-canvas text-muted"><Icon name="wifi" size={14} /></span>
+                          <span className="fs-125 fw-semibold text-ink">{p.provider}</span>
                         </span>
                       </td>
-                      <td className="px-4 py-3"><span className="num text-[12px] text-muted">{p.account}</span><span className="block text-[11px] text-faint">{p.nickname}</span></td>
-                      <td className="px-4 py-3 text-[12px] text-muted">{p.plan}</td>
-                      <td className="num px-4 py-3 text-right text-[12.5px] font-bold text-ink">{kes(p.amount)}</td>
-                      <td className="px-4 py-3 text-[12px] text-muted">{p.method}</td>
-                      <td className="num px-4 py-3 text-[11.5px] font-semibold text-muted">{p.ref}</td>
+                      <td className="px-4 py-3"><span className="num fs-12 text-muted">{p.account}</span><span className="d-block fs-11 text-faint">{p.nickname}</span></td>
+                      <td className="px-4 py-3 fs-12 text-muted">{p.plan}</td>
+                      <td className="num px-4 py-3 text-end fs-125 fw-bold text-ink">{kes(p.amount)}</td>
+                      <td className="px-4 py-3 fs-12 text-muted">{p.method}</td>
+                      <td className="num px-4 py-3 fs-115 fw-semibold text-muted">{p.ref}</td>
                       <td className="px-4 py-3"><Badge tone={paymentTone(p.status)} dot>{p.status}</Badge></td>
                     </tr>
                   ))}
@@ -787,17 +787,17 @@ export function InternetPage() {
               </table>
             </div>
             {/* mobile list */}
-            <div className="divide-y divide-line lg:hidden">
+            <div className="divide-y divide-line d-lg-none">
               {shownPayments.map((p) => (
-                <button key={p.id} onClick={() => toast({ title: `Receipt for ${p.ref}`, msg: `${p.provider} · ${kes(p.amount)} · ${p.method}`, tone: "info" })} className="flex w-full items-center gap-3 p-3.5 text-left transition active:bg-[#f7f9fc]">
-                  <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-canvas text-muted"><Icon name="wifi" size={18} /></span>
+                <button key={p.id} onClick={() => toast({ title: `Receipt for ${p.ref}`, msg: `${p.provider} · ${kes(p.amount)} · ${p.method}`, tone: "info" })} className="d-flex w-100 align-items-center gap-3 p-35 text-start transition active-bg-paper-3">
+                  <span className="d-grid h-10 w-10 flex-none place-items-center rounded-4 bg-canvas text-muted"><Icon name="wifi" size={18} /></span>
                   <span className="min-w-0 flex-1">
-                    <span className="flex items-center justify-between gap-2">
-                      <span className="truncate text-[13px] font-bold text-ink">{p.provider}</span>
-                      <span className="num text-[13px] font-extrabold text-ink">{kes(p.amount)}</span>
+                    <span className="d-flex align-items-center justify-content-between gap-2">
+                      <span className="text-truncate fs-13 fw-bold text-ink">{p.provider}</span>
+                      <span className="num fs-13 fw-extrabold text-ink">{kes(p.amount)}</span>
                     </span>
-                    <span className="mt-0.5 flex items-center justify-between gap-2">
-                      <span className="num truncate text-[11.5px] text-muted">{p.date} · {p.plan}</span>
+                    <span className="mt-05 d-flex align-items-center justify-content-between gap-2">
+                      <span className="num text-truncate fs-115 text-muted">{p.date} · {p.plan}</span>
                       <Badge tone={paymentTone(p.status)}>{p.status}</Badge>
                     </span>
                   </span>
@@ -810,32 +810,32 @@ export function InternetPage() {
       </Card>
 
       {/* ========================= SUPPORT STRIP ========================= */}
-      <section className="mt-6 grid gap-3 lg:grid-cols-3" data-reveal>
-        <Card className="lg:col-span-2 bg-gradient-to-br from-ink via-[#0f2233] to-[#0d5c38] text-white" hover>
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="max-w-[52ch]">
-              <Badge tone="dark" className="border border-white/15 bg-white/10 text-white/80">Operations</Badge>
-              <h3 className="mt-3 font-display text-[19px] font-extrabold tracking-tight">Uptime SLAs, outage playbooks and failover</h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-white/65">
+      <section className="mt-6 d-grid gap-3 lg-grid-cols-3" data-reveal>
+        <Card className="lg-col-span-2 bg-gradient-to-br from-ink via-0f2233 to-0d5c38 text-white" hover>
+          <div className="d-flex flex-wrap align-items-start justify-content-between gap-4">
+            <div className="max-w-52ch">
+              <Badge tone="dark" className="border border-white-15 bg-white-10 text-white-80">Operations</Badge>
+              <h3 className="mt-3 font-display fs-19 fw-extrabold tracking-tight">Uptime SLAs, outage playbooks and failover</h3>
+              <p className="mt-2 fs-13 leading-relaxed text-white-65">
                 Route Zuku outage alerts to the facilities team, auto-switch critical traffic to Starlink when fibre drops, and require approval for subscriptions above KES 5,000/month.
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 d-flex flex-wrap gap-2">
                 <Button variant="white" icon="bell" onClick={() => toast({ title: "Outage alerts enabled", msg: "Facilities team will receive WhatsApp and email notifications.", tone: "success" })}>Enable alerts</Button>
                 <Button variant="white" icon="shield" onClick={() => toast({ title: "Approval policy set", msg: "Subscriptions above KES 5,000/mo require Finance sign-off.", tone: "info" })}>Approval policy</Button>
                 <Button variant="white" icon="help" onClick={() => open({ kind: "help" })}>ISP support</Button>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-1">
+            <div className="d-grid grid-cols-2 gap-2 sm-grid-cols-1">
               {[
                 { k: "Fibre uptime", v: "99.97%", i: "check-circle" as IconName },
                 { k: "Avg latency", v: "4 ms", i: "gauge" as IconName },
                 { k: "Auto-failover", v: "Ready", i: "refresh" as IconName },
               ].map((x) => (
-                <div key={x.k} className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                <div key={x.k} className="d-flex align-items-center gap-25 rounded-4 border border-white-10 bg-white-06 p-3">
                   <Icon name={x.i} size={16} className="text-pmgreen" />
                   <div>
-                    <p className="num font-display text-[15px] font-extrabold leading-none">{x.v}</p>
-                    <p className="mt-1 text-[10.5px] text-white/50">{x.k}</p>
+                    <p className="num font-display fs-15 fw-extrabold lh-1">{x.v}</p>
+                    <p className="mt-1 fs-105 text-white-50">{x.k}</p>
                   </div>
                 </div>
               ))}
@@ -844,18 +844,18 @@ export function InternetPage() {
         </Card>
 
         <Card hover>
-          <div className="flex items-center gap-2">
+          <div className="d-flex align-items-center gap-2">
             <Icon name="sparkle" size={16} className="text-pmviolet" />
-            <p className="font-display text-[15px] font-bold tracking-tight text-ink">Cost-saving suggestions</p>
+            <p className="font-display fs-15 fw-bold tracking-tight text-ink">Cost-saving suggestions</p>
           </div>
-          <div className="mt-3 space-y-2.5">
+          <div className="mt-3 space-y-25">
             {suggestions.map((s) => (
-              <div key={s.id} className="flex items-start gap-2.5 rounded-xl border border-line bg-[#fafbfd] p-3">
-                <Icon name={s.icon} size={16} className="mt-0.5 flex-none text-pmgreen" />
+              <div key={s.id} className="d-flex align-items-start gap-25 rounded-4 border border-line bg-paper-2 p-3">
+                <Icon name={s.icon} size={16} className="mt-05 flex-none text-pmgreen" />
                 <div className="min-w-0 flex-1">
-                  <p className="text-[12.5px] font-bold text-ink">{s.title}</p>
-                  <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{s.body}</p>
-                  {s.saving && <p className="num mt-1 text-[11.5px] font-bold text-[#067647]">Save {s.saving}</p>}
+                  <p className="fs-125 fw-bold text-ink">{s.title}</p>
+                  <p className="mt-05 fs-115 leading-relaxed text-muted">{s.body}</p>
+                  {s.saving && <p className="num mt-1 fs-115 fw-bold text-pmgreen-ink">Save {s.saving}</p>}
                 </div>
               </div>
             ))}
@@ -875,19 +875,19 @@ function ConnectionCard({ conn, delay }: { conn: Connection; delay: number }) {
   const { open, toast } = useApp();
   const risk = ["Low data", "Outage", "Expiring"].includes(conn.status);
   return (
-    <div data-reveal style={{ animationDelay: `${delay}ms` }} className="card-hover relative flex flex-col rounded-2xl border border-line bg-white p-4 shadow-pm">
-      <div className="flex items-start gap-3">
-        <span className={cn("grid h-11 w-11 flex-none place-items-center rounded-[13px]", conn.kind === "Mobile" ? "bg-pmgreen-soft text-[#067647]" : conn.kind === "Satellite" ? "bg-pmblue-soft text-[#175cd3]" : "bg-pmviolet-soft text-[#5925dc]")}>
+    <div data-reveal style={{ animationDelay: `${delay}ms` }} className="card-hover position-relative d-flex flex-column rounded-5 border border-line bg-white p-4 shadow-pm">
+      <div className="d-flex align-items-start gap-3">
+        <span className={cn("d-grid h-11 w-11 flex-none place-items-center rounded-13px", conn.kind === "Mobile" ? "bg-pmgreen-soft text-pmgreen-ink" : conn.kind === "Satellite" ? "bg-pmblue-soft text-pmblue-ink" : "bg-pmviolet-soft text-pmviolet-ink")}>
           <Icon name={kindIcon(conn.kind)} size={20} />
         </span>
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <p className="truncate text-[13.5px] font-bold text-ink">{conn.nickname}</p>
+          <div className="d-flex flex-wrap align-items-center gap-15">
+            <p className="text-truncate fs-135 fw-bold text-ink">{conn.nickname}</p>
             <Badge tone={statusTone(conn.status)} dot>{conn.status}</Badge>
           </div>
-          <p className="num mt-0.5 text-[11.5px] text-muted">{conn.account} · {conn.providerShort}</p>
+          <p className="num mt-05 fs-115 text-muted">{conn.account} · {conn.providerShort}</p>
         </div>
-        <Menu trigger={() => <span className="grid h-8 w-8 place-items-center rounded-lg text-muted transition hover:bg-canvas hover:text-ink"><Icon name="more" size={16} /></span>} items={[
+        <Menu trigger={() => <span className="d-grid h-8 w-8 place-items-center rounded-3 text-muted transition hover-bg-canvas hover-text-ink"><Icon name="more" size={16} /></span>} items={[
           { label: conn.kind === "Mobile" ? "Buy data" : "Renew plan", icon: conn.kind === "Mobile" ? "phone" : "wifi", onClick: () => open({ kind: "buy", utility: conn.kind === "Mobile" ? "airtime" : "internet", amount: conn.nextBill }) },
           { label: "Set auto-renew", icon: "repeat", onClick: () => open({ kind: "autopay" }) },
           { label: "Usage report", icon: "chart", onClick: () => toast({ title: "Usage report", msg: `${conn.nickname} usage breakdown loading…`, tone: "info" }) },
@@ -895,13 +895,13 @@ function ConnectionCard({ conn, delay }: { conn: Connection; delay: number }) {
         ]} />
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center gap-1.5">
+      <div className="mt-3 d-flex flex-wrap align-items-center gap-15">
         <Badge tone="muted">{conn.kind}</Badge>
         {conn.speed && <Badge tone="muted" icon="gauge">{conn.speed}</Badge>}
         {conn.autopay && <Badge tone="success" icon="repeat">Autopay</Badge>}
       </div>
 
-      <div className={cn("mt-3 rounded-xl p-3", risk ? (conn.status === "Outage" ? "bg-danger-soft/50" : "bg-warn-soft/50") : "bg-[#fafbfd]")}>
+      <div className={cn("mt-3 rounded-4 p-3", risk ? (conn.status === "Outage" ? "bg-danger-soft-50" : "bg-warn-soft-50") : "bg-paper-2")}>
         <Row k="Plan" v={conn.plan} />
         {conn.kind === "Mobile" ? (
           <Row k="Data remaining" v={conn.balance ?? "—"} strong />
@@ -915,13 +915,13 @@ function ConnectionCard({ conn, delay }: { conn: Connection; delay: number }) {
         {conn.uptime && <Row k="Uptime (7d)" v={conn.uptime} />}
       </div>
 
-      <div className="mt-3 rounded-xl border border-line bg-white p-3">
+      <div className="mt-3 rounded-4 border border-line bg-white p-3">
         <Row k="Next bill" v={conn.nextBill > 0 ? kes(conn.nextBill) : "—"} strong />
         <Row k="Due" v={conn.dueDate} />
         <Row k="Location" v={conn.location} />
       </div>
 
-      <div className="mt-3 flex gap-2">
+      <div className="mt-3 d-flex gap-2">
         <Button className="flex-1" icon={conn.kind === "Mobile" ? "phone" : "wifi"} disabled={conn.status === "Paused"} onClick={() => open({ kind: "buy", utility: conn.kind === "Mobile" ? "airtime" : "internet", accountId: conn.account === "SF-40812" ? "acc-5" : undefined, amount: conn.nextBill })}>
           {conn.status === "Paused" ? "Reactivate" : conn.kind === "Mobile" ? "Buy data" : "Renew plan"}
         </Button>
@@ -937,28 +937,28 @@ function ConnectionCard({ conn, delay }: { conn: Connection; delay: number }) {
 
 function Kpi({ label, value, sub, icon, tone, spark, progress }: { label: string; value: string; sub: string; icon: IconName; tone: Tone; spark?: ReactNode; progress?: number }) {
   const toneCls: Record<string, string> = {
-    success: "bg-pmgreen-soft text-[#067647]",
-    warning: "bg-warn-soft text-[#93370d]",
-    danger: "bg-danger-soft text-[#b42318]",
-    info: "bg-pmblue-soft text-[#175cd3]",
-    teal: "bg-pmteal-soft text-[#07615a]",
-    violet: "bg-pmviolet-soft text-[#5925dc]",
+    success: "bg-pmgreen-soft text-pmgreen-ink",
+    warning: "bg-warn-soft text-warn-ink",
+    danger: "bg-danger-soft text-danger-ink",
+    info: "bg-pmblue-soft text-pmblue-ink",
+    teal: "bg-pmteal-soft text-pmteal-ink",
+    violet: "bg-pmviolet-soft text-pmviolet-ink",
     muted: "bg-canvas text-muted",
     dark: "bg-ink text-white",
   };
   return (
-    <div className="card-hover rounded-2xl border border-line bg-white p-4 shadow-pm">
-      <div className="flex items-start justify-between gap-3">
+    <div className="card-hover rounded-5 border border-line bg-white p-4 shadow-pm">
+      <div className="d-flex align-items-start justify-content-between gap-3">
         <div className="min-w-0">
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-faint">{label}</p>
-          <p className="num mt-1.5 font-display text-[21px] font-extrabold leading-none tracking-tight text-ink">{value}</p>
-          <p className="mt-1.5 truncate text-[11px] leading-relaxed text-muted">{sub}</p>
+          <p className="fs-11 fw-bold text-uppercase tracking-0-12em text-faint">{label}</p>
+          <p className="num mt-15 font-display fs-21 fw-extrabold lh-1 tracking-tight text-ink">{value}</p>
+          <p className="mt-15 text-truncate fs-11 leading-relaxed text-muted">{sub}</p>
         </div>
-        <span className={cn("grid h-9 w-9 flex-none place-items-center rounded-[11px]", toneCls[tone])}>
+        <span className={cn("d-grid h-9 w-9 flex-none place-items-center rounded-11px", toneCls[tone])}>
           <Icon name={icon} size={17} />
         </span>
       </div>
-      <div className="mt-3 flex items-end justify-end">{spark}</div>
+      <div className="mt-3 d-flex align-items-end justify-content-end">{spark}</div>
       {progress !== undefined && <Progress value={progress} tone={tone === "danger" ? "red" : tone === "warning" ? "amber" : tone === "info" ? "blue" : "green"} className="mt-3" />}
     </div>
   );

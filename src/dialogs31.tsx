@@ -28,44 +28,44 @@ export function TxnDrawer() {
   ];
 
   return (
-    <Drawer open onClose={close} width="max-w-[480px]">
+    <Drawer open onClose={close} width="max-w-480px">
       <DrawerHead title={`${u.name} receipt`} subtitle={`${txn.ref} · ${txn.date} ${txn.time}`} icon={u.icon} onClose={close} />
 
       <div className="thin-scroll flex-1 overflow-y-auto p-4">
         {/* status banner */}
         <div
           className={cn(
-            "relative overflow-hidden rounded-2xl p-4",
-            txn.status === "Success" && "bg-gradient-to-br from-pmgreen-soft to-white border border-pmgreen/25",
-            txn.status === "Pending" && "bg-gradient-to-br from-warn-soft to-white border border-warn/30",
-            txn.status === "Failed" && "bg-gradient-to-br from-danger-soft to-white border border-danger/25"
+            "position-relative overflow-hidden rounded-5 p-4",
+            txn.status === "Success" && "bg-gradient-to-br from-pmgreen-soft to-white border border-pmgreen-25",
+            txn.status === "Pending" && "bg-gradient-to-br from-warn-soft to-white border border-warn-30",
+            txn.status === "Failed" && "bg-gradient-to-br from-danger-soft to-white border border-danger-25"
           )}
         >
-          <div className="flex items-start gap-3">
+          <div className="d-flex align-items-start gap-3">
             <span
               className={cn(
-                "grid h-11 w-11 flex-none place-items-center rounded-xl bg-white shadow-sm",
-                txn.status === "Success" && "text-[#067647]",
-                txn.status === "Pending" && "text-[#93370d]",
-                txn.status === "Failed" && "text-[#b42318]"
+                "d-grid h-11 w-11 flex-none place-items-center rounded-4 bg-white shadow-sm",
+                txn.status === "Success" && "text-pmgreen-ink",
+                txn.status === "Pending" && "text-warn-ink",
+                txn.status === "Failed" && "text-danger-ink"
               )}
             >
               <Icon name={txn.status === "Success" ? "check-circle" : txn.status === "Pending" ? "clock" : "alert"} size={22} />
             </span>
             <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <p className="font-display text-[17px] font-extrabold text-ink">{kes(txn.amount, 2)}</p>
+              <div className="d-flex flex-wrap align-items-center gap-2">
+                <p className="font-display fs-17 fw-extrabold text-ink">{kes(txn.amount, 2)}</p>
                 <Badge tone={statusTone} dot>
                   {txn.status}
                 </Badge>
               </div>
-              <p className="mt-0.5 text-[12.5px] text-muted">
+              <p className="mt-05 fs-125 text-muted">
                 {txn.provider} · {txn.nickname}
               </p>
             </div>
           </div>
           {txn.status === "Pending" && (
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-3 d-flex flex-wrap gap-2">
               <Button
                 size="sm"
                 variant="dark"
@@ -80,7 +80,7 @@ export function TxnDrawer() {
             </div>
           )}
           {txn.status === "Failed" && (
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-3 d-flex flex-wrap gap-2">
               <Button size="sm" icon="repeat" onClick={() => open({ kind: "buy", utility: txn.utility, accountId: txn.account })}>
                 Retry payment
               </Button>
@@ -90,19 +90,19 @@ export function TxnDrawer() {
 
         {/* token */}
         {txn.token && (
-          <div className="mt-4 rounded-2xl border border-pmgreen/30 bg-pmgreen-soft/40 p-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#067647]">KPLC token</p>
-            <p className="num mt-1.5 font-display text-[18px] font-extrabold tracking-[0.05em] text-ink sm:text-[20px]">{txn.token}</p>
-            <div className="mt-2.5">
+          <div className="mt-4 rounded-5 border border-pmgreen-30 bg-pmgreen-soft-40 p-4">
+            <p className="fs-11 fw-bold text-uppercase tracking-0-14em text-pmgreen-ink">KPLC token</p>
+            <p className="num mt-15 font-display fs-18 fw-extrabold tracking-0-05em text-ink sm-fs-20">{txn.token}</p>
+            <div className="mt-25">
               <CopyBtn text={txn.token} label="Copy token" />
             </div>
           </div>
         )}
 
         {/* details */}
-        <div className="mt-4 rounded-2xl border border-line bg-white p-4">
-          <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-faint">Transaction detail</p>
-          <Row k="Reference" v={<span className="inline-flex items-center gap-2">{txn.ref}</span>} />
+        <div className="mt-4 rounded-5 border border-line bg-white p-4">
+          <p className="mb-15 fs-11 fw-bold text-uppercase tracking-0-14em text-faint">Transaction detail</p>
+          <Row k="Reference" v={<span className="d-inline-flex align-items-center gap-2">{txn.ref}</span>} />
           <Row k={u.accountLabel} v={txn.account} />
           <Row k="Nickname" v={txn.nickname} />
           {txn.units && <Row k="Units delivered" v={txn.units} strong />}
@@ -116,27 +116,27 @@ export function TxnDrawer() {
         </div>
 
         {/* timeline */}
-        <div className="mt-4 rounded-2xl border border-line bg-white p-4">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-faint">Settlement timeline</p>
-          <ol className="relative space-y-4 border-l border-dashed border-line pl-5">
+        <div className="mt-4 rounded-5 border border-line bg-white p-4">
+          <p className="mb-3 fs-11 fw-bold text-uppercase tracking-0-14em text-faint">Settlement timeline</p>
+          <ol className="position-relative space-y-4 border-start border-dashed border-line ps-5">
             {timeline.map((t) => (
-              <li key={t.t} className="relative">
+              <li key={t.t} className="position-relative">
                 <span
                   className={cn(
-                    "absolute -left-[26px] grid h-4 w-4 place-items-center rounded-full border-2 bg-white",
-                    t.done ? "border-pmgreen" : "border-[#d0d5dd]"
+                    "position-absolute left-n26px d-grid h-4 w-4 place-items-center rounded-full border-2 bg-white",
+                    t.done ? "border-pmgreen" : "border-gray-300"
                   )}
                 >
-                  {t.done && <span className="h-1.5 w-1.5 rounded-full bg-pmgreen" />}
+                  {t.done && <span className="h-15 w-15 rounded-full bg-pmgreen" />}
                 </span>
-                <p className={cn("text-[12.5px] font-bold", t.done ? "text-ink" : "text-muted")}>{t.t}</p>
-                <p className="text-[11.5px] text-muted">{t.d}</p>
+                <p className={cn("fs-125 fw-bold", t.done ? "text-ink" : "text-muted")}>{t.t}</p>
+                <p className="fs-115 text-muted">{t.d}</p>
               </li>
             ))}
           </ol>
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-2">
+        <div className="mt-4 d-grid grid-cols-2 gap-2">
           <Button variant="outline" icon="download" onClick={() => toast({ title: "Receipt downloaded", msg: `${txn.ref}.pdf saved to your device.`, tone: "success" })}>
             Download
           </Button>
@@ -152,7 +152,7 @@ export function TxnDrawer() {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 border-t border-line bg-[#fafbfd] px-4 py-3.5">
+      <div className="d-flex align-items-center gap-2 border-top border-line bg-paper-2 px-4 py-35">
         <Button
           className="flex-1"
           icon="repeat"
@@ -202,14 +202,14 @@ export function HistoryDrawer() {
   const total = rows.reduce((s, t) => s + t.amount, 0);
 
   return (
-    <Drawer open onClose={close} width="max-w-[760px]">
+    <Drawer open onClose={close} width="max-w-760px">
       <DrawerHead
         title="Transaction history"
         subtitle={`${rows.length} payments · ${kes(total)} total value`}
         icon="receipt"
         onClose={close}
         actions={
-          <Button size="sm" variant="outline" icon="download" className="mr-1" onClick={() => open({ kind: "export" })}>
+          <Button size="sm" variant="outline" icon="download" className="me-1" onClick={() => open({ kind: "export" })}>
             Export
           </Button>
         }
@@ -217,16 +217,16 @@ export function HistoryDrawer() {
 
       {selected ? (
         <div className="thin-scroll flex-1 overflow-y-auto p-4">
-          <button onClick={() => setSelected(null)} className="focus-ring mb-3 inline-flex items-center gap-1.5 text-[12.5px] font-bold text-[#067647]">
+          <button onClick={() => setSelected(null)} className="focus-ring mb-3 d-inline-flex align-items-center gap-15 fs-125 fw-bold text-pmgreen-ink">
             <Icon name="chevron-left" size={14} /> Back to history
           </button>
           <ReceiptInline txn={selected} onOpenFull={() => open({ kind: "txn", txn: selected })} />
         </div>
       ) : (
-        <div className="flex flex-1 flex-col overflow-hidden">
-          <div className="space-y-3 border-b border-line p-4">
-            <div className="flex flex-wrap gap-2">
-              <div className="min-w-[200px] flex-1">
+        <div className="d-flex flex-1 flex-column overflow-hidden">
+          <div className="space-y-3 border-bottom border-line p-4">
+            <div className="d-flex flex-wrap gap-2">
+              <div className="min-w-200px flex-1">
                 <Input icon="search" placeholder="Search reference, provider, account…" value={q} onChange={(e) => setQ(e.target.value)} />
               </div>
               <Select value={utility} onChange={(e) => setUtility(e.target.value)} className="w-auto">
@@ -247,7 +247,7 @@ export function HistoryDrawer() {
                 ]}
               />
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="d-flex flex-wrap gap-2">
               {(["all", "Success", "Pending", "Failed"] as const).map((s) => (
                 <Chip key={s} on={status === s} onClick={() => setStatus(s)} count={s === "all" ? txns.length : txns.filter((t) => t.status === s).length}>
                   {s === "all" ? "All" : s}
@@ -279,39 +279,39 @@ export function HistoryDrawer() {
             ) : (
               <>
                 {/* desktop table */}
-                <div className="hidden overflow-hidden rounded-2xl border border-line md:block">
-                  <table className="w-full">
-                    <thead className="bg-[#fafbfd]">
-                      <tr className="text-left text-[10.5px] font-bold uppercase tracking-[0.1em] text-faint">
-                        <th className="px-3 py-2.5">Date</th>
-                        <th className="px-3 py-2.5">Utility</th>
-                        <th className="px-3 py-2.5">Account</th>
-                        <th className="px-3 py-2.5 text-right">Amount</th>
-                        <th className="px-3 py-2.5">Method</th>
-                        <th className="px-3 py-2.5">Ref</th>
-                        <th className="px-3 py-2.5">Status</th>
+                <div className="d-none overflow-hidden rounded-5 border border-line d-md-block">
+                  <table className="w-100">
+                    <thead className="bg-paper-2">
+                      <tr className="text-start fs-105 fw-bold text-uppercase tracking-0-1em text-faint">
+                        <th className="px-3 py-25">Date</th>
+                        <th className="px-3 py-25">Utility</th>
+                        <th className="px-3 py-25">Account</th>
+                        <th className="px-3 py-25 text-end">Amount</th>
+                        <th className="px-3 py-25">Method</th>
+                        <th className="px-3 py-25">Ref</th>
+                        <th className="px-3 py-25">Status</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-line">
                       {rows.slice(0, limit).map((t) => (
-                        <tr key={t.id} onClick={() => setSelected(t)} className="cursor-pointer transition hover:bg-[#f7f9fc]">
-                          <td className="whitespace-nowrap px-3 py-2.5 text-[12px] font-semibold text-ink-2">
+                        <tr key={t.id} onClick={() => setSelected(t)} className="cursor-pointer transition hover-bg-paper-3">
+                          <td className="text-nowrap px-3 py-25 fs-12 fw-semibold text-ink-2">
                             {t.date}
-                            <span className="ml-1 text-[11px] font-normal text-faint">{t.time}</span>
+                            <span className="ms-1 fs-11 fw-normal text-faint">{t.time}</span>
                           </td>
-                          <td className="px-3 py-2.5">
-                            <span className="flex items-center gap-2">
-                              <span className="grid h-7 w-7 flex-none place-items-center rounded-lg bg-canvas text-muted">
+                          <td className="px-3 py-25">
+                            <span className="d-flex align-items-center gap-2">
+                              <span className="d-grid h-7 w-7 flex-none place-items-center rounded-3 bg-canvas text-muted">
                                 <Icon name={utilityOf(t.utility).icon} size={14} />
                               </span>
-                              <span className="text-[12px] font-semibold text-ink">{t.provider}</span>
+                              <span className="fs-12 fw-semibold text-ink">{t.provider}</span>
                             </span>
                           </td>
-                          <td className="num px-3 py-2.5 text-[12px] text-muted">{t.account}</td>
-                          <td className="num px-3 py-2.5 text-right text-[12.5px] font-bold text-ink">{kes(t.amount)}</td>
-                          <td className="px-3 py-2.5 text-[12px] text-muted">{t.method}</td>
-                          <td className="num px-3 py-2.5 text-[11.5px] font-semibold text-muted">{t.ref}</td>
-                          <td className="px-3 py-2.5">
+                          <td className="num px-3 py-25 fs-12 text-muted">{t.account}</td>
+                          <td className="num px-3 py-25 text-end fs-125 fw-bold text-ink">{kes(t.amount)}</td>
+                          <td className="px-3 py-25 fs-12 text-muted">{t.method}</td>
+                          <td className="num px-3 py-25 fs-115 fw-semibold text-muted">{t.ref}</td>
+                          <td className="px-3 py-25">
                             <Badge tone={t.status === "Success" ? "success" : t.status === "Pending" ? "warning" : "danger"} dot>
                               {t.status}
                             </Badge>
@@ -323,19 +323,19 @@ export function HistoryDrawer() {
                 </div>
 
                 {/* mobile list */}
-                <div className="space-y-2 md:hidden">
+                <div className="space-y-2 d-md-none">
                   {rows.slice(0, limit).map((t) => (
-                    <button key={t.id} onClick={() => setSelected(t)} className="flex w-full items-center gap-3 rounded-xl border border-line bg-white p-3 text-left transition active:scale-[0.99]">
-                      <span className="grid h-9 w-9 flex-none place-items-center rounded-[10px] bg-canvas text-muted">
+                    <button key={t.id} onClick={() => setSelected(t)} className="d-flex w-100 align-items-center gap-3 rounded-4 border border-line bg-white p-3 text-start transition active-scale-099">
+                      <span className="d-grid h-9 w-9 flex-none place-items-center rounded-10px bg-canvas text-muted">
                         <Icon name={utilityOf(t.utility).icon} size={16} />
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="flex items-center justify-between gap-2">
-                          <span className="truncate text-[12.5px] font-bold text-ink">{t.provider}</span>
-                          <span className="num text-[12.5px] font-bold text-ink">{kes(t.amount)}</span>
+                        <span className="d-flex align-items-center justify-content-between gap-2">
+                          <span className="text-truncate fs-125 fw-bold text-ink">{t.provider}</span>
+                          <span className="num fs-125 fw-bold text-ink">{kes(t.amount)}</span>
                         </span>
-                        <span className="mt-0.5 flex items-center justify-between gap-2">
-                          <span className="num truncate text-[11.5px] text-muted">
+                        <span className="mt-05 d-flex align-items-center justify-content-between gap-2">
+                          <span className="num text-truncate fs-115 text-muted">
                             {t.date} · {t.account}
                           </span>
                           <Badge tone={t.status === "Success" ? "success" : t.status === "Pending" ? "warning" : "danger"}>{t.status}</Badge>
@@ -346,7 +346,7 @@ export function HistoryDrawer() {
                 </div>
 
                 {limit < rows.length && (
-                  <div className="mt-3 flex justify-center">
+                  <div className="mt-3 d-flex justify-content-center">
                     <Button variant="outline" icon="chevron-down" onClick={() => setLimit((l) => l + 10)}>
                       Load 10 more ({rows.length - limit} left)
                     </Button>
@@ -356,11 +356,11 @@ export function HistoryDrawer() {
             )}
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line bg-[#fafbfd] px-4 py-3">
-            <p className="text-[11.5px] text-muted">
+          <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 border-top border-line bg-paper-2 px-4 py-3">
+            <p className="fs-115 text-muted">
               Showing {Math.min(limit, rows.length)} of {rows.length} · retention 7 years
             </p>
-            <div className="flex gap-2">
+            <div className="d-flex gap-2">
               <Button size="sm" variant="outline" icon="download" onClick={() => open({ kind: "export" })}>
                 Export
               </Button>
@@ -378,16 +378,16 @@ export function HistoryDrawer() {
 function ReceiptInline({ txn, onOpenFull }: { txn: Txn; onOpenFull: () => void }) {
   const u = utilityOf(txn.utility);
   return (
-    <div className="rounded-2xl border border-line bg-white p-4">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-canvas text-muted">
+    <div className="rounded-5 border border-line bg-white p-4">
+      <div className="d-flex flex-wrap align-items-center gap-2">
+        <span className="d-grid h-10 w-10 flex-none place-items-center rounded-4 bg-canvas text-muted">
           <Icon name={u.icon} size={18} />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="font-display text-[15px] font-extrabold text-ink">
+          <p className="font-display fs-15 fw-extrabold text-ink">
             {txn.provider} · {kes(txn.amount, 2)}
           </p>
-          <p className="text-[11.5px] text-muted">
+          <p className="fs-115 text-muted">
             {txn.date} {txn.time} · {txn.method}
           </p>
         </div>
@@ -395,7 +395,7 @@ function ReceiptInline({ txn, onOpenFull }: { txn: Txn; onOpenFull: () => void }
           {txn.status}
         </Badge>
       </div>
-      <div className="mt-3 rounded-xl bg-[#fafbfd] p-3">
+      <div className="mt-3 rounded-4 bg-paper-2 p-3">
         <Row k="Reference" v={txn.ref} />
         <Row k={u.accountLabel} v={txn.account} />
         {txn.units && <Row k="Units" v={txn.units} />}
@@ -476,14 +476,14 @@ export function ExportModal() {
           </Select>
         </Field>
         <Field label="Columns">
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <div className="d-grid grid-cols-2 gap-2 sm-grid-cols-3">
             {Object.keys(cols).map((k) => (
               <button
                 key={k}
                 onClick={() => setCols((c) => ({ ...c, [k]: !c[k] }))}
-                className={cn("flex items-center gap-2 rounded-xl border px-3 py-2 text-left text-[12px] font-semibold transition", cols[k] ? "border-pmgreen bg-pmgreen-soft/40 text-ink" : "border-line bg-white text-muted")}
+                className={cn("d-flex align-items-center gap-2 rounded-4 border px-3 py-2 text-start fs-12 fw-semibold transition", cols[k] ? "border-pmgreen bg-pmgreen-soft-40 text-ink" : "border-line bg-white text-muted")}
               >
-                <span className={cn("grid h-4 w-4 place-items-center rounded border", cols[k] ? "border-pmgreen bg-pmgreen text-white" : "border-[#d0d5dd]")}>
+                <span className={cn("d-grid h-4 w-4 place-items-center rounded border", cols[k] ? "border-pmgreen bg-pmgreen text-white" : "border-gray-300")}>
                   {cols[k] && <Icon name="check" size={11} strokeWidth={3} />}
                 </span>
                 {headerMap[k]}
@@ -491,11 +491,11 @@ export function ExportModal() {
             ))}
           </div>
         </Field>
-        <label className="flex items-center gap-3 rounded-xl border border-line bg-[#fafbfd] p-3">
+        <label className="d-flex align-items-center gap-3 rounded-4 border border-line bg-paper-2 p-3">
           <Toggle on={failed} onChange={setFailed} label="Include failed" />
-          <span className="text-[12.5px] font-medium text-ink-2">Include failed &amp; reversed payments</span>
+          <span className="fs-125 fw-medium text-ink-2">Include failed &amp; reversed payments</span>
         </label>
-        <div className="rounded-xl bg-canvas p-3">
+        <div className="rounded-4 bg-canvas p-3">
           <Row k="Records" v={failed ? txns.length : txns.filter((t) => t.status !== "Failed").length} />
           <Row k="Gross value" v={kes(txns.reduce((s, t) => s + t.amount, 0))} />
           <Row k="Fees paid" v={kes(txns.reduce((s, t) => s + t.fee, 0))} />
@@ -521,40 +521,40 @@ export function AutopayDrawer() {
   const activeCount = rules.filter((r) => r.on).length;
 
   return (
-    <Drawer open onClose={close} width="max-w-[500px]">
+    <Drawer open onClose={close} width="max-w-500px">
       <DrawerHead title="Autopay rules" subtitle={`${activeCount} of ${rules.length} rules active · KES 12,800 saved in fees this year`} icon="repeat" onClose={close} />
 
       <div className="thin-scroll flex-1 overflow-y-auto p-4">
-        <div className="mb-4 grid grid-cols-3 gap-2">
+        <div className="mb-4 d-grid grid-cols-3 gap-2">
           {[
             { k: "Active rules", v: activeCount, i: "repeat" as const },
             { k: "Auto-paid (Jun)", v: kes(12799), i: "wallet" as const },
             { k: "Missed bills", v: "0", i: "check-circle" as const },
           ].map((s) => (
-            <div key={s.k} className="rounded-xl border border-line bg-[#fafbfd] p-3">
+            <div key={s.k} className="rounded-4 border border-line bg-paper-2 p-3">
               <Icon name={s.i} size={15} className="text-pmgreen" />
-              <p className="num mt-1.5 font-display text-[15px] font-extrabold text-ink">{s.v}</p>
-              <p className="text-[11px] leading-tight text-muted">{s.k}</p>
+              <p className="num mt-15 font-display fs-15 fw-extrabold text-ink">{s.v}</p>
+              <p className="fs-11 leading-tight text-muted">{s.k}</p>
             </div>
           ))}
         </div>
 
         <div className="space-y-2">
           {rules.map((r) => (
-            <div key={r.id} className="rounded-2xl border border-line bg-white p-3.5">
-              <div className="flex items-start gap-3">
-                <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-canvas text-muted">
+            <div key={r.id} className="rounded-5 border border-line bg-white p-35">
+              <div className="d-flex align-items-start gap-3">
+                <span className="d-grid h-10 w-10 flex-none place-items-center rounded-4 bg-canvas text-muted">
                   <Icon name={utilityOf(r.account.utility).icon} size={18} />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <p className="text-[13px] font-bold text-ink">{r.account.nickname}</p>
+                  <div className="d-flex flex-wrap align-items-center gap-15">
+                    <p className="fs-13 fw-bold text-ink">{r.account.nickname}</p>
                     {r.on ? <Badge tone="success" dot>Active</Badge> : <Badge tone="muted" dot>Paused</Badge>}
                   </div>
-                  <p className="mt-0.5 text-[11.5px] text-muted">
+                  <p className="mt-05 fs-115 text-muted">
                     {r.account.provider} · <span className="num">{r.account.ref}</span>
                   </p>
-                  <p className="mt-1.5 flex items-center gap-1.5 text-[11.5px] font-semibold text-ink-2">
+                  <p className="mt-15 d-flex align-items-center gap-15 fs-115 fw-semibold text-ink-2">
                     <Icon name="clock" size={12} className="text-faint" /> {r.trigger}
                   </p>
                 </div>
@@ -568,9 +568,9 @@ export function AutopayDrawer() {
                   }}
                 />
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-2 border-t border-line pt-3">
+              <div className="mt-3 d-grid grid-cols-2 gap-2 border-top border-line pt-3">
                 <div>
-                  <p className="mb-1 text-[10.5px] font-bold uppercase tracking-wide text-faint">Amount</p>
+                  <p className="mb-1 fs-105 fw-bold text-uppercase tracking-wide text-faint">Amount</p>
                   <Select
                     value={r.amount}
                     onChange={(e) => {
@@ -586,7 +586,7 @@ export function AutopayDrawer() {
                   </Select>
                 </div>
                 <div>
-                  <p className="mb-1 text-[10.5px] font-bold uppercase tracking-wide text-faint">Pay with</p>
+                  <p className="mb-1 fs-105 fw-bold text-uppercase tracking-wide text-faint">Pay with</p>
                   <Select
                     value={PAY_METHODS.find((m) => m.name === r.method)?.id ?? "mpesa"}
                     onChange={(e) => {
@@ -602,7 +602,7 @@ export function AutopayDrawer() {
                   </Select>
                 </div>
               </div>
-              <div className="mt-2.5 flex flex-wrap gap-2">
+              <div className="mt-25 d-flex flex-wrap gap-2">
                 <Button size="sm" variant="outline" icon="bolt" onClick={() => open({ kind: "buy", utility: r.account.utility, accountId: r.account.id, amount: r.amount })}>
                   Run now
                 </Button>
@@ -623,8 +623,8 @@ export function AutopayDrawer() {
         </div>
 
         {adding ? (
-          <div className="mt-4 rounded-2xl border border-pmgreen/30 bg-pmgreen-soft/25 p-4">
-            <p className="mb-3 font-display text-[14px] font-bold text-ink">New autopay rule</p>
+          <div className="mt-4 rounded-5 border border-pmgreen-30 bg-pmgreen-soft-25 p-4">
+            <p className="mb-3 font-display fs-14 fw-bold text-ink">New autopay rule</p>
             <div className="space-y-3">
               <Field label="Account">
                 <Select value={form.accountId} onChange={(e) => setForm({ ...form, accountId: e.target.value })}>
@@ -643,7 +643,7 @@ export function AutopayDrawer() {
                   <option value="due">3 days before due date</option>
                 </Select>
               </Field>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="d-grid grid-cols-2 gap-3">
                 <Field label="Amount (KES)">
                   <Input type="number" className="no-spin" value={form.amount} onChange={(e) => setForm({ ...form, amount: Number(e.target.value) })} />
                 </Field>
@@ -660,7 +660,7 @@ export function AutopayDrawer() {
                   ))}
                 </Select>
               </Field>
-              <div className="flex gap-2">
+              <div className="d-flex gap-2">
                 <Button variant="ghost" onClick={() => setAdding(false)}>
                   Cancel
                 </Button>
@@ -697,9 +697,9 @@ export function AutopayDrawer() {
           </Button>
         )}
 
-        <div className="mt-4 flex items-start gap-2.5 rounded-xl bg-pmblue-soft/70 p-3">
-          <Icon name="shield" size={16} className="mt-0.5 flex-none text-[#175cd3]" />
-          <p className="text-[12px] leading-relaxed text-[#175cd3]">
+        <div className="mt-4 d-flex align-items-start gap-25 rounded-4 bg-pmblue-soft-70 p-3">
+          <Icon name="shield" size={16} className="mt-05 flex-none text-pmblue-ink" />
+          <p className="fs-12 leading-relaxed text-pmblue-ink">
             Every autopay run needs your PIN once per day. We pause a rule and alert you when 80% of its monthly cap is reached — no silent charges, ever.
           </p>
         </div>
@@ -782,10 +782,10 @@ export function RemoveModal() {
         </>
       }
     >
-      <p className="text-[13px] leading-relaxed text-ink-2">
+      <p className="fs-13 leading-relaxed text-ink-2">
         This only removes the saved reference — <strong>past receipts stay in your history</strong> for 7 years. Any active autopay rule on this account will be paused.
       </p>
-      <div className="mt-3 rounded-xl bg-danger-soft/50 p-3">
+      <div className="mt-3 rounded-4 bg-danger-soft-50 p-3">
         <Row k="Autopay" v={acc?.autopay ? "Will be paused" : "None"} />
         <Row k="Receipts retained" v="Yes · 7 years" />
       </div>
@@ -815,18 +815,18 @@ export function ModuleModal() {
         </>
       }
     >
-      <p className="text-[13px] leading-relaxed text-ink-2">{m.blurb}</p>
+      <p className="fs-13 leading-relaxed text-ink-2">{m.blurb}</p>
       <div className="mt-3 space-y-2">
         {m.points.map((p) => (
-          <div key={p} className="flex items-start gap-2.5 rounded-xl border border-line bg-[#fafbfd] p-3">
-            <Icon name="check-circle" size={16} className="mt-0.5 flex-none text-pmgreen" />
-            <p className="text-[12.5px] font-medium text-ink-2">{p}</p>
+          <div key={p} className="d-flex align-items-start gap-25 rounded-4 border border-line bg-paper-2 p-3">
+            <Icon name="check-circle" size={16} className="mt-05 flex-none text-pmgreen" />
+            <p className="fs-125 fw-medium text-ink-2">{p}</p>
           </div>
         ))}
       </div>
-      <div className="mt-4 flex items-center gap-3 rounded-xl bg-ink p-4 text-white">
+      <div className="mt-4 d-flex align-items-center gap-3 rounded-4 bg-ink p-4 text-white">
         <Icon name="sparkle" size={20} className="flex-none text-pmgreen" />
-        <p className="text-[12.5px] leading-relaxed">
+        <p className="fs-125 leading-relaxed">
           You are currently on the <strong>Utilities 3.1</strong> page. All modules share one balance, one audit trail and one approval flow.
         </p>
       </div>
@@ -844,30 +844,30 @@ export function HelpModal() {
     { icon: "lifebuoy" as const, name: "Book a call", sub: "Mon–Sat · 8am–8pm EAT", cta: "Pick a slot" },
   ];
   return (
-    <Modal open onClose={close} width="max-w-[620px]" icon="lifebuoy" title="Help centre" subtitle="Answers, tariff explainers and 24/7 human support">
-      <div className="grid gap-2 sm:grid-cols-3">
+    <Modal open onClose={close} width="max-w-620px" icon="lifebuoy" title="Help centre" subtitle="Answers, tariff explainers and 24/7 human support">
+      <div className="d-grid gap-2 sm-grid-cols-3">
         {channels.map((c) => (
-          <div key={c.name} className="flex flex-col rounded-xl border border-line bg-[#fafbfd] p-3.5">
+          <div key={c.name} className="d-flex flex-column rounded-4 border border-line bg-paper-2 p-35">
             <Icon name={c.icon} size={18} className="text-pmgreen" />
-            <p className="mt-2 text-[12.5px] font-bold text-ink">{c.name}</p>
-            <p className="mt-0.5 flex-1 text-[11.5px] leading-relaxed text-muted">{c.sub}</p>
-            <Button size="sm" variant="outline" className="mt-2.5" onClick={() => toast({ title: c.cta, msg: `${c.name} opening…`, tone: "info" })}>
+            <p className="mt-2 fs-125 fw-bold text-ink">{c.name}</p>
+            <p className="mt-05 flex-1 fs-115 leading-relaxed text-muted">{c.sub}</p>
+            <Button size="sm" variant="outline" className="mt-25" onClick={() => toast({ title: c.cta, msg: `${c.name} opening…`, tone: "info" })}>
               {c.cta}
             </Button>
           </div>
         ))}
       </div>
 
-      <p className="mb-2 mt-5 text-[11px] font-bold uppercase tracking-[0.14em] text-faint">Frequent questions</p>
-      <div className="divide-y divide-line overflow-hidden rounded-xl border border-line">
+      <p className="mb-2 mt-5 fs-11 fw-bold text-uppercase tracking-0-14em text-faint">Frequent questions</p>
+      <div className="divide-y divide-line overflow-hidden rounded-4 border border-line">
         {FAQ.map((f, i) => (
           <div key={f.q}>
-            <button onClick={() => setOpenIdx(openIdx === i ? null : i)} className="flex w-full items-center gap-3 px-3.5 py-3 text-left transition hover:bg-[#fafbfd]">
-              <span className="grid h-6 w-6 flex-none place-items-center rounded-md bg-canvas text-[11px] font-bold text-muted">{i + 1}</span>
-              <span className="flex-1 text-[12.5px] font-semibold text-ink">{f.q}</span>
+            <button onClick={() => setOpenIdx(openIdx === i ? null : i)} className="d-flex w-100 align-items-center gap-3 px-35 py-3 text-start transition hover-bg-paper-2">
+              <span className="d-grid h-6 w-6 flex-none place-items-center rounded-2 bg-canvas fs-11 fw-bold text-muted">{i + 1}</span>
+              <span className="flex-1 fs-125 fw-semibold text-ink">{f.q}</span>
               <Icon name={openIdx === i ? "chevron-up" : "chevron-down"} size={15} className="text-faint" />
             </button>
-            {openIdx === i && <p className="px-3.5 pb-3.5 text-[12.5px] leading-relaxed text-muted">{f.a}</p>}
+            {openIdx === i && <p className="px-35 pb-35 fs-125 leading-relaxed text-muted">{f.a}</p>}
           </div>
         ))}
       </div>
@@ -879,24 +879,24 @@ export function TariffModal() {
   const { dialog, close, open } = useApp();
   if (dialog.kind !== "tariff") return null;
   return (
-    <Modal open onClose={close} width="max-w-[560px]" icon="gauge" title="Tariff & fees" subtitle="ERC pass-through tariff · effective 01 Jul 2025">
-      <div className="rounded-2xl border border-warn/30 bg-warn-soft/40 p-4">
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#93370d]">Domestic prepaid rate</p>
-        <p className="num mt-1 font-display text-[26px] font-extrabold text-ink">
-          KES {TARIFF.toFixed(2)} <span className="text-[14px] font-bold text-muted">/ kWh</span>
+    <Modal open onClose={close} width="max-w-560px" icon="gauge" title="Tariff & fees" subtitle="ERC pass-through tariff · effective 01 Jul 2025">
+      <div className="rounded-5 border border-warn-30 bg-warn-soft-40 p-4">
+        <p className="fs-11 fw-bold text-uppercase tracking-0-14em text-warn-ink">Domestic prepaid rate</p>
+        <p className="num mt-1 font-display fs-26 fw-extrabold text-ink">
+          KES {TARIFF.toFixed(2)} <span className="fs-14 fw-bold text-muted">/ kWh</span>
         </p>
-        <p className="mt-1 text-[11.5px] text-[#93370d]">Units are indicative — KPLC applies fixed charges, ERC levy & VAT on the final token.</p>
+        <p className="mt-1 fs-115 text-warn-ink">Units are indicative — KPLC applies fixed charges, ERC levy & VAT on the final token.</p>
       </div>
-      <div className="mt-4 overflow-hidden rounded-xl border border-line">
-        <table className="w-full">
-          <thead className="bg-[#fafbfd] text-left text-[10.5px] font-bold uppercase tracking-wide text-faint">
+      <div className="mt-4 overflow-hidden rounded-4 border border-line">
+        <table className="w-100">
+          <thead className="bg-paper-2 text-start fs-105 fw-bold text-uppercase tracking-wide text-faint">
             <tr>
-              <th className="px-3 py-2.5">Component</th>
-              <th className="px-3 py-2.5 text-right">Rate</th>
-              <th className="px-3 py-2.5 text-right">On KES 2,000</th>
+              <th className="px-3 py-25">Component</th>
+              <th className="px-3 py-25 text-end">Rate</th>
+              <th className="px-3 py-25 text-end">On KES 2,000</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-line text-[12.5px]">
+          <tbody className="divide-y divide-line fs-125">
             {[
               ["Energy charge", "KES 12.60 / kWh", "1,720"],
               ["Fixed charge", "KES 150 / month", "150"],
@@ -905,22 +905,22 @@ export function TariffModal() {
               ["PayMo fee", "KES 0", "0"],
             ].map((r) => (
               <tr key={r[0]}>
-                <td className="px-3 py-2.5 font-semibold text-ink-2">{r[0]}</td>
-                <td className="num px-3 py-2.5 text-right text-muted">{r[1]}</td>
-                <td className="num px-3 py-2.5 text-right font-bold text-ink">{r[2]}</td>
+                <td className="px-3 py-25 fw-semibold text-ink-2">{r[0]}</td>
+                <td className="num px-3 py-25 text-end text-muted">{r[1]}</td>
+                <td className="num px-3 py-25 text-end fw-bold text-ink">{r[2]}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p className="mt-4 mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-faint">Payment channel fees</p>
+      <p className="mt-4 mb-2 fs-11 fw-bold text-uppercase tracking-0-14em text-faint">Payment channel fees</p>
       <div className="space-y-2">
         {PAY_METHODS.map((m) => (
-          <div key={m.id} className="flex items-center gap-3 rounded-xl border border-line bg-white p-3">
-            <span className="grid h-8 w-8 flex-none place-items-center rounded-lg bg-canvas text-muted">
+          <div key={m.id} className="d-flex align-items-center gap-3 rounded-4 border border-line bg-white p-3">
+            <span className="d-grid h-8 w-8 flex-none place-items-center rounded-3 bg-canvas text-muted">
               <Icon name={m.icon} size={15} />
             </span>
-            <p className="flex-1 text-[12.5px] font-semibold text-ink">{m.name}</p>
+            <p className="flex-1 fs-125 fw-semibold text-ink">{m.name}</p>
             <Badge tone={m.fee === 0 ? "success" : "muted"}>{m.fee === 0 ? "Free" : `+${kes(m.fee)}`}</Badge>
           </div>
         ))}
@@ -980,10 +980,10 @@ export function ReportModal() {
             onChange={(e) => setNote(e.target.value)}
             rows={4}
             placeholder="e.g. STK push timed out at 14:31 but M-Pesa sent a confirmation SMS…"
-            className="w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-[13px] font-medium text-ink outline-none transition focus:border-pmgreen focus:ring-4 focus:ring-pmgreen/12"
+            className="w-100 rounded-4 border border-line bg-white px-35 py-25 fs-13 fw-medium text-ink outline-none transition focus-border-pmgreen focus-ring-4 focus-ring-pmgreen-12"
           />
         </Field>
-        <div className="rounded-xl bg-[#fafbfd] p-3">
+        <div className="rounded-4 bg-paper-2 p-3">
           <Row k="Auto-reverse policy" v="Within 24 hrs" />
           <Row k="Dispute SLA" v="First reply in 30 min" />
           <Row k="Evidence attached" v="Receipt + gateway logs" />

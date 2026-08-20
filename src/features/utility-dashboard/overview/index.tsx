@@ -57,29 +57,29 @@ export function UtilitiesPage() {
   }, [txns, status, utility, q, sort]);
 
   return (
-    <div className="mx-auto max-w-[1320px]">
+    <div className="mx-auto max-w-1320px">
       {/* ============================ HERO ============================ */}
-      <section className="pm-hero relative overflow-hidden rounded-3xl p-5 sm:p-7 lg:p-9">
-        <div className="pm-hero-dots pointer-events-none absolute inset-0" />
-        <div className="relative grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:gap-10">
+      <section className="pm-hero position-relative overflow-hidden rounded-3xl p-5 sm-p-7 lg-p-9">
+        <div className="pm-hero-dots pe-none position-absolute inset-0" />
+        <div className="position-relative d-grid gap-6 lg-grid-cols-1-35fr-1fr lg-gap-10">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11.5px] font-semibold text-white/80 backdrop-blur">
+            <span className="d-inline-flex align-items-center gap-2 rounded-full border border-white-15 bg-white-10 px-3 py-15 fs-115 fw-semibold text-white-80 backdrop-blur">
               <span className="live-dot" /> KPLC · NCWSC · MultiChoice gateways operational
             </span>
-            <h2 className="mt-4 font-display text-[26px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[34px] lg:text-[40px]">
+            <h2 className="mt-4 font-display fs-26 fw-extrabold leading-1-1 tracking-tight text-white sm-fs-34 lg-fs-40">
               Every utility, one
-              <br className="hidden sm:block" /> command centre.
+              <br className="d-none d-sm-block" /> command centre.
             </h2>
-            <p className="mt-3 max-w-[52ch] text-[13.5px] leading-relaxed text-white/70 sm:text-[14.5px]">
+            <p className="mt-3 max-w-52ch fs-135 leading-relaxed text-white-70 sm-fs-145">
               Buy KPLC tokens in ~6 seconds, settle water, TV, fibre, gas and airtime, then let autopay handle the rest. One balance, one audit trail, zero surprise bills.
             </p>
 
-            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
-              <div className="relative flex-1">
-                <Icon name="search" size={17} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40" />
+            <div className="mt-5 d-flex flex-column gap-25 flex-sm-row">
+              <div className="position-relative flex-1">
+                <Icon name="search" size={17} className="pe-none position-absolute left-35 top-1-2 translate-y-n1-2 text-white-40" />
                 <input
                   placeholder="Meter, account or phone number…"
-                  className="w-full rounded-xl border border-white/15 bg-white/[0.07] py-3 pl-11 pr-3 text-[13.5px] font-medium text-white outline-none transition placeholder:text-white/40 focus:border-pmgreen/60 focus:bg-white/10"
+                  className="w-100 rounded-4 border border-white-15 bg-white-07 py-3 ps-11 pe-3 fs-135 fw-medium text-white outline-none transition placeholder-text-white-40 focus-border-pmgreen-60 focus-bg-white-10"
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       const val = (e.target as HTMLInputElement).value.trim();
@@ -96,57 +96,57 @@ export function UtilitiesPage() {
               </Button>
             </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11.5px] font-semibold text-white/55">
-              <span className="flex items-center gap-1.5">
+            <div className="mt-5 d-flex flex-wrap align-items-center gap-x-5 gap-y-2 fs-115 fw-semibold text-white-55">
+              <span className="d-flex align-items-center gap-15">
                 <Icon name="shield" size={14} className="text-pmgreen" /> PCI-DSS Level 1
               </span>
-              <span className="flex items-center gap-1.5">
+              <span className="d-flex align-items-center gap-15">
                 <Icon name="gauge" size={14} className="text-pmgreen" /> KES {TARIFF.toFixed(2)}/kWh today
               </span>
-              <span className="flex items-center gap-1.5">
+              <span className="d-flex align-items-center gap-15">
                 <Icon name="check-circle" size={14} className="text-pmgreen" /> 42,318 tokens issued
               </span>
             </div>
           </div>
 
           {/* wallet / quick actions card */}
-          <div className="card-sheen relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] p-5 backdrop-blur">
-            <div className="flex items-start justify-between gap-3">
+          <div className="card-sheen position-relative overflow-hidden rounded-5 border border-white-12 bg-white-06 p-5 backdrop-blur">
+            <div className="d-flex align-items-start justify-content-between gap-3">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/45">PayMo wallet</p>
-                <p className="num mt-1.5 font-display text-[28px] font-extrabold leading-none text-white">{kes(balance)}</p>
-                <p className="mt-1.5 text-[11.5px] text-white/50">Zero-fee utility payments · trust account</p>
+                <p className="fs-11 fw-bold text-uppercase tracking-0-14em text-white-45">PayMo wallet</p>
+                <p className="num mt-15 font-display fs-28 fw-extrabold lh-1 text-white">{kes(balance)}</p>
+                <p className="mt-15 fs-115 text-white-50">Zero-fee utility payments · trust account</p>
               </div>
               <IconBtn icon="plus" label="Top up wallet" tone="white" onClick={() => open({ kind: "topup" })} />
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            <div className="mt-4 d-grid grid-cols-2 gap-2">
               {UTILITIES.slice(0, 4).map((u) => (
                 <button
                   key={u.id}
                   onClick={() => open({ kind: "buy", utility: u.id })}
-                  className="group flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] p-2.5 text-left transition hover:border-white/25 hover:bg-white/[0.09]"
+                  className="group d-flex align-items-center gap-25 rounded-4 border border-white-10 bg-white-04 p-25 text-start transition hover-border-white-25 hover-bg-white-09"
                 >
-                  <span className="grid h-8 w-8 flex-none place-items-center rounded-lg" style={{ background: `${u.color}22`, color: u.color }}>
+                  <span className="d-grid h-8 w-8 flex-none place-items-center rounded-3" style={{ background: `${u.color}22`, color: u.color }}>
                     <Icon name={u.icon} size={16} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block truncate text-[12px] font-bold text-white">{u.name}</span>
-                    <span className="block truncate text-[10.5px] text-white/45">{u.providers[0].name}</span>
+                    <span className="d-block text-truncate fs-12 fw-bold text-white">{u.name}</span>
+                    <span className="d-block text-truncate fs-105 text-white-45">{u.providers[0].name}</span>
                   </span>
                 </button>
               ))}
             </div>
 
-            <div className="mt-4 rounded-xl border border-warn/25 bg-warn/10 p-3">
-              <div className="flex items-center gap-2">
+            <div className="mt-4 rounded-4 border border-warn-25 bg-warn-10 p-3">
+              <div className="d-flex align-items-center gap-2">
                 <span className="live-dot amber" />
-                <p className="text-[12px] font-bold text-white">{dueSoon.length} bills due within 7 days</p>
+                <p className="fs-12 fw-bold text-white">{dueSoon.length} bills due within 7 days</p>
               </div>
-              <p className="num mt-1 text-[11.5px] text-white/60">
+              <p className="num mt-1 fs-115 text-white-60">
                 {kes(dueTotal)} total · next {SCHEDULES[0].date} {SCHEDULES[0].label}
               </p>
-              <button onClick={() => open({ kind: "autopay" })} className="focus-ring mt-2 inline-flex items-center gap-1 text-[12px] font-bold text-pmgreen transition hover:gap-1.5">
+              <button onClick={() => open({ kind: "autopay" })} className="focus-ring mt-2 d-inline-flex align-items-center gap-1 fs-12 fw-bold text-pmgreen transition hover-gap-15">
                 Review schedule <Icon name="arrow-right" size={13} />
               </button>
             </div>
@@ -155,7 +155,7 @@ export function UtilitiesPage() {
       </section>
 
       {/* ============================ KPI STRIP ============================ */}
-      <section className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4" data-reveal>
+      <section className="mt-5 d-grid gap-3 sm-grid-cols-2 xl-grid-cols-4" data-reveal>
         <Kpi
           label="Spend this month"
           value={kes(juneTotal)}
@@ -191,11 +191,11 @@ export function UtilitiesPage() {
           icon="calendar"
           tone="violet"
           custom={
-            <div className="mt-3 space-y-1.5">
+            <div className="mt-3 space-y-15">
               {dueSoon.slice(0, 3).map((s) => (
-                <div key={s.id} className="flex items-center justify-between text-[11px]">
-                  <span className="truncate text-muted">{s.account.nickname}</span>
-                  <span className="num font-bold text-ink">{kes(s.amount)}</span>
+                <div key={s.id} className="d-flex align-items-center justify-content-between fs-11">
+                  <span className="text-truncate text-muted">{s.account.nickname}</span>
+                  <span className="num fw-bold text-ink">{kes(s.amount)}</span>
                 </div>
               ))}
             </div>
@@ -210,7 +210,7 @@ export function UtilitiesPage() {
         </Button>
       </SectionHead>
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="d-grid gap-3 sm-grid-cols-2 lg-grid-cols-4">
         {UTILITIES.map((u, i) => {
           const saved = accounts.filter((a) => a.utility === u.id);
           return (
@@ -219,26 +219,26 @@ export function UtilitiesPage() {
               data-reveal
               onClick={() => open({ kind: "buy", utility: u.id })}
               style={{ animationDelay: `${i * 45}ms` }}
-              className="card-hover group relative overflow-hidden rounded-2xl border border-line bg-white p-4 text-left shadow-pm"
+              className="card-hover group position-relative overflow-hidden rounded-5 border border-line bg-white p-4 text-start shadow-pm"
             >
-              <span className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-[0.07] transition-transform duration-500 group-hover:scale-150" style={{ background: u.color }} />
-              <div className="flex items-start justify-between">
-                <span className="grid h-11 w-11 place-items-center rounded-[13px]" style={{ background: `${u.color}1a`, color: u.color }}>
+              <span className="pe-none position-absolute right-n8 top-n8 h-24 w-24 rounded-full opacity-007 transition-transform duration-500 group-hover-scale-150" style={{ background: u.color }} />
+              <div className="d-flex align-items-start justify-content-between">
+                <span className="d-grid h-11 w-11 place-items-center rounded-13px" style={{ background: `${u.color}1a`, color: u.color }}>
                   <Icon name={u.icon} size={21} />
                 </span>
-                <span className="grid h-7 w-7 place-items-center rounded-lg bg-canvas text-muted transition group-hover:bg-ink group-hover:text-white">
+                <span className="d-grid h-7 w-7 place-items-center rounded-3 bg-canvas text-muted transition group-hover-bg-ink group-hover-text-white">
                   <Icon name="arrow-up-right" size={14} />
                 </span>
               </div>
-              <p className="mt-3 font-display text-[14.5px] font-bold tracking-tight text-ink">{u.name}</p>
-              <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{u.short}</p>
-              <div className="mt-3 flex flex-wrap items-center gap-1.5">
+              <p className="mt-3 font-display fs-145 fw-bold tracking-tight text-ink">{u.name}</p>
+              <p className="mt-05 fs-115 leading-relaxed text-muted">{u.short}</p>
+              <div className="mt-3 d-flex flex-wrap align-items-center gap-15">
                 <Badge tone="muted">{u.providers.length} providers</Badge>
                 {saved.length > 0 ? <Badge tone="success">{saved.length} saved</Badge> : <Badge tone="info">New</Badge>}
               </div>
-              <p className="mt-3 border-t border-line pt-2.5 text-[11px] leading-relaxed text-muted">{u.blurb}</p>
+              <p className="mt-3 border-top border-line pt-25 fs-11 leading-relaxed text-muted">{u.blurb}</p>
               {u.bundles && (
-                <p className="mt-2 text-[11px] font-semibold text-ink-2">
+                <p className="mt-2 fs-11 fw-semibold text-ink-2">
                   From <span className="num">{kes(Math.min(...u.bundles.map((b) => b.price)))}</span>
                 </p>
               )}
@@ -249,7 +249,7 @@ export function UtilitiesPage() {
 
       {/* ============================ 3.2 SAVED ACCOUNTS ============================ */}
       <SectionHead no="3.2" id="sec-accounts" title="Saved meters & accounts" sub="Two-tap payments for the accounts you settle every month.">
-        <div className="flex flex-wrap gap-2">
+        <div className="d-flex flex-wrap gap-2">
           <Chip on={accFilter === "all"} onClick={() => setAccFilter("all")} count={accounts.length}>
             All
           </Chip>
@@ -281,28 +281,28 @@ export function UtilitiesPage() {
             />
           </Card>
         ) : (
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="d-grid gap-3 sm-grid-cols-2 xl-grid-cols-3">
           {shownAccounts.map((a, i) => {
             const u = utilityOf(a.utility);
             const overdue = a.dueInDays !== undefined && a.dueInDays <= 2;
             return (
-              <div key={a.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover relative flex flex-col rounded-2xl border border-line bg-white p-4 shadow-pm">
-                <div className="flex items-start gap-3">
-                  <span className="grid h-11 w-11 flex-none place-items-center rounded-[13px]" style={{ background: `${u.color}1a`, color: u.color }}>
+              <div key={a.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover position-relative d-flex flex-column rounded-5 border border-line bg-white p-4 shadow-pm">
+                <div className="d-flex align-items-start gap-3">
+                  <span className="d-grid h-11 w-11 flex-none place-items-center rounded-13px" style={{ background: `${u.color}1a`, color: u.color }}>
                     <Icon name={u.icon} size={20} />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <p className="truncate text-[13.5px] font-bold text-ink">{a.nickname}</p>
+                    <div className="d-flex flex-wrap align-items-center gap-15">
+                      <p className="text-truncate fs-135 fw-bold text-ink">{a.nickname}</p>
                       {a.favourite && <Icon name="star" size={13} className="text-warn" />}
                     </div>
-                    <p className="mt-0.5 text-[11.5px] text-muted">
-                      {a.provider} · <span className="num font-semibold text-ink-2">{a.ref}</span>
+                    <p className="mt-05 fs-115 text-muted">
+                      {a.provider} · <span className="num fw-semibold text-ink-2">{a.ref}</span>
                     </p>
                   </div>
                   <Menu
                     trigger={() => (
-                      <span className="grid h-8 w-8 place-items-center rounded-lg text-muted transition hover:bg-canvas hover:text-ink">
+                      <span className="d-grid h-8 w-8 place-items-center rounded-3 text-muted transition hover-bg-canvas hover-text-ink">
                         <Icon name="more" size={16} />
                       </span>
                     )}
@@ -316,7 +316,7 @@ export function UtilitiesPage() {
                   />
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                <div className="mt-3 d-flex flex-wrap align-items-center gap-15">
                   {a.autopay && (
                     <Badge tone="success" icon="repeat">
                       Autopay
@@ -330,13 +330,13 @@ export function UtilitiesPage() {
                   {a.lastUnits && <Badge tone="muted" icon="gauge">{a.lastUnits}</Badge>}
                 </div>
 
-                <div className="mt-3 flex-1 rounded-xl bg-[#fafbfd] p-3">
+                <div className="mt-3 flex-1 rounded-4 bg-paper-2 p-3">
                   <Row k="Last payment" v={a.lastDate === "—" ? "—" : `${kes(a.lastAmount)}`} />
                   <Row k="Last date" v={a.lastDate} />
                   {a.dueAmount ? <Row k="Estimated due" v={kes(a.dueAmount)} strong /> : <Row k="Estimated due" v="—" />}
                 </div>
 
-                <div className="mt-3 flex gap-2">
+                <div className="mt-3 d-flex gap-2">
                   <Button className="flex-1" icon="bolt" onClick={() => open({ kind: "buy", utility: a.utility, accountId: a.id, amount: a.dueAmount ?? a.lastAmount })}>
                     {a.dueAmount ? `Pay ${kes(a.dueAmount)}` : `Buy ${kes(a.lastAmount || u.quick[2])}`}
                   </Button>
@@ -349,13 +349,13 @@ export function UtilitiesPage() {
           <button
             data-reveal
             onClick={() => open({ kind: "addAccount" })}
-            className="flex min-h-[220px] flex-col items-center justify-center gap-2.5 rounded-2xl border-2 border-dashed border-line bg-white/60 p-4 text-center transition hover:border-pmgreen/50 hover:bg-pmgreen-soft/20"
+            className="d-flex min-h-220px flex-column align-items-center justify-content-center gap-25 rounded-5 border-2 border-dashed border-line bg-white-60 p-4 text-center transition hover-border-pmgreen-50 hover-bg-pmgreen-soft-20"
           >
-            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-canvas text-muted">
+            <span className="d-grid h-12 w-12 place-items-center rounded-5 bg-canvas text-muted">
               <Icon name="plus" size={22} />
             </span>
-            <p className="text-[13.5px] font-bold text-ink">Add another meter or account</p>
-            <p className="max-w-[30ch] text-[11.5px] leading-relaxed text-muted">KPLC, NCWSC, DSTV, fibre, gas, solar, SHA — verified in seconds.</p>
+            <p className="fs-135 fw-bold text-ink">Add another meter or account</p>
+            <p className="max-w-30ch fs-115 leading-relaxed text-muted">KPLC, NCWSC, DSTV, fibre, gas, solar, SHA — verified in seconds.</p>
           </button>
         </div>
       )}
@@ -368,19 +368,19 @@ export function UtilitiesPage() {
         </Button>
       </SectionHead>
 
-      <div className="grid gap-3 lg:grid-cols-3">
+      <div className="d-grid gap-3 lg-grid-cols-3">
         {/* stacked bars */}
-        <Card className="lg:col-span-2" hover>
-          <div className="flex flex-wrap items-start justify-between gap-3">
+        <Card className="lg-col-span-2" hover>
+          <div className="d-flex flex-wrap align-items-start justify-content-between gap-3">
             <div>
-              <p className="font-display text-[14.5px] font-bold tracking-tight text-ink">Monthly utility spend</p>
-              <p className="mt-0.5 text-[11.5px] text-muted">
-                {kes(juneTotal)} in June · <span className={cn("font-bold", growth > 0 ? "text-[#b42318]" : "text-[#067647]")}>{growth > 0 ? "+" : ""}{growth.toFixed(1)}%</span> vs May
+              <p className="font-display fs-145 fw-bold tracking-tight text-ink">Monthly utility spend</p>
+              <p className="mt-05 fs-115 text-muted">
+                {kes(juneTotal)} in June · <span className={cn("fw-bold", growth > 0 ? "text-danger-ink" : "text-pmgreen-ink")}>{growth > 0 ? "+" : ""}{growth.toFixed(1)}%</span> vs May
               </p>
             </div>
-            <div className="flex flex-wrap gap-x-3 gap-y-1.5">
+            <div className="d-flex flex-wrap gap-x-3 gap-y-15">
               {SERIES.map((s) => (
-                <span key={s.key} className="flex items-center gap-1.5 text-[11px] font-semibold text-muted">
+                <span key={s.key} className="d-flex align-items-center gap-15 fs-11 fw-semibold text-muted">
                   <span className="h-2 w-2 rounded-full" style={{ background: s.color }} />
                   {s.label}
                 </span>
@@ -388,18 +388,18 @@ export function UtilitiesPage() {
             </div>
           </div>
 
-          <div className="mt-5 flex items-end gap-2 sm:gap-3" style={{ height: 208 }}>
+          <div className="mt-5 d-flex align-items-end gap-2 sm-gap-3" style={{ height: 208 }}>
             {monthData.map((m, mi) => {
               const total = m.electricity + m.water + m.tv + m.internet + m.other;
               return (
-                <div key={m.month} className="group relative flex h-full flex-1 flex-col justify-end">
-                  <div className="pointer-events-none absolute -top-1 left-1/2 z-10 hidden -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg bg-ink px-2.5 py-1.5 text-[11px] font-semibold text-white shadow-pm-lg group-hover:block">
+                <div key={m.month} className="group position-relative d-flex h-100 flex-1 flex-column justify-content-end">
+                  <div className="pe-none position-absolute top-n1 left-1-2 z-10 d-none translate-x-n1-2 translate-y-nfull text-nowrap rounded-3 bg-ink px-25 py-15 fs-11 fw-semibold text-white shadow-pm-lg group-hover-d-block">
                     {kes(total)}
-                    <span className="mt-1 block space-y-0.5">
+                    <span className="mt-1 d-block space-y-05">
                       {SERIES.map((s) => (
-                        <span key={s.key} className="flex items-center justify-between gap-2">
-                          <span className="flex items-center gap-1">
-                            <span className="h-1.5 w-1.5 rounded-full" style={{ background: s.color }} />
+                        <span key={s.key} className="d-flex align-items-center justify-content-between gap-2">
+                          <span className="d-flex align-items-center gap-1">
+                            <span className="h-15 w-15 rounded-full" style={{ background: s.color }} />
                             {s.label}
                           </span>
                           <span className="num">{kes(m[s.key])}</span>
@@ -407,30 +407,30 @@ export function UtilitiesPage() {
                       ))}
                     </span>
                   </div>
-                  <div className="flex w-full flex-col justify-end overflow-hidden rounded-t-lg transition-opacity group-hover:opacity-90" style={{ height: `${(total / maxTotal) * 100}%` }}>
+                  <div className="d-flex w-100 flex-column justify-content-end overflow-hidden rounded-t-lg transition-opacity group-hover-opacity-90" style={{ height: `${(total / maxTotal) * 100}%` }}>
                     {SERIES.map((s, si) => (
                       <div
                         key={s.key}
-                        className="bar-grow w-full"
+                        className="bar-grow w-100"
                         style={{ background: s.color, height: `${(m[s.key] / total) * 100}%`, animationDelay: `${mi * 55 + si * 30}ms`, opacity: si === 4 ? 0.7 : 1 }}
                       />
                     ))}
                   </div>
-                  <p className="mt-2 text-center text-[10.5px] font-semibold text-muted">{m.month}</p>
+                  <p className="mt-2 text-center fs-105 fw-semibold text-muted">{m.month}</p>
                 </div>
               );
             })}
           </div>
 
-          <div className="mt-4 grid gap-2 border-t border-line pt-4 sm:grid-cols-3">
+          <div className="mt-4 d-grid gap-2 border-top border-line pt-4 sm-grid-cols-3">
             {[
               { k: "Avg / month", v: kes(Math.round(monthData.reduce((s, m) => s + m.electricity + m.water + m.tv + m.internet + m.other, 0) / monthData.length)) },
               { k: "Peak month", v: `Jun · ${kes(juneTotal)}` },
               { k: "Fees paid YTD", v: kes(150) },
             ].map((x) => (
-              <div key={x.k} className="rounded-xl bg-[#fafbfd] p-3">
-                <p className="text-[10.5px] font-bold uppercase tracking-wide text-faint">{x.k}</p>
-                <p className="num mt-0.5 font-display text-[15px] font-extrabold text-ink">{x.v}</p>
+              <div key={x.k} className="rounded-4 bg-paper-2 p-3">
+                <p className="fs-105 fw-bold text-uppercase tracking-wide text-faint">{x.k}</p>
+                <p className="num mt-05 font-display fs-15 fw-extrabold text-ink">{x.v}</p>
               </div>
             ))}
           </div>
@@ -439,24 +439,24 @@ export function UtilitiesPage() {
         {/* donut + insights */}
         <div className="space-y-3">
           <Card hover>
-            <p className="font-display text-[14.5px] font-bold tracking-tight text-ink">June by utility</p>
-            <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row">
+            <p className="font-display fs-145 fw-bold tracking-tight text-ink">June by utility</p>
+            <div className="mt-4 d-flex flex-column align-items-center gap-4 flex-sm-row">
               <Donut
                 data={SPEND_BY_UTILITY}
                 center={
                   <>
-                    <p className="num font-display text-[16px] font-extrabold text-ink">{kes(juneTotal)}</p>
-                    <p className="text-[10.5px] font-semibold text-muted">total June</p>
+                    <p className="num font-display fs-16 fw-extrabold text-ink">{kes(juneTotal)}</p>
+                    <p className="fs-105 fw-semibold text-muted">total June</p>
                   </>
                 }
               />
-              <div className="w-full flex-1 space-y-2">
+              <div className="w-100 flex-1 space-y-2">
                 {SPEND_BY_UTILITY.map((s) => (
-                  <div key={s.label} className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 flex-none rounded-full" style={{ background: s.color }} />
-                    <span className="flex-1 truncate text-[12px] font-semibold text-ink-2">{s.label}</span>
-                    <span className="num text-[12px] font-bold text-ink">{kes(s.value)}</span>
-                    <span className="num w-9 text-right text-[11px] text-muted">{Math.round((s.value / juneTotal) * 100)}%</span>
+                  <div key={s.label} className="d-flex align-items-center gap-2">
+                    <span className="h-25 w-25 flex-none rounded-full" style={{ background: s.color }} />
+                    <span className="flex-1 text-truncate fs-12 fw-semibold text-ink-2">{s.label}</span>
+                    <span className="num fs-12 fw-bold text-ink">{kes(s.value)}</span>
+                    <span className="num w-9 text-end fs-11 text-muted">{Math.round((s.value / juneTotal) * 100)}%</span>
                   </div>
                 ))}
               </div>
@@ -464,22 +464,22 @@ export function UtilitiesPage() {
           </Card>
 
           <Card hover>
-            <div className="flex items-center gap-2">
+            <div className="d-flex align-items-center gap-2">
               <Icon name="sparkle" size={16} className="text-pmviolet" />
-              <p className="font-display text-[14.5px] font-bold tracking-tight text-ink">What we noticed</p>
+              <p className="font-display fs-145 fw-bold tracking-tight text-ink">What we noticed</p>
             </div>
-            <div className="mt-3 space-y-2.5">
+            <div className="mt-3 space-y-25">
               {[
                 { icon: "trend-up" as const, tone: "warning" as Tone, t: "Electricity up 78%", d: "Shop meter used 595 kWh — consider a postpaid plan." },
                 { icon: "repeat" as const, tone: "success" as Tone, t: "Autopay saved KES 4,200", d: "12 rule runs replaced manual top-ups this quarter." },
                 { icon: "alert" as const, tone: "danger" as Tone, t: "1 payment failed", d: "NCWSC KES 1,800 on 03 Jun — retry from wallet?" },
                 { icon: "tag" as const, tone: "info" as Tone, t: "DSTV is 32% of spend", d: "Downgrading to Compact saves KES 5,000 / month." },
               ].map((n) => (
-                <div key={n.t} className="flex gap-2.5 rounded-xl border border-line bg-[#fafbfd] p-3">
+                <div key={n.t} className="d-flex gap-25 rounded-4 border border-line bg-paper-2 p-3">
                   <Badge tone={n.tone} icon={n.icon} className="h-6" />
                   <div className="min-w-0 flex-1">
-                    <p className="text-[12.5px] font-bold text-ink">{n.t}</p>
-                    <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">{n.d}</p>
+                    <p className="fs-125 fw-bold text-ink">{n.t}</p>
+                    <p className="mt-05 fs-115 leading-relaxed text-muted">{n.d}</p>
                   </div>
                 </div>
               ))}
@@ -495,10 +495,10 @@ export function UtilitiesPage() {
         </Button>
       </SectionHead>
 
-      <div className="grid gap-3 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <div className="flex items-center justify-between gap-3">
-            <p className="font-display text-[14.5px] font-bold tracking-tight text-ink">Upcoming payments</p>
+      <div className="d-grid gap-3 lg-grid-cols-3">
+        <Card className="lg-col-span-2">
+          <div className="d-flex align-items-center justify-content-between gap-3">
+            <p className="font-display fs-145 fw-bold tracking-tight text-ink">Upcoming payments</p>
             <Badge tone="warning" dot>
               {SCHEDULES.length} scheduled
             </Badge>
@@ -508,24 +508,24 @@ export function UtilitiesPage() {
               const u = utilityOf(s.account.utility);
               const urgent = s.dueInDays <= 2;
               return (
-                <div key={s.id} className="flex flex-wrap items-center gap-3 py-3">
-                  <div className={cn("grid h-12 w-12 flex-none place-items-center rounded-xl border", urgent ? "border-danger/25 bg-danger-soft" : "border-line bg-[#fafbfd]")}>
-                    <span className="font-display text-[13px] font-extrabold leading-none text-ink">{s.date.split(" ")[0]}</span>
-                    <span className="text-[9.5px] font-bold uppercase tracking-wide text-muted">{s.date.split(" ")[1]}</span>
+                <div key={s.id} className="d-flex flex-wrap align-items-center gap-3 py-3">
+                  <div className={cn("d-grid h-12 w-12 flex-none place-items-center rounded-4 border", urgent ? "border-danger-25 bg-danger-soft" : "border-line bg-paper-2")}>
+                    <span className="font-display fs-13 fw-extrabold lh-1 text-ink">{s.date.split(" ")[0]}</span>
+                    <span className="fs-95 fw-bold text-uppercase tracking-wide text-muted">{s.date.split(" ")[1]}</span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <p className="truncate text-[13px] font-bold text-ink">{s.label}</p>
+                    <div className="d-flex flex-wrap align-items-center gap-15">
+                      <p className="text-truncate fs-13 fw-bold text-ink">{s.label}</p>
                       {urgent && <Badge tone="danger" dot>Due in {s.dueInDays}d</Badge>}
                       {!urgent && s.dueInDays <= 4 && <Badge tone="warning" dot>Due in {s.dueInDays}d</Badge>}
                     </div>
-                    <p className="mt-0.5 truncate text-[11.5px] text-muted">
+                    <p className="mt-05 text-truncate fs-115 text-muted">
                       {s.account.provider} · <span className="num">{s.account.ref}</span> · {s.method}
                     </p>
                   </div>
-                  <div className="num text-right">
-                    <p className="text-[13.5px] font-extrabold text-ink">{kes(s.amount)}</p>
-                    <p className="text-[11px] text-muted">{u.name}</p>
+                  <div className="num text-end">
+                    <p className="fs-135 fw-extrabold text-ink">{kes(s.amount)}</p>
+                    <p className="fs-11 text-muted">{u.name}</p>
                   </div>
                   <Button size="sm" variant={urgent ? "primary" : "outline"} icon="bolt" onClick={() => open({ kind: "buy", utility: s.account.utility, accountId: s.account.id, amount: s.amount })}>
                     Pay now
@@ -537,19 +537,19 @@ export function UtilitiesPage() {
         </Card>
 
         <div className="space-y-3">
-          <Card hover className="bg-gradient-to-br from-ink to-[#123a2c] text-white">
-            <div className="flex items-center gap-2">
+          <Card hover className="bg-gradient-to-br from-ink to-123a2c text-white">
+            <div className="d-flex align-items-center gap-2">
               <Icon name="repeat" size={17} className="text-pmgreen" />
-              <p className="font-display text-[14.5px] font-bold tracking-tight">Autopay at a glance</p>
+              <p className="font-display fs-145 fw-bold tracking-tight">Autopay at a glance</p>
             </div>
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <div className="rounded-xl bg-white/[0.07] p-3">
-                <p className="num font-display text-[20px] font-extrabold">{accounts.filter((a) => a.autopay).length}</p>
-                <p className="text-[11px] text-white/55">active rules</p>
+            <div className="mt-3 d-grid grid-cols-2 gap-2">
+              <div className="rounded-4 bg-white-07 p-3">
+                <p className="num font-display fs-20 fw-extrabold">{accounts.filter((a) => a.autopay).length}</p>
+                <p className="fs-11 text-white-55">active rules</p>
               </div>
-              <div className="rounded-xl bg-white/[0.07] p-3">
-                <p className="num font-display text-[20px] font-extrabold">0</p>
-                <p className="text-[11px] text-white/55">missed bills</p>
+              <div className="rounded-4 bg-white-07 p-3">
+                <p className="num font-display fs-20 fw-extrabold">0</p>
+                <p className="fs-11 text-white-55">missed bills</p>
               </div>
             </div>
             <div className="mt-3 space-y-2">
@@ -557,13 +557,13 @@ export function UtilitiesPage() {
                 .filter((a) => a.autopay)
                 .slice(0, 3)
                 .map((a) => (
-                  <div key={a.id} className="flex items-center gap-2.5 rounded-xl bg-white/[0.05] p-2.5">
-                    <span className="grid h-7 w-7 flex-none place-items-center rounded-lg bg-white/10 text-pmgreen">
+                  <div key={a.id} className="d-flex align-items-center gap-25 rounded-4 bg-white-05 p-25">
+                    <span className="d-grid h-7 w-7 flex-none place-items-center rounded-3 bg-white-10 text-pmgreen">
                       <Icon name={utilityOf(a.utility).icon} size={14} />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate text-[12px] font-bold">{a.nickname}</span>
-                      <span className="block truncate text-[10.5px] text-white/50">{a.provider}</span>
+                      <span className="d-block text-truncate fs-12 fw-bold">{a.nickname}</span>
+                      <span className="d-block text-truncate fs-105 text-white-50">{a.provider}</span>
                     </span>
                     <span className="live-dot" />
                   </div>
@@ -575,21 +575,21 @@ export function UtilitiesPage() {
           </Card>
 
           <Card hover id="sec-alerts">
-            <div className="flex items-center gap-2">
+            <div className="d-flex align-items-center gap-2">
               <Icon name="bell" size={16} className="text-pmgreen" />
-              <p className="font-display text-[14.5px] font-bold tracking-tight text-ink">Reminders</p>
-              <Badge tone="muted" className="ml-auto">
+              <p className="font-display fs-145 fw-bold tracking-tight text-ink">Reminders</p>
+              <Badge tone="muted" className="ms-auto">
                 {NOTICES.length} new
               </Badge>
             </div>
             <div className="mt-3 space-y-2">
               {NOTICES.slice(0, 3).map((n) => (
-                <div key={n.id} className="rounded-xl border border-line bg-[#fafbfd] p-3">
-                  <div className="flex items-start gap-2">
+                <div key={n.id} className="rounded-4 border border-line bg-paper-2 p-3">
+                  <div className="d-flex align-items-start gap-2">
                     <Badge tone={n.tone} icon={n.icon} className="h-6" />
-                    <p className="flex-1 text-[12.5px] font-bold text-ink">{n.title}</p>
+                    <p className="flex-1 fs-125 fw-bold text-ink">{n.title}</p>
                   </div>
-                  <p className="mt-1.5 text-[11.5px] leading-relaxed text-muted">{n.body}</p>
+                  <p className="mt-15 fs-115 leading-relaxed text-muted">{n.body}</p>
                   {n.cta && (
                     <button
                       onClick={() => {
@@ -598,7 +598,7 @@ export function UtilitiesPage() {
                         else if (n.id === "n5") open({ kind: "buy", utility: "water", accountId: "acc-3" });
                         else open({ kind: "history" });
                       }}
-                      className="focus-ring mt-2 inline-flex items-center gap-1 text-[12px] font-bold text-[#067647] transition hover:gap-1.5"
+                      className="focus-ring mt-2 d-inline-flex align-items-center gap-1 fs-12 fw-bold text-pmgreen-ink transition hover-gap-15"
                     >
                       {n.cta} <Icon name="arrow-right" size={13} />
                     </button>
@@ -617,23 +617,23 @@ export function UtilitiesPage() {
         </Button>
       </SectionHead>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="d-grid gap-3 sm-grid-cols-2 xl-grid-cols-4">
         {PAY_METHODS.map((m, i) => (
-          <div key={m.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover rounded-2xl border border-line bg-white p-4 shadow-pm">
-            <div className="flex items-start justify-between">
-              <span className="grid h-11 w-11 place-items-center rounded-[13px] bg-canvas text-muted">
+          <div key={m.id} data-reveal style={{ animationDelay: `${i * 40}ms` }} className="card-hover rounded-5 border border-line bg-white p-4 shadow-pm">
+            <div className="d-flex align-items-start justify-content-between">
+              <span className="d-grid h-11 w-11 place-items-center rounded-13px bg-canvas text-muted">
                 <Icon name={m.icon} size={20} />
               </span>
               {m.primary && <Badge tone="success">Default</Badge>}
             </div>
-            <p className="mt-3 font-display text-[14px] font-bold text-ink">{m.name}</p>
-            <p className="mt-0.5 text-[11.5px] text-muted">{m.sub}</p>
-            <div className="mt-3 rounded-xl bg-[#fafbfd] p-3">
+            <p className="mt-3 font-display fs-14 fw-bold text-ink">{m.name}</p>
+            <p className="mt-05 fs-115 text-muted">{m.sub}</p>
+            <div className="mt-3 rounded-4 bg-paper-2 p-3">
               <Row k="Fee" v={m.fee === 0 ? "Free" : `+${kes(m.fee)}`} />
               <Row k="Limit / txn" v={kes(150000)} />
               {m.balance !== undefined ? <Row k="Available" v={kes(m.balance)} strong /> : <Row k="Available" v="Linked" strong />}
             </div>
-            <div className="mt-3 flex gap-2">
+            <div className="mt-3 d-flex gap-2">
               <Button size="sm" variant="outline" className="flex-1" icon="bolt" onClick={() => open({ kind: "buy", utility: "electricity" })}>
                 Use to pay
               </Button>
@@ -655,9 +655,9 @@ export function UtilitiesPage() {
 
       <Card className="p-0">
         {/* toolbar */}
-        <div className="space-y-3 border-b border-line p-4">
-          <div className="flex flex-wrap gap-2">
-            <div className="min-w-[200px] flex-1">
+        <div className="space-y-3 border-bottom border-line p-4">
+          <div className="d-flex flex-wrap gap-2">
+            <div className="min-w-200px flex-1">
               <Input icon="search" placeholder="Search reference, provider, account, nickname…" value={q} onChange={(e) => setQ(e.target.value)} />
             </div>
             <Select value={utility} onChange={(e) => setUtility(e.target.value)} className="w-auto">
@@ -678,13 +678,13 @@ export function UtilitiesPage() {
               ]}
             />
           </div>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="d-flex flex-wrap align-items-center gap-2">
             {(["all", "Success", "Pending", "Failed"] as const).map((s) => (
               <Chip key={s} on={status === s} onClick={() => setStatus(s)} count={s === "all" ? txns.length : txns.filter((t) => t.status === s).length}>
                 {s === "all" ? "All" : s}
               </Chip>
             ))}
-            <span className="ml-auto text-[11.5px] font-semibold text-muted">
+            <span className="ms-auto fs-115 fw-semibold text-muted">
               {rows.length} of {txns.length} shown
             </span>
           </div>
@@ -712,15 +712,15 @@ export function UtilitiesPage() {
         ) : (
           <>
             {/* desktop table */}
-            <div className="hidden overflow-x-auto lg:block">
-              <table className="w-full min-w-[840px]">
-                <thead className="bg-[#fafbfd]">
-                  <tr className="text-left text-[10.5px] font-bold uppercase tracking-[0.1em] text-faint">
+            <div className="d-none overflow-x-auto d-lg-block">
+              <table className="w-100 min-w-840px">
+                <thead className="bg-paper-2">
+                  <tr className="text-start fs-105 fw-bold text-uppercase tracking-0-1em text-faint">
                     <th className="px-4 py-3">Date</th>
                     <th className="px-4 py-3">Utility</th>
                     <th className="px-4 py-3">Provider</th>
                     <th className="px-4 py-3">Account</th>
-                    <th className="px-4 py-3 text-right">Amount</th>
+                    <th className="px-4 py-3 text-end">Amount</th>
                     <th className="px-4 py-3">Method</th>
                     <th className="px-4 py-3">Reference</th>
                     <th className="px-4 py-3">Status</th>
@@ -731,38 +731,38 @@ export function UtilitiesPage() {
                   {rows.map((t) => {
                     const u = utilityOf(t.utility);
                     return (
-                      <tr key={t.id} onClick={() => open({ kind: "txn", txn: t })} className="cursor-pointer transition hover:bg-[#f7f9fc]">
-                        <td className="whitespace-nowrap px-4 py-3 text-[12px] font-semibold text-ink-2">
+                      <tr key={t.id} onClick={() => open({ kind: "txn", txn: t })} className="cursor-pointer transition hover-bg-paper-3">
+                        <td className="text-nowrap px-4 py-3 fs-12 fw-semibold text-ink-2">
                           {t.date}
-                          <span className="ml-1.5 text-[11px] font-normal text-faint">{t.time}</span>
+                          <span className="ms-15 fs-11 fw-normal text-faint">{t.time}</span>
                         </td>
                         <td className="px-4 py-3">
-                          <span className="flex items-center gap-2">
-                            <span className="grid h-8 w-8 flex-none place-items-center rounded-lg" style={{ background: `${u.color}1a`, color: u.color }}>
+                          <span className="d-flex align-items-center gap-2">
+                            <span className="d-grid h-8 w-8 flex-none place-items-center rounded-3" style={{ background: `${u.color}1a`, color: u.color }}>
                               <Icon name={u.icon} size={15} />
                             </span>
-                            <span className="text-[12.5px] font-semibold text-ink">{u.name}</span>
+                            <span className="fs-125 fw-semibold text-ink">{u.name}</span>
                           </span>
                         </td>
-                        <td className="px-4 py-3 text-[12.5px] font-semibold text-ink-2">{t.provider}</td>
+                        <td className="px-4 py-3 fs-125 fw-semibold text-ink-2">{t.provider}</td>
                         <td className="px-4 py-3">
-                          <span className="num text-[12px] text-muted">{t.account}</span>
-                          <span className="block text-[11px] text-faint">{t.nickname}</span>
+                          <span className="num fs-12 text-muted">{t.account}</span>
+                          <span className="d-block fs-11 text-faint">{t.nickname}</span>
                         </td>
-                        <td className="num px-4 py-3 text-right text-[13px] font-bold text-ink">{kes(t.amount)}</td>
+                        <td className="num px-4 py-3 text-end fs-13 fw-bold text-ink">{kes(t.amount)}</td>
                         <td className="px-4 py-3">
-                          <span className="inline-flex items-center gap-1.5 text-[12px] text-muted">
+                          <span className="d-inline-flex align-items-center gap-15 fs-12 text-muted">
                             <Icon name={PAY_METHODS.find((m) => m.name === t.method)?.icon ?? "wallet"} size={14} className="text-faint" />
                             {t.method}
                           </span>
                         </td>
-                        <td className="num px-4 py-3 text-[11.5px] font-semibold text-muted">{t.ref}</td>
+                        <td className="num px-4 py-3 fs-115 fw-semibold text-muted">{t.ref}</td>
                         <td className="px-4 py-3">
                           <Badge tone={t.status === "Success" ? "success" : t.status === "Pending" ? "warning" : "danger"} dot>
                             {t.status}
                           </Badge>
                         </td>
-                        <td className="px-4 py-3 text-right">
+                        <td className="px-4 py-3 text-end">
                           <Icon name="chevron-right" size={15} className="text-faint" />
                         </td>
                       </tr>
@@ -773,26 +773,26 @@ export function UtilitiesPage() {
             </div>
 
             {/* mobile / tablet cards */}
-            <div className="divide-y divide-line lg:hidden">
+            <div className="divide-y divide-line d-lg-none">
               {rows.map((t) => {
                 const u = utilityOf(t.utility);
                 return (
-                  <button key={t.id} onClick={() => open({ kind: "txn", txn: t })} className="flex w-full items-center gap-3 p-3.5 text-left transition active:bg-[#f7f9fc]">
-                    <span className="grid h-10 w-10 flex-none place-items-center rounded-xl" style={{ background: `${u.color}1a`, color: u.color }}>
+                  <button key={t.id} onClick={() => open({ kind: "txn", txn: t })} className="d-flex w-100 align-items-center gap-3 p-35 text-start transition active-bg-paper-3">
+                    <span className="d-grid h-10 w-10 flex-none place-items-center rounded-4" style={{ background: `${u.color}1a`, color: u.color }}>
                       <Icon name={u.icon} size={18} />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="flex items-center justify-between gap-2">
-                        <span className="truncate text-[13px] font-bold text-ink">{t.provider}</span>
-                        <span className="num text-[13px] font-extrabold text-ink">{kes(t.amount)}</span>
+                      <span className="d-flex align-items-center justify-content-between gap-2">
+                        <span className="text-truncate fs-13 fw-bold text-ink">{t.provider}</span>
+                        <span className="num fs-13 fw-extrabold text-ink">{kes(t.amount)}</span>
                       </span>
-                      <span className="mt-0.5 flex items-center justify-between gap-2">
-                        <span className="num truncate text-[11.5px] text-muted">
+                      <span className="mt-05 d-flex align-items-center justify-content-between gap-2">
+                        <span className="num text-truncate fs-115 text-muted">
                           {t.date} · {t.account}
                         </span>
                         <Badge tone={t.status === "Success" ? "success" : t.status === "Pending" ? "warning" : "danger"}>{t.status}</Badge>
                       </span>
-                      {t.units && <span className="mt-0.5 block text-[11px] font-semibold text-[#067647]">{t.units} purchased</span>}
+                      {t.units && <span className="mt-05 d-block fs-11 fw-semibold text-pmgreen-ink">{t.units} purchased</span>}
                     </span>
                     <Icon name="chevron-right" size={15} className="flex-none text-faint" />
                   </button>
@@ -800,11 +800,11 @@ export function UtilitiesPage() {
               })}
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line bg-[#fafbfd] px-4 py-3.5">
-              <p className="text-[11.5px] text-muted">
+            <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 border-top border-line bg-paper-2 px-4 py-35">
+              <p className="fs-115 text-muted">
                 Showing {rows.length} of {txns.length} · gross {kes(txns.reduce((s, t) => s + t.amount, 0))}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="d-flex flex-wrap gap-2">
                 <Button size="sm" variant="outline" icon="download" onClick={() => open({ kind: "export" })}>
                   Export
                 </Button>
@@ -818,18 +818,18 @@ export function UtilitiesPage() {
       </Card>
 
       {/* ============================ SUPPORT ============================ */}
-      <section className="mt-6 grid gap-3 lg:grid-cols-3" data-reveal>
-        <Card className="lg:col-span-2 bg-gradient-to-br from-ink via-[#0f2233] to-[#0d5c38] text-white" hover>
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="max-w-[46ch]">
-              <Badge tone="dark" className="border border-white/15 bg-white/10 text-white/80">
+      <section className="mt-6 d-grid gap-3 lg-grid-cols-3" data-reveal>
+        <Card className="lg-col-span-2 bg-gradient-to-br from-ink via-0f2233 to-0d5c38 text-white" hover>
+          <div className="d-flex flex-wrap align-items-start justify-content-between gap-4">
+            <div className="max-w-46ch">
+              <Badge tone="dark" className="border border-white-15 bg-white-10 text-white-80">
                 Support
               </Badge>
-              <h3 className="mt-3 font-display text-[19px] font-extrabold tracking-tight">Humans on WhatsApp, 24/7</h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-white/65">
+              <h3 className="mt-3 font-display fs-19 fw-extrabold tracking-tight">Humans on WhatsApp, 24/7</h3>
+              <p className="mt-2 fs-13 leading-relaxed text-white-65">
                 Median first reply is 47 seconds. Share a reference and we trace it across M-Pesa, the bank and the provider while you wait.
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 d-flex flex-wrap gap-2">
                 <Button variant="white" icon="phone" onClick={() => open({ kind: "help" })}>
                   Start a chat
                 </Button>
@@ -841,17 +841,17 @@ export function UtilitiesPage() {
                 </Button>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-1">
+            <div className="d-grid grid-cols-2 gap-2 sm-grid-cols-1">
               {[
                 { k: "First reply", v: "47s", i: "clock" as const },
                 { k: "Resolution", v: "3.2 hrs", i: "check-circle" as const },
                 { k: "Auto-reversals", v: "100%", i: "refresh" as const },
               ].map((s) => (
-                <div key={s.k} className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                <div key={s.k} className="d-flex align-items-center gap-25 rounded-4 border border-white-10 bg-white-06 p-3">
                   <Icon name={s.i} size={16} className="text-pmgreen" />
                   <div>
-                    <p className="num font-display text-[15px] font-extrabold leading-none">{s.v}</p>
-                    <p className="mt-1 text-[10.5px] text-white/50">{s.k}</p>
+                    <p className="num font-display fs-15 fw-extrabold lh-1">{s.v}</p>
+                    <p className="mt-1 fs-105 text-white-50">{s.k}</p>
                   </div>
                 </div>
               ))}
@@ -860,21 +860,21 @@ export function UtilitiesPage() {
         </Card>
 
         <Card hover>
-          <div className="flex items-center gap-2">
+          <div className="d-flex align-items-center gap-2">
             <Icon name="target" size={16} className="text-pmgreen" />
-            <p className="font-display text-[14.5px] font-bold tracking-tight text-ink">Cut next month's bill</p>
+            <p className="font-display fs-145 fw-bold tracking-tight text-ink">Cut next month's bill</p>
           </div>
-          <div className="mt-3 space-y-2.5">
+          <div className="mt-3 space-y-25">
             {[
               { t: "Shift the shop meter to postpaid", v: "Save ~KES 2,400/mo" },
               { t: "DSTV Premium → Compact", v: "Save KES 5,000/mo" },
               { t: "Fund with wallet, not card", v: "Save KES 390/mo in fees" },
             ].map((x) => (
-              <div key={x.t} className="flex items-start gap-2.5 rounded-xl border border-line bg-[#fafbfd] p-3">
-                <Icon name="check-circle" size={16} className="mt-0.5 flex-none text-pmgreen" />
+              <div key={x.t} className="d-flex align-items-start gap-25 rounded-4 border border-line bg-paper-2 p-3">
+                <Icon name="check-circle" size={16} className="mt-05 flex-none text-pmgreen" />
                 <div className="min-w-0 flex-1">
-                  <p className="text-[12.5px] font-bold text-ink">{x.t}</p>
-                  <p className="num mt-0.5 text-[11.5px] font-semibold text-[#067647]">{x.v}</p>
+                  <p className="fs-125 fw-bold text-ink">{x.t}</p>
+                  <p className="num mt-05 fs-115 fw-semibold text-pmgreen-ink">{x.v}</p>
                 </div>
               </div>
             ))}
@@ -910,35 +910,35 @@ function Kpi({
   custom?: React.ReactNode;
 }) {
   const bg: Record<string, string> = {
-    success: "bg-pmgreen-soft text-[#067647]",
-    warning: "bg-warn-soft text-[#93370d]",
-    info: "bg-pmblue-soft text-[#175cd3]",
-    violet: "bg-pmviolet-soft text-[#5925dc]",
-    danger: "bg-danger-soft text-[#b42318]",
+    success: "bg-pmgreen-soft text-pmgreen-ink",
+    warning: "bg-warn-soft text-warn-ink",
+    info: "bg-pmblue-soft text-pmblue-ink",
+    violet: "bg-pmviolet-soft text-pmviolet-ink",
+    danger: "bg-danger-soft text-danger-ink",
     muted: "bg-canvas text-muted",
-    teal: "bg-pmteal-soft text-[#07615a]",
+    teal: "bg-pmteal-soft text-pmteal-ink",
     dark: "bg-ink text-white",
   };
   return (
-    <div className="card-hover rounded-2xl border border-line bg-white p-4 shadow-pm">
-      <div className="flex items-start justify-between gap-3">
+    <div className="card-hover rounded-5 border border-line bg-white p-4 shadow-pm">
+      <div className="d-flex align-items-start justify-content-between gap-3">
         <div className="min-w-0">
-          <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-faint">{label}</p>
-          <p className="num mt-1.5 font-display text-[21px] font-extrabold leading-none tracking-tight text-ink">{value}</p>
+          <p className="fs-11 fw-bold text-uppercase tracking-0-12em text-faint">{label}</p>
+          <p className="num mt-15 font-display fs-21 fw-extrabold lh-1 tracking-tight text-ink">{value}</p>
         </div>
-        <span className={cn("grid h-9 w-9 flex-none place-items-center rounded-[11px]", bg[tone])}>
+        <span className={cn("d-grid h-9 w-9 flex-none place-items-center rounded-11px", bg[tone])}>
           <Icon name={icon} size={17} />
         </span>
       </div>
-      <div className="mt-3 flex items-end justify-between gap-3">
+      <div className="mt-3 d-flex align-items-end justify-content-between gap-3">
         <div className="min-w-0">
           {delta !== 0 && (
-            <span className={cn("inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-bold", delta > 0 ? "bg-danger-soft text-[#b42318]" : "bg-pmgreen-soft text-[#067647]")}>
+            <span className={cn("d-inline-flex align-items-center gap-1 rounded-2 px-15 py-05 fs-11 fw-bold", delta > 0 ? "bg-danger-soft text-danger-ink" : "bg-pmgreen-soft text-pmgreen-ink")}>
               <Icon name={delta > 0 ? "trend-up" : "trend-down"} size={12} />
               {Math.abs(delta).toFixed(1)}%
             </span>
           )}
-          <p className="mt-1 truncate text-[11px] leading-relaxed text-muted">{deltaNote}</p>
+          <p className="mt-1 text-truncate fs-11 leading-relaxed text-muted">{deltaNote}</p>
         </div>
         {spark}
       </div>
