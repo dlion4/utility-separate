@@ -349,7 +349,7 @@ function NotifDrawer() {
 /* ================================================================ Shell ================================================================ */
 
 export function Shell({ children }: { children: ReactNode }) {
-  const { setNavOpen, setPaletteOpen, setNotifOpen, notifOpen, open, toast, balance } = useApp();
+  const { navOpen, setNavOpen, setPaletteOpen, setNotifOpen, notifOpen, open, toast, balance } = useApp();
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (st) => st.location.pathname });
 
@@ -397,16 +397,21 @@ export function Shell({ children }: { children: ReactNode }) {
 
   return (
     <div className="canvas-wash min-vh-100">
-      {/* Desktop sidebar */}
-      <aside className="side-glow position-fixed inset-y-0 start-0 z-40 d-none w-252px border-end border-white-5 d-lg-block">
+      {/* Desktop sidebar overlay */}
+      {navOpen && (
+        <div className="position-fixed inset-0 z-30 bg-side-60 backdrop-blur-3px" onClick={() => setNavOpen(false)} />
+      )}
+
+      {/* Desktop sidebar - hidden by default, toggled via menu button */}
+      <aside className={cn("side-glow position-fixed inset-y-0 start-0 z-40 w-252px border-end border-white-5", navOpen ? "d-block" : "d-none")}>
         <SideNav onNav={onNav} active={active} />
       </aside>
 
-      <div className="lg-pl-252px">
+      <div>
         {/* Topbar */}
         <header className="position-sticky top-0 z-30 border-bottom border-line bg-white-85 backdrop-blur-xl">
           <div className="d-flex align-items-center gap-3 px-4 py-3 sm-px-6">
-            <button onClick={() => setNavOpen(true)} aria-label="Open navigation" className="focus-ring d-grid h-10 w-10 flex-none place-items-center rounded-4 border border-line text-ink d-lg-none">
+            <button onClick={() => setNavOpen(true)} aria-label="Open navigation" className="focus-ring d-grid h-10 w-10 flex-none place-items-center rounded-4 border border-line text-ink">
               <Icon name="menu" size={18} />
             </button>
             <div className="min-w-0 flex-1">
